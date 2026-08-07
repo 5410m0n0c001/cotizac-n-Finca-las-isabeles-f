@@ -357,6 +357,16 @@
         .visor-nav.izq { left:16px; } .visor-nav.der { right:16px; }
         .visor-contador { position:absolute; bottom:18px; left:0; right:0; text-align:center; color:rgba(255,255,255,.75); font-size:.82rem; letter-spacing:1px; }
 
+        .price-total-chico { margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,.15);
+            font-size:.86rem; color:rgba(255,255,255,.72); }
+        .price-total-chico strong { color:var(--gold-accent); font-weight:600; }
+        .ctb-pp { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+        .ctb-pp span:first-child { font-size:.72rem; text-transform:uppercase; letter-spacing:1.4px; color:var(--gold-accent); font-weight:700; }
+        .ctb-pp strong { font-family:var(--font-serif); font-size:1.75rem; line-height:1; }
+        .ctb-total-chico { display:flex; justify-content:space-between; gap:12px; margin-top:8px; padding-top:8px;
+            border-top:1px solid rgba(255,255,255,.14); font-size:.78rem; color:rgba(255,255,255,.7); }
+        .ctb-total-chico strong { color:var(--gold-accent); font-weight:600; }
+
         /* CSS print obligatorio — DIRECTIVES.md sección 9 */
         @media print {
             #preloader, .floating-actions-container, .pdf-section,
@@ -791,9 +801,10 @@
 
             <!-- ══ INVERSIÓN TOTAL BASE ══ -->
             <div class="pricing-section reveal" id="inversionBase">
-                <h3>Inversión Total Estimada</h3>
-                <div class="price-hero" id="totalBaseDisplay">$399,800.00<sup>MXN</sup></div>
-                <div class="price-label">200 invitados · $1,999.00 por persona · 10 horas de servicio</div>
+                <h3>Su Inversión</h3>
+                <div class="price-hero" id="totalBaseDisplay">$1,999.00<sup>MXN</sup></div>
+                <div class="price-label">por persona · 200 invitados · 10 horas de servicio continuo</div>
+                <div class="price-total-chico">Inversión total del evento: <strong id="totalEventoChico">$399,800.00 MXN</strong></div>
                 <div class="price-breakdown" id="desgloseExtras" style="display:none;">
                     <div class="price-breakdown-row"><span>Cotización base</span><span id="totalBaseTexto">$[TOTAL_BASE].00</span></div>
                     <ul id="listaExtras" style="list-style:none; margin:6px 0; padding:0;"></ul>
@@ -956,7 +967,8 @@
                     <div class="ctb-row"><span>Paquete base · 200 invitados</span><span id="ctbBase">$399,800.00</span></div>
                     <ul class="ctb-extras-list" id="ctbExtras"></ul>
                     <p class="ctb-vacio" id="ctbVacio">Aún no has agregado extras.</p>
-                    <div class="ctb-total"><span>Total con extras</span><strong id="ctbTotal">$399,800.00</strong></div>
+                    <div class="ctb-pp"><span>Por persona</span><strong id="ctbPorPersona">$1,999.00</strong></div>
+                    <div class="ctb-total-chico"><span>Inversión total del evento</span><strong id="ctbTotal">$399,800.00</strong></div>
                 </div>
                 <div id="calcGrid"></div>
             </div>
@@ -1198,7 +1210,10 @@
         const seleccion = Object.values(extrasSeleccionados);
         const extras = seleccion.reduce((s, e) => s + e.precio, 0);
         const totalFinal = TOTAL_BASE + extras;
-        document.getElementById('totalBaseDisplay').innerHTML = moneyFmt(totalFinal) + '<sup>MXN</sup>';
+        var INVITADOS = 200;
+        document.getElementById('totalBaseDisplay').innerHTML = moneyFmt(totalFinal / INVITADOS) + '<sup>MXN</sup>';
+        var teChico = document.getElementById('totalEventoChico');
+        if (teChico) teChico.textContent = moneyFmt(totalFinal) + ' MXN';
         document.getElementById('totalBaseTexto').textContent = moneyFmt(TOTAL_BASE);
         document.getElementById('totalExtrasTexto').textContent = moneyFmt(extras);
         document.getElementById('listaExtras').innerHTML = seleccion
@@ -1210,6 +1225,8 @@
         var ctbTotal = document.getElementById('ctbTotal');
         if (ctbTotal) {
             ctbTotal.textContent = moneyFmt(totalFinal);
+            var pp = document.getElementById('ctbPorPersona');
+            if (pp) pp.textContent = moneyFmt(totalFinal / 200);
             document.getElementById('ctbBase').textContent = moneyFmt(TOTAL_BASE);
             document.getElementById('ctbExtras').innerHTML = seleccion
                 .map(function(e){ return '<li><span>+ ' + e.nombre + '</span><span>' + moneyFmt(e.precio) + '</span></li>'; })
@@ -1316,7 +1333,7 @@
             entries.forEach(function(e){
                 if (!e.isIntersecting || hecho) return;
                 hecho = true; o.unobserve(e.target);
-                var fin = TOTAL_BASE, ini = performance.now(), dur = 1200;
+                var fin = TOTAL_BASE / 200, ini = performance.now(), dur = 1200;
                 (function paso(t){
                     var p = Math.min((t - ini) / dur, 1);
                     el.innerHTML = moneyFmt(Math.floor(fin * (1 - Math.pow(1 - p, 3)))) + '<sup>MXN</sup>';
