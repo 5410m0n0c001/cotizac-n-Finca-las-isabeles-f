@@ -940,7 +940,45 @@
             <div class="gallery-block-title reveal reveal-left">9 · Beneficios al Firmar Contrato</div>
             <div class="includes-grid">
                 <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container is-video"><video id="videoDegustacion" class="include-video" autoplay muted loop playsinline webkit-playsinline poster="banquete_entradas.webp" style="width:100%;height:100%;object-fit:cover;"><source src="degustacion_video.mp4" type="video/mp4"></video></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div></div>
-                
+            </div>
+
+            <!-- ══ Croquis interactivo: INCLUIDO EN EL SERVICIO ══ -->
+            <div class="video-section reveal">
+                <h3 class="section-title"><i class="fas fa-map"></i> Croquis Interactivo 2D y 3D <span style="font-size:0.8rem; background:var(--gold-accent); color:var(--white); padding:3px 10px; border-radius:12px; vertical-align:middle; font-weight:600; text-transform:uppercase; margin-left:8px;">Incluido</span></h3>
+                <p class="calc-hint">Al firmar contrato diseñamos el montaje según su paleta de colores y le entregamos el croquis de distribución, el minuto a minuto y un chat directo con coordinación. Así se ve su evento antes del evento.</p>
+                <div class="video-frame">
+                    <video id="videoCroquis" controls autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="mesa_principal_rey_reyna.webp">
+                        <source src="croquis_interactivo.mp4" type="video/mp4">
+                        <source src="croquis_interactivo.webm" type="video/webm">
+                    </video>
+                    <button class="video-full" id="btnFullCroquis" title="Ver en pantalla completa"><i class="fas fa-expand"></i> Pantalla completa</button>
+                </div>
+            </div>
+
+            <!-- ══ Minuto a minuto: Ficha técnica INCLUIDA ══ -->
+            <div class="slides-section reveal">
+                <h3 class="section-title"><i class="fas fa-list-ol"></i> Ficha Técnica: Minuto a Minuto del Evento <span style="font-size:0.8rem; background:var(--gold-accent); color:var(--white); padding:3px 10px; border-radius:12px; vertical-align:middle; font-weight:600; text-transform:uppercase; margin-left:8px;">Incluido</span></h3>
+                <p class="calc-hint">Al firmar contrato recibe este cronograma detallado del evento sin costo adicional. Deslice para verlo completo.</p>
+                <div class="slides-wrap">
+                    <button class="slide-nav prev" id="slidePrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slides-track" id="slidesTrack">
+                        <div class="slide"><img src="slide_minuto_01.png" alt="Minuto a minuto, hoja 1" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_02.png" alt="Minuto a minuto, hoja 2" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_04.png" alt="Minuto a minuto, hoja 4" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_05.webp" alt="Minuto a minuto, hoja 5" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_06.png" alt="Minuto a minuto, hoja 6" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_07.webp" alt="Minuto a minuto, hoja 7" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_08.png" alt="Minuto a minuto, hoja 8" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_09.png" alt="Minuto a minuto, hoja 9" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_10.png" alt="Minuto a minuto, hoja 10" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_11.webp" alt="Minuto a minuto, hoja 11" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_12.png" alt="Minuto a minuto, hoja 12" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_13.png" alt="Minuto a minuto, hoja 13" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_14.png" alt="Minuto a minuto, hoja 14" loading="lazy"></div>
+                    </div>
+                    <button class="slide-nav next" id="slideNext" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="slides-dots" id="slidesDots"></div>
             </div>
 
             <!-- ══ COMPLEMENTOS OFICIALES — enlaces reales del sitio web, no tocar salvo que cambien ══ -->
@@ -1026,44 +1064,7 @@
 
             
 
-            <!-- ══ Croquis interactivo: video a todo el ancho, no recortado ══ -->
-            <div class="video-section reveal">
-                <h3 class="section-title"><i class="fas fa-map"></i> Croquis Interactivo 2D y 3D</h3>
-                <p class="calc-hint">Al firmar contrato diseñamos el montaje según su paleta de colores y le entregamos el croquis de distribución, el minuto a minuto y un chat directo con coordinación. Así se ve su evento antes del evento.</p>
-                <div class="video-frame">
-                    <video id="videoCroquis" controls autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="mesa_principal_rey_reyna.webp">
-                        <source src="croquis_interactivo.mp4" type="video/mp4">
-                        <source src="croquis_interactivo.webm" type="video/webm">
-                    </video>
-                    <button class="video-full" id="btnFullCroquis" title="Ver en pantalla completa"><i class="fas fa-expand"></i> Pantalla completa</button>
-                </div>
-            </div>
 
-            <!-- ══ Minuto a minuto: la ficha tecnica que se le entrega al cliente ══ -->
-            <div class="slides-section reveal">
-                <h3 class="section-title"><i class="fas fa-list-ol"></i> Así es el Minuto a Minuto que le entregamos</h3>
-                <p class="calc-hint">Al firmar contrato recibe este cronograma detallado del evento. Deslice para verlo completo.</p>
-                <div class="slides-wrap">
-                    <button class="slide-nav prev" id="slidePrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                    <div class="slides-track" id="slidesTrack">
-                        <div class="slide"><img src="slide_minuto_01.png" alt="Minuto a minuto, hoja 1" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_02.png" alt="Minuto a minuto, hoja 2" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_04.png" alt="Minuto a minuto, hoja 4" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_05.webp" alt="Minuto a minuto, hoja 5" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_06.png" alt="Minuto a minuto, hoja 6" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_07.webp" alt="Minuto a minuto, hoja 7" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_08.png" alt="Minuto a minuto, hoja 8" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_09.png" alt="Minuto a minuto, hoja 9" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_10.png" alt="Minuto a minuto, hoja 10" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_11.webp" alt="Minuto a minuto, hoja 11" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_12.png" alt="Minuto a minuto, hoja 12" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_13.png" alt="Minuto a minuto, hoja 13" loading="lazy"></div>
-                        <div class="slide"><img src="slide_minuto_14.png" alt="Minuto a minuto, hoja 14" loading="lazy"></div>
-                    </div>
-                    <button class="slide-nav next" id="slideNext" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <div class="slides-dots" id="slidesDots"></div>
-            </div>
 
             <!-- ══ KIT PLANNER — sección obligatoria #11 de DIRECTIVES.md (descarga real de Excel + PDF) ══ -->
             <div class="kit-section reveal">
