@@ -28,6 +28,8 @@
         .btn-enter { background:var(--primary-pink); color:var(--white); border:none; padding:14px 42px; border-radius:30px; font-size:.95rem; font-weight:600; cursor:pointer; box-shadow:0 6px 20px rgba(246,92,122,.4); text-transform:uppercase; letter-spacing:1px; }
         .btn-enter:hover { transform:scale(1.04); background:#e04b69; }
 
+        /* HERO — al recibir la foto panorámica real de la finca, guardarla como
+           hero_finca_las_isabeles.jpg en la raíz y cambiar solo esta línea. */
         .hero { position:relative; height:55vh; min-height:380px; overflow:hidden; display:flex; align-items:flex-end; justify-content:center; background:url('pistadebaile.jpg') center/cover no-repeat, linear-gradient(135deg,#1f1f1f 0%,#2d1422 100%); }
         .hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(31,31,31,.2), rgba(31,31,31,.85)); z-index:1; }
         .hero-content { position:relative; z-index:2; text-align:center; padding:0 20px 60px; color:var(--white); max-width:800px; }
@@ -68,6 +70,10 @@
         .pricing-table td { padding:16px 20px; border-bottom:1px solid var(--beige); vertical-align:top; }
         .pricing-table tr:nth-child(even) { background:rgba(246,92,122,.02); }
         .col-concept{width:22%;} .col-desc{width:48%;} .col-qty{width:10%;text-align:center;} .col-unit{width:10%;text-align:right;} .col-total{width:10%;text-align:right;font-weight:600;}
+        /* Miniatura por concepto dentro de la tabla de desglose */
+        .tbl-thumb { width:64px; height:64px; object-fit:cover; border-radius:10px; border:1px solid var(--beige); display:block; margin-bottom:8px; }
+        .tbl-thumb-pend { width:64px; height:64px; border-radius:10px; border:1px dashed var(--primary-light); display:flex; align-items:center; justify-content:center; margin-bottom:8px; color:var(--primary-light); font-size:1rem;
+            background:repeating-linear-gradient(45deg,#F5EFEB,#F5EFEB 6px,#EFE7E1 6px,#EFE7E1 12px); }
         .align-center{text-align:center;} .align-right{text-align:right;}
 
         .includes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px; margin-bottom:45px; }
@@ -293,49 +299,49 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>1 · ÁREAS E INSTALACIONES</strong></td></tr>
                         <tr>
-                            <td><strong>Uso completo de la quinta</strong></td>
+                            <td><img class="tbl-thumb" src="tiempodeservicio.webp" alt="Uso completo de la quinta" loading="lazy"><strong>Uso completo de la quinta</strong></td>
                             <td>Uso íntegro de Finca Las Isabeles durante 10 horas continuas, sin restricción de horario dentro del bloque contratado.</td>
                             <td class="align-center">10 hrs</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Área techada</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: finca_area_techada.jpg"><i class="fas fa-camera"></i></div><strong>Área techada</strong></td>
                             <td>Salón techado de estilo modernista con capacidad máxima para 400 personas.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Jardín con cascada</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: finca_jardin_cascada.jpg"><i class="fas fa-camera"></i></div><strong>Jardín con cascada</strong></td>
                             <td>Área de jardín con cascada e iluminación arquitectónica interior y exterior.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Área consagrada</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: finca_area_consagrada.jpg"><i class="fas fa-camera"></i></div><strong>Área consagrada</strong></td>
                             <td>Espacio consagrado dentro del recinto para ceremonia religiosa o civil.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Suite nupcial</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: finca_suite_nupcial.jpg"><i class="fas fa-camera"></i></div><strong>Suite nupcial</strong></td>
                             <td>Habitación incluida para los festejados dentro de la finca.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Valet parking</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: finca_valet_parking.jpg"><i class="fas fa-camera"></i></div><strong>Valet parking</strong></td>
                             <td>Estacionamiento con servicio de valet parking para los invitados.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Cocina operativa</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: finca_cocina.jpg"><i class="fas fa-camera"></i></div><strong>Cocina operativa</strong></td>
                             <td>Área de cocina amplia y funcional para la operación del banquete.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
@@ -344,21 +350,21 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>2 · COCTEL DE BIENVENIDA</strong></td></tr>
                         <tr>
-                            <td><strong>Montaje de coctel</strong></td>
+                            <td><img class="tbl-thumb" src="periqueras_1.jpg" alt="Montaje de coctel" loading="lazy"><strong>Montaje de coctel</strong></td>
                             <td>Periqueras altas, salas lounge y sombrillas para la recepción de los invitados.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Bebidas de bienvenida</strong></td>
+                            <td><img class="tbl-thumb" src="margaritas.webp" alt="Bebidas de bienvenida" loading="lazy"><strong>Bebidas de bienvenida</strong></td>
                             <td>Margaritas de sabores sin alcohol en copa flauta, mojito sin alcohol, piñada y agua fresca de fruta natural.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Crudités</strong></td>
+                            <td><img class="tbl-thumb" src="crudites.webp" alt="Crudités" loading="lazy"><strong>Crudités</strong></td>
                             <td>Pepino, jícama y zanahoria acompañados de miguelito y chamoy.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
@@ -367,42 +373,42 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>3 · MONTAJE Y DECORACIÓN</strong></td></tr>
                         <tr>
-                            <td><strong>Mesa principal</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: mesa_principal_rey_reyna.jpg"><i class="fas fa-camera"></i></div><strong>Mesa principal</strong></td>
                             <td>Mesa principal con sillones Rey &amp; Reyna, más templete de madera con back decorado con luces vintage y telas.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Mesas de invitados</strong></td>
+                            <td><img class="tbl-thumb" src="mesa_campirana_1.jpg" alt="Mesas de invitados" loading="lazy"><strong>Mesas de invitados</strong></td>
                             <td>A elegir: redondas para 8 o 10 Px con silla Tiffany blanca; cuadradas para 10-12 Px; campiranas de madera para 10-12 Px con silla crossback, Tiffany, boss o lotus; o tipo mármol para 10-12 Px con combinación de sillas.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Centros de mesa</strong></td>
+                            <td><img class="tbl-thumb" src="centros_mesa_altos.jpg" alt="Centros de mesa" loading="lazy"><strong>Centros de mesa</strong></td>
                             <td>Arreglos naturales con flores de temporada, en versión redonda, alta y baja.</td>
                             <td class="align-center">Por mesa</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Mantelería</strong></td>
+                            <td><img class="tbl-thumb" src="manteleria.webp" alt="Mantelería" loading="lazy"><strong>Mantelería</strong></td>
                             <td>Mantel, camino y servilleta de tela en el color que elijan.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Vajilla y cubertería</strong></td>
+                            <td><img class="tbl-thumb" src="cuberteria_fina.jpg" alt="Vajilla y cubertería" loading="lazy"><strong>Vajilla y cubertería</strong></td>
                             <td>Platos base decorativos (varios modelos), loza blanca de alta calidad y cubertería fina en plata, dorado o gold rose.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Cristalería</strong></td>
+                            <td><img class="tbl-thumb" src="cristaleria.webp" alt="Cristalería" loading="lazy"><strong>Cristalería</strong></td>
                             <td>Copas transparentes y de color, vaso cubero y caballito tequilero.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
@@ -411,28 +417,28 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>4 · BANQUETE A 3 TIEMPOS</strong></td></tr>
                         <tr>
-                            <td><strong>Primer tiempo</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: banquete_entradas.jpg"><i class="fas fa-camera"></i></div><strong>Primer tiempo</strong></td>
                             <td>Entrada a elegir: frescas ensaladas o cremas.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Segundo tiempo</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: banquete_plato_fuerte.jpg"><i class="fas fa-camera"></i></div><strong>Segundo tiempo</strong></td>
                             <td>Plato fuerte de pollo o cerdo, con dos guarniciones a elegir, pan y chiles al centro de la mesa.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Tercer tiempo (tornafiesta)</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: tornafiesta_esquites_chilaquiles.jpg"><i class="fas fa-camera"></i></div><strong>Tercer tiempo (tornafiesta)</strong></td>
                             <td>Barra de esquites o chilaquiles servida en desechables. <em>Se considera al 60% del total de invitados (120 porciones).</em></td>
                             <td class="align-center">120 porc.</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Menú infantil</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: menu_infantil.jpg"><i class="fas fa-camera"></i></div><strong>Menú infantil</strong></td>
                             <td>Tiritas de milanesa, hamburguesa o nuggets de pollo, con espagueti o papas a la francesa y golosina sorpresa.</td>
                             <td class="align-center">Según confirmación</td>
                             <td class="align-right">Incluido</td>
@@ -441,7 +447,7 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>5 · BEBIDAS Y MEZCLADORES</strong></td></tr>
                         <tr>
-                            <td><strong>Mezcladores</strong></td>
+                            <td><img class="tbl-thumb" src="mezcladores.png" alt="Mezcladores" loading="lazy"><strong>Mezcladores</strong></td>
                             <td>Hielo en cubos, agua natural, refrescos de línea Coca-Cola (manzana, toronja, agua mineral y Coca-Cola clásica), limón y sal.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
@@ -450,7 +456,7 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>6 · EQUIPO DE SERVICIO</strong></td></tr>
                         <tr>
-                            <td><strong>Personal completo</strong></td>
+                            <td><img class="tbl-thumb" src="meseros.webp" alt="Personal completo" loading="lazy"><strong>Personal completo</strong></td>
                             <td>Coordinador general, capitán de meseros, hostess, meseros capacitados, personal de barra especializado y personal de baños.</td>
                             <td class="align-center">Equipo completo</td>
                             <td class="align-right">Incluido</td>
@@ -459,28 +465,28 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>7 · DJ PROFESIONAL, AUDIO E ILUMINACIÓN</strong></td></tr>
                         <tr>
-                            <td><strong>DJ y cabina</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: dj_mampara_cabina.jpg"><i class="fas fa-camera"></i></div><strong>DJ y cabina</strong></td>
                             <td>DJ con amplia experiencia, mampara de DJ, audio e iluminación de alta calidad y micrófono inalámbrico.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Iluminación de espectáculo</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: torres_cabezas_roboticas.jpg"><i class="fas fa-camera"></i></div><strong>Iluminación de espectáculo</strong></td>
                             <td>Torres iluminadas con cabezas robóticas, lámpara LED wash, tramoya para iluminación y máquina de humo.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Pantalla con proyector</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: pantalla_proyector.jpg"><i class="fas fa-camera"></i></div><strong>Pantalla con proyector</strong></td>
                             <td>Pantalla y proyector para video o presentación de los festejados.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><strong>Artículos de animación</strong></td>
+                            <td><img class="tbl-thumb" src="decoracion_globos.jpg" alt="Artículos de animación" loading="lazy"><strong>Artículos de animación</strong></td>
                             <td>Globos multicolores y collares hawaianos (en bodas se sustituyen por corbatas y velos).</td>
                             <td class="align-center">Set</td>
                             <td class="align-right">Incluido</td>
@@ -489,35 +495,35 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>8 · CORTESÍAS INCLUIDAS</strong></td></tr>
                         <tr>
-                            <td><strong>Letras decorativas</strong></td>
+                            <td><img class="tbl-thumb" src="letras gigantes.webp" alt="Letras decorativas" loading="lazy"><strong>Letras decorativas</strong></td>
                             <td>Letras iluminadas «XV» o «LOVE» según el tipo de celebración.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Cortesía</td>
                             <td class="align-right">Cortesía</td>
                         </tr>
                         <tr>
-                            <td><strong>Corazón iluminado</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: corazon_rojo_iluminado.jpg"><i class="fas fa-camera"></i></div><strong>Corazón iluminado</strong></td>
                             <td>Corazón rojo decorativo iluminado.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Cortesía</td>
                             <td class="align-right">Cortesía</td>
                         </tr>
                         <tr>
-                            <td><strong>Mesas especiales</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: mesa_pastel.jpg"><i class="fas fa-camera"></i></div><strong>Mesas especiales</strong></td>
                             <td>Mesa para pastel y mesa para regalos, montadas y decoradas.</td>
                             <td class="align-center">2</td>
                             <td class="align-right">Cortesía</td>
                             <td class="align-right">Cortesía</td>
                         </tr>
                         <tr>
-                            <td><strong>Pirotecnia fría</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: pirotecnia_fria_chisperos.jpg"><i class="fas fa-camera"></i></div><strong>Pirotecnia fría</strong></td>
                             <td>Detonación de dos chisperos de pirotecnia en frío para el momento estelar.</td>
                             <td class="align-center">2</td>
                             <td class="align-right">Cortesía</td>
                             <td class="align-right">Cortesía</td>
                         </tr>
                         <tr>
-                            <td><strong>Alfombra roja</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: alfombra_roja.jpg"><i class="fas fa-camera"></i></div><strong>Alfombra roja</strong></td>
                             <td>Alfombra roja para una entrada espectacular.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Cortesía</td>
@@ -526,7 +532,7 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>9 · SERVICIOS COMPLEMENTARIOS — ELIGEN 2 SIN COSTO</strong></td></tr>
                         <tr>
-                            <td><strong>2 opciones a elegir</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: pista_leds_5x5.jpg"><i class="fas fa-camera"></i></div><strong>2 opciones a elegir</strong></td>
                             <td>Por ser un evento de 200 invitados, el paquete incluye <strong>dos</strong> de estos servicios sin costo: pista de LEDs 5×5 · cabina 360 · robot de LEDs · show men performance.</td>
                             <td class="align-center">2 de 4</td>
                             <td class="align-right">Incluido</td>
@@ -535,14 +541,14 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>10 · BENEFICIOS AL FIRMAR CONTRATO</strong></td></tr>
                         <tr>
-                            <td><strong>Degustación</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: degustacion_menu.jpg"><i class="fas fa-camera"></i></div><strong>Degustación</strong></td>
                             <td>Degustación exclusiva del menú para 4 personas.</td>
                             <td class="align-center">4 Px</td>
                             <td class="align-right">Cortesía</td>
                             <td class="align-right">Cortesía</td>
                         </tr>
                         <tr>
-                            <td><strong>Diseño y coordinación</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: croquis_distribucion.jpg"><i class="fas fa-camera"></i></div><strong>Diseño y coordinación</strong></td>
                             <td>Diseño de montaje según su paleta de colores, croquis de distribución detallada, minuto a minuto del evento y chat exclusivo de comunicación con coordinación.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Cortesía</td>
@@ -620,6 +626,8 @@
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>finca_jardin_cascada.jpg</span></div><div class="include-content"><h4><i class="fas fa-water"></i> Jardín con Cascada</h4><p>Áreas verdes con cascada e iluminación arquitectónica exterior.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>finca_area_consagrada.jpg</span></div><div class="include-content"><h4><i class="fas fa-place-of-worship"></i> Área Consagrada</h4><p>Espacio íntimo dentro del recinto para la ceremonia religiosa o civil.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>finca_suite_nupcial.jpg</span></div><div class="include-content"><h4><i class="fas fa-bed"></i> Suite Nupcial</h4><p>Habitación incluida dentro de la finca para los festejados.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>finca_valet_parking.jpg</span></div><div class="include-content"><h4><i class="fas fa-car"></i> Estacionamiento con Valet</h4><p>Estacionamiento propio con servicio de valet parking para sus invitados.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>finca_cocina.jpg</span></div><div class="include-content"><h4><i class="fas fa-kitchen-set"></i> Cocina Operativa</h4><p>Área de cocina amplia y funcional donde se prepara y despacha el banquete.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="tiempodeservicio.webp" alt="10 horas de servicio"></div><div class="include-content"><h4><i class="fas fa-clock"></i> 10 Horas Continuas</h4><p>Uso completo de la quinta durante diez horas seguidas, sin cortes de servicio.</p></div></div>
             </div>
 
@@ -630,6 +638,7 @@
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="sala_lounge_1.jpg" alt="Salas lounge"></div><div class="include-content"><h4><i class="fas fa-couch"></i> Salas Lounge</h4><p>Mobiliario lounge para que los invitados descansen y convivan durante el coctel.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="margaritas.webp" alt="Bebidas de bienvenida"></div><div class="include-content"><h4><i class="fas fa-martini-glass-citrus"></i> Bebidas sin Alcohol</h4><p>Margaritas de sabores en copa flauta, mojito, piñada y agua fresca de fruta natural.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="crudites.webp" alt="Crudités"></div><div class="include-content"><h4><i class="fas fa-carrot"></i> Crudités</h4><p>Pepino, jícama y zanahoria con miguelito y chamoy, presentados para compartir.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>sombrillas_jardin.jpg</span></div><div class="include-content"><h4><i class="fas fa-umbrella-beach"></i> Sombrillas de Jardín</h4><p>Sombra para el área de coctel al aire libre durante la recepción.</p></div></div>
             </div>
 
             <!-- ═══ BLOQUE 3: MONTAJE Y DECORACIÓN ═══ -->
@@ -638,6 +647,7 @@
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>mesa_principal_rey_reyna.jpg</span></div><div class="include-content"><h4><i class="fas fa-crown"></i> Mesa Principal Rey &amp; Reyna</h4><p>Mesa de honor con sillones Rey y Reyna para los festejados.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>templete_back_luces_vintage.jpg</span></div><div class="include-content"><h4><i class="fas fa-star"></i> Templete con Back Decorado</h4><p>Templete de madera con back de luces vintage y telas, para el momento estelar.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>mesa_redonda_tiffany.jpg</span></div><div class="include-content"><h4><i class="fas fa-circle"></i> Mesas Redondas Tiffany</h4><p>Mesas redondas para 8 o 10 personas con silla Tiffany blanca.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>mesa_cuadrada_tiffany.jpg</span></div><div class="include-content"><h4><i class="fas fa-square"></i> Mesas Cuadradas</h4><p>Mesas cuadradas para 10-12 personas con silla Tiffany blanca.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="mesa_campirana_1.jpg" alt="Mesa campirana"></div><div class="include-content"><h4><i class="fas fa-tree"></i> Mesas Campiranas</h4><p>Mesas de madera para 10-12 Px con silla crossback, Tiffany, boss o lotus.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="mesa_marmol_1.jpg" alt="Mesa tipo mármol"></div><div class="include-content"><h4><i class="fas fa-gem"></i> Mesas Tipo Mármol</h4><p>Mesas de acabado mármol para 10-12 Px con combinación de sillas de diseño.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="silla_carlota_luis_xv.jpg" alt="Sillería de diseño"></div><div class="include-content"><h4><i class="fas fa-chair"></i> Sillería de Diseño</h4><p>Catálogo de sillas finas disponibles para combinar con el estilo de su montaje.</p></div></div>
@@ -680,7 +690,8 @@
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="pistadebaile.jpg" alt="Pista de baile"></div><div class="include-content"><h4><i class="fas fa-music"></i> Pista de Baile</h4><p>El corazón de la fiesta, ambientada con iluminación de espectáculo.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>pantalla_proyector.jpg</span></div><div class="include-content"><h4><i class="fas fa-display"></i> Pantalla con Proyector</h4><p>Para el video de los festejados o la proyección de recuerdos durante el evento.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>maquina_humo.jpg</span></div><div class="include-content"><h4><i class="fas fa-smog"></i> Máquina de Humo</h4><p>Efecto de humo bajo para realzar la iluminación en los momentos clave.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="decoracion_globos.jpg" alt="Globos multicolores"></div><div class="include-content"><h4><i class="fas fa-circle"></i> Globos y Artículos de Animación</h4><p>Globos multicolores y collares hawaianos (o corbatas y velos en bodas).</p></div></div>
+                <div class="include-item"><div class="include-img-container"><img class="include-img" src="decoracion_globos.jpg" alt="Globos multicolores"></div><div class="include-content"><h4><i class="fas fa-circle"></i> Globos Multicolores</h4><p>Decoración con globos para animar la pista en el momento de mayor energía.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>collares_hawaianos.jpg</span></div><div class="include-content"><h4><i class="fas fa-hands-holding-circle"></i> Collares Hawaianos</h4><p>Artículos de animación para los invitados (en bodas se sustituyen por corbatas y velos).</p></div></div>
             </div>
 
             <!-- ═══ BLOQUE 7: CORTESÍAS ═══ -->
@@ -701,6 +712,15 @@
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>cabina_360.jpg</span></div><div class="include-content"><h4><i class="fas fa-video"></i> Cabina 360°</h4><p>Plataforma giratoria de video para que los invitados se lleven su clip del evento.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>robot_leds.jpg</span></div><div class="include-content"><h4><i class="fas fa-robot"></i> Robot de LEDs</h4><p>Personaje iluminado que anima la pista y se roba las fotos de la noche.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="maestro_ceremonias_1.jpg" alt="Show men performance"></div><div class="include-content"><h4><i class="fas fa-microphone"></i> Show Men Performance</h4><p>Animación profesional que mantiene la energía de la fiesta de principio a fin.</p></div></div>
+            </div>
+
+            <!-- ═══ BLOQUE 9: BENEFICIOS AL FIRMAR ═══ -->
+            <div class="gallery-block-title">9 · Beneficios al Firmar Contrato</div>
+            <div class="includes-grid">
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>degustacion_menu.jpg</span></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas</h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>croquis_distribucion.jpg</span></div><div class="include-content"><h4><i class="fas fa-map"></i> Croquis de Distribución</h4><p>Plano detallado del acomodo de mesas, pista, templete y áreas de servicio.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>diseno_paleta_colores.jpg</span></div><div class="include-content"><h4><i class="fas fa-palette"></i> Diseño según su Paleta</h4><p>Montaje diseñado a la medida de los colores que ustedes elijan.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>minuto_a_minuto.jpg</span></div><div class="include-content"><h4><i class="fas fa-list-ol"></i> Minuto a Minuto</h4><p>Cronograma detallado del evento más chat exclusivo con coordinación.</p></div></div>
             </div>
 
             <!-- ══ COMPLEMENTOS OFICIALES — enlaces reales del sitio web, no tocar salvo que cambien ══ -->
