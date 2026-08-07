@@ -22,15 +22,23 @@
         body { font-family: var(--font-sans); background: var(--background-light); color: var(--primary-dark); line-height:1.6; -webkit-font-smoothing:antialiased; }
         h1,h2,h3,h4 { font-family: var(--font-serif); }
 
-        #preloader { position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%); z-index:9999; display:flex; align-items:center; justify-content:center; transition:opacity .8s ease, visibility .8s ease; }
+        #preloader { position:fixed; top:0; left:0; width:100vw; height:100vh; height:100dvh; background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%); z-index:9999; display:flex; align-items:center; justify-content:center; transition:opacity .8s ease, visibility .8s ease; padding:15px; }
         #preloader.fade-out { opacity:0; visibility:hidden; }
-        #preloader video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:.35; z-index:1; }
-        .preloader-overlay { position:relative; z-index:2; text-align:center; width:90%; max-width:480px; background:rgba(255,255,255,.95); backdrop-filter:blur(15px); padding:40px; border-radius:30px; border:2px solid var(--gold-accent); box-shadow:0 25px 55px rgba(0,0,0,.35); }
-        .preloader-logo { width:80px; height:80px; margin-bottom:20px; border-radius:50%; border:2px solid var(--gold-accent); object-fit:cover; }
-        .preloader-title { font-size:1.6rem; margin-bottom:12px; font-weight:700; }
-        .preloader-text { color:var(--gray-text); font-size:.95rem; margin-bottom:25px; }
-        .btn-enter { background:var(--primary-pink); color:var(--white); border:none; padding:14px 42px; border-radius:30px; font-size:.95rem; font-weight:600; cursor:pointer; box-shadow:0 6px 20px rgba(246,92,122,.4); text-transform:uppercase; letter-spacing:1px; }
-        .btn-enter:hover { transform:scale(1.04); background:#e04b69; }
+        #preloader video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:.6; z-index:1; }
+        .preloader-overlay { position:relative; z-index:2; text-align:center; width:88%; max-width:390px; background:rgba(255,255,255,.82); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:24px 18px; border-radius:24px; border:1.5px solid var(--gold-accent); box-shadow:0 15px 35px rgba(0,0,0,.35); margin:auto; }
+        .preloader-logo { width:60px; height:60px; margin-bottom:12px; border-radius:50%; border:2px solid var(--gold-accent); object-fit:cover; display:inline-block; }
+        .preloader-title { font-size:1.3rem; margin-bottom:8px; font-weight:700; color:var(--primary-dark); }
+        .preloader-text { color:var(--gray-text); font-size:.84rem; margin-bottom:18px; line-height:1.4; }
+        .btn-enter { background:var(--primary-pink); color:var(--white); border:none; padding:10px 24px; border-radius:30px; font-size:.82rem; font-weight:600; cursor:pointer; box-shadow:0 6px 18px rgba(246,92,122,.4); text-transform:uppercase; letter-spacing:0.5px; display:inline-block; max-width:100%; white-space:normal; }
+        .btn-enter:hover { transform:scale(1.03); background:#e04b69; }
+
+        @media (max-width:480px) {
+            .preloader-overlay { padding:20px 14px; max-width:310px; border-radius:18px; background:rgba(255,255,255,.80); }
+            .preloader-logo { width:50px; height:50px; margin-bottom:8px; }
+            .preloader-title { font-size:1.15rem; margin-bottom:6px; }
+            .preloader-text { font-size:.78rem; margin-bottom:14px; }
+            .btn-enter { padding:9px 18px; font-size:.76rem; }
+        }
 
         /* HERO — al recibir la foto panorámica real de la finca, guardarla como
            hero_finca_las_isabeles.jpg en la raíz y cambiar solo esta línea. */
