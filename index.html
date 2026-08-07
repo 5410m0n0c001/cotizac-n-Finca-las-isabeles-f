@@ -84,6 +84,13 @@
         .include-item { background:var(--white); border:1px solid var(--beige); border-radius:20px; overflow:hidden; }
         .include-img-container { width:100%; height:160px; overflow:hidden; }
         .include-img { width:100%; height:100%; object-fit:cover; }
+        /* Fotos de personal: son recortes verticales de figura completa. Con object-fit:cover
+           se les corta todo menos el torso, asi que van completas sobre fondo blanco. */
+        /* El desglose en tabla dice lo mismo que la galeria visual. En pantalla manda
+           la galeria; la tabla aparece solo en la version impresa / PDF. */
+        .solo-print { display:none !important; }
+        .include-img-container.is-figura { height:240px; background:var(--white); }
+        .include-img.figura { object-fit:contain; padding:8px; }
         .include-content { padding:18px; }
         .include-content h4 { font-size:1rem; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
         .include-content h4 i { color:var(--primary-pink); font-size:.9rem; }
@@ -214,6 +221,9 @@
             h2, h3, h4, .section-title {
                 page-break-after: avoid !important; break-after: avoid !important;
             }
+            /* En papel es al reves: la tabla es el documento formal, la galeria no va */
+            .solo-print { display:block !important; }
+            .solo-print .tbl-thumb, .solo-print .tbl-thumb-pend { display:none !important; }
             body { background:white !important; font-size:9pt; color:#000; }
             .container { margin:0 !important; padding:0 !important; max-width:100% !important; }
             .quote-card { box-shadow:none !important; padding:0 !important; border:none !important; }
@@ -292,9 +302,9 @@
             </div>
 
             <!-- ══ DESGLOSE COMPLETO DEL PAQUETE NATURE'S MAJESTY ══ -->
-            <h3 class="section-title"><i class="fas fa-list-check"></i> Desglose Completo del Paquete</h3>
-            <p class="calc-hint">Todo lo que se detalla a continuación está <strong>incluido</strong> dentro del costo por persona. No hay conceptos ocultos ni cargos adicionales sobre esta lista.</p>
-            <div class="pricing-table-container">
+            <h3 class="section-title solo-print"><i class="fas fa-list-check"></i> Desglose Completo del Paquete</h3>
+            <p class="calc-hint solo-print">Todo lo que se detalla a continuación está <strong>incluido</strong> dentro del costo por persona. No hay conceptos ocultos ni cargos adicionales sobre esta lista.</p>
+            <div class="pricing-table-container solo-print">
                 <table class="pricing-table">
                     <thead>
                         <tr>
@@ -351,7 +361,7 @@
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><div class="tbl-thumb-pend" title="Falta foto: finca_cocina.jpg"><i class="fas fa-camera"></i></div><strong>Cocina operativa</strong></td>
+                            <td><img class="tbl-thumb" src="finca_cocina.webp" alt="Area de cocina" loading="lazy"><strong>Cocina operativa</strong></td>
                             <td>Área de cocina amplia y funcional para la operación del banquete.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
@@ -383,7 +393,7 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>3 · MONTAJE Y DECORACIÓN</strong></td></tr>
                         <tr>
-                            <td><div class="tbl-thumb-pend" title="Falta foto: mesa_principal_rey_reyna.jpg"><i class="fas fa-camera"></i></div><strong>Mesa principal</strong></td>
+                            <td><img class="tbl-thumb" src="mesa_principal_rey_reyna.webp" alt="Mesa principal con sillones Rey y Reyna" loading="lazy"><strong>Mesa principal</strong></td>
                             <td>Mesa principal con sillones Rey &amp; Reyna, más templete de madera con back decorado con luces vintage y telas.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
@@ -576,42 +586,6 @@
                 </table>
             </div>
 
-            <!-- ══ TABULADOR OFICIAL POR RANGO DE INVITADOS ══ -->
-            <h3 class="section-title"><i class="fas fa-tags"></i> Tabulador Oficial por Número de Invitados</h3>
-            <p class="calc-hint">El costo por persona del paquete baja conforme crece el número de invitados. Este es el tabulador oficial vigente:</p>
-            <div class="pricing-table-container">
-                <table class="pricing-table">
-                    <thead>
-                        <tr>
-                            <th>Rango de invitados</th>
-                            <th class="align-right">Costo por persona</th>
-                            <th class="align-center">Complementarios incluidos</th>
-                            <th class="align-right">Inversión estimada</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background:rgba(246,92,122,.10);">
-                            <td><strong>100 a 200 personas</strong> &nbsp;<span class="badge-event" style="margin:0;padding:3px 12px;font-size:.65rem;">Su evento</span></td>
-                            <td class="align-right"><strong>$1,999.00</strong></td>
-                            <td class="align-center">2 opciones</td>
-                            <td class="align-right"><strong>$399,800.00</strong> <span style="font-size:.75rem;color:var(--gray-text);">(200 Px)</span></td>
-                        </tr>
-                        <tr>
-                            <td>201 a 300 personas</td>
-                            <td class="align-right">$1,899.00</td>
-                            <td class="align-center">2 opciones</td>
-                            <td class="align-right">desde $381,699.00 <span style="font-size:.75rem;color:var(--gray-text);">(201 Px)</span></td>
-                        </tr>
-                        <tr>
-                            <td>301 a 400 personas</td>
-                            <td class="align-right">$1,799.00</td>
-                            <td class="align-center">3 opciones</td>
-                            <td class="align-right">desde $541,499.00 <span style="font-size:.75rem;color:var(--gray-text);">(301 Px)</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
             <!-- ══ INVERSIÓN TOTAL BASE ══ -->
             <div class="pricing-section" id="inversionBase">
                 <h3>Inversión Total Estimada</h3>
@@ -637,7 +611,7 @@
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="finca_area_consagrada.webp" alt="finca area consagrada"></div><div class="include-content"><h4><i class="fas fa-place-of-worship"></i> Área Consagrada</h4><p>Espacio íntimo dentro del recinto para la ceremonia religiosa o civil.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="finca_suite_nupcial.webp" alt="finca suite nupcial"></div><div class="include-content"><h4><i class="fas fa-bed"></i> Suite Nupcial</h4><p>Habitación incluida dentro de la finca para los festejados.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="finca_valet_parking.webp" alt="finca valet parking"></div><div class="include-content"><h4><i class="fas fa-car"></i> Estacionamiento con Valet</h4><p>Estacionamiento propio con servicio de valet parking para sus invitados.</p></div></div>
-                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>finca_cocina.jpg</span></div><div class="include-content"><h4><i class="fas fa-kitchen-set"></i> Cocina Operativa</h4><p>Área de cocina amplia y funcional donde se prepara y despacha el banquete.</p></div></div>
+                <div class="include-item"><div class="include-img-container"><img class="include-img" src="finca_cocina.webp" alt="Area de cocina"></div><div class="include-content"><h4><i class="fas fa-kitchen-set"></i> Cocina Operativa</h4><p>Área de cocina amplia y funcional donde se prepara y despacha el banquete.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="finca_hospedaje.webp" alt="Hospedaje en cabañas"></div><div class="include-content"><h4><i class="fas fa-house"></i> Hospedaje en Cabañas</h4><p>Cabañas dentro de la finca para sus invitados foráneos. Con costo adicional y reserva previa.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="tiempodeservicio.webp" alt="10 horas de servicio"></div><div class="include-content"><h4><i class="fas fa-clock"></i> 10 Horas Continuas</h4><p>Uso completo de la quinta durante diez horas seguidas, sin cortes de servicio.</p></div></div>
             </div>
@@ -655,7 +629,7 @@
             <!-- ═══ BLOQUE 3: MONTAJE Y DECORACIÓN ═══ -->
             <div class="gallery-block-title">3 · Montaje y Decoración</div>
             <div class="includes-grid">
-                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>mesa_principal_rey_reyna.jpg</span></div><div class="include-content"><h4><i class="fas fa-crown"></i> Mesa Principal Rey &amp; Reyna</h4><p>Mesa de honor con sillones Rey y Reyna para los festejados.</p></div></div>
+                <div class="include-item"><div class="include-img-container"><img class="include-img" src="mesa_principal_rey_reyna.webp" alt="Mesa principal con sillones Rey y Reyna"></div><div class="include-content"><h4><i class="fas fa-crown"></i> Mesa Principal Rey &amp; Reyna</h4><p>Mesa de honor con sillones Rey y Reyna para los festejados.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>templete_back_luces_vintage.jpg</span></div><div class="include-content"><h4><i class="fas fa-star"></i> Templete con Back Decorado</h4><p>Templete de madera con back de luces vintage y telas, para el momento estelar.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>mesa_redonda_tiffany.jpg</span></div><div class="include-content"><h4><i class="fas fa-circle"></i> Mesas Redondas Tiffany</h4><p>Mesas redondas para 8 o 10 personas con silla Tiffany blanca.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>mesa_cuadrada_tiffany.jpg</span></div><div class="include-content"><h4><i class="fas fa-square"></i> Mesas Cuadradas</h4><p>Mesas cuadradas para 10-12 personas con silla Tiffany blanca.</p></div></div>
@@ -685,11 +659,11 @@
             <!-- ═══ BLOQUE 5: EQUIPO DE SERVICIO ═══ -->
             <div class="gallery-block-title">5 · Equipo de Servicio</div>
             <div class="includes-grid">
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="cordinador (1).webp" alt="Coordinador general"></div><div class="include-content"><h4><i class="fas fa-user-tie"></i> Coordinador General</h4><p>Dirige el minuto a minuto del evento y resuelve todo antes de que ustedes lo noten.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="capitan.webp" alt="Capitán de meseros"></div><div class="include-content"><h4><i class="fas fa-user-check"></i> Capitán de Meseros</h4><p>Supervisa los tiempos de servicio y la sincronía de todas las mesas.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="hostess.webp" alt="Hostess"></div><div class="include-content"><h4><i class="fas fa-hand-sparkles"></i> Hostess</h4><p>Recibe a los invitados y los acompaña a su mesa asignada.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="meseros.webp" alt="Meseros"></div><div class="include-content"><h4><i class="fas fa-concierge-bell"></i> Meseros Capacitados</h4><p>Equipo uniformado para el servicio en mesa de los tres tiempos.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="bartender.webp" alt="Personal de barra"></div><div class="include-content"><h4><i class="fas fa-whiskey-glass"></i> Personal de Barra</h4><p>Barra especializada en la preparación y despacho ágil de bebidas.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-figura"><img class="include-img figura" src="cordinador (1).webp" alt="Coordinador general"></div><div class="include-content"><h4><i class="fas fa-user-tie"></i> Coordinador General</h4><p>Dirige el minuto a minuto del evento y resuelve todo antes de que ustedes lo noten.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-figura"><img class="include-img figura" src="capitan.webp" alt="Capitán de meseros"></div><div class="include-content"><h4><i class="fas fa-user-check"></i> Capitán de Meseros</h4><p>Supervisa los tiempos de servicio y la sincronía de todas las mesas.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-figura"><img class="include-img figura" src="hostess.webp" alt="Hostess"></div><div class="include-content"><h4><i class="fas fa-hand-sparkles"></i> Hostess</h4><p>Recibe a los invitados y los acompaña a su mesa asignada.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-figura"><img class="include-img figura" src="meseros.webp" alt="Meseros"></div><div class="include-content"><h4><i class="fas fa-concierge-bell"></i> Meseros Capacitados</h4><p>Equipo uniformado para el servicio en mesa de los tres tiempos.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-figura"><img class="include-img figura" src="bartender.webp" alt="Personal de barra"></div><div class="include-content"><h4><i class="fas fa-whiskey-glass"></i> Personal de Barra</h4><p>Barra especializada en la preparación y despacho ágil de bebidas.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>personal_banos.jpg</span></div><div class="include-content"><h4><i class="fas fa-restroom"></i> Personal de Baños</h4><p>Atención y limpieza continua de sanitarios durante todo el evento.</p></div></div>
             </div>
 
@@ -698,7 +672,7 @@
             <div class="includes-grid">
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="dj_mampara_cabina.webp" alt="dj mampara cabina"></div><div class="include-content"><h4><i class="fas fa-headphones"></i> DJ Profesional con Mampara</h4><p>DJ de amplia experiencia con mampara, audio de alta calidad y micrófono inalámbrico.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="torres_cabezas_roboticas.jpg" alt="torres cabezas roboticas"></div><div class="include-content"><h4><i class="fas fa-lightbulb"></i> Torres con Cabezas Robóticas</h4><p>Iluminación robótica en torres, más lámpara LED wash y tramoya.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="pistadebaile.jpg" alt="Pista de baile"></div><div class="include-content"><h4><i class="fas fa-music"></i> Pista de Baile</h4><p>El corazón de la fiesta, ambientada con iluminación de espectáculo.</p></div></div>
+                
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="pantalla_proyector.jpg" alt="Pantalla LED con proyeccion"></div><div class="include-content"><h4><i class="fas fa-display"></i> Pantalla con Proyector</h4><p>Para el video de los festejados o la proyección de recuerdos durante el evento.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>maquina_humo.jpg</span></div><div class="include-content"><h4><i class="fas fa-smog"></i> Máquina de Humo</h4><p>Efecto de humo bajo para realzar la iluminación en los momentos clave.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="decoracion_globos.jpg" alt="Globos multicolores"></div><div class="include-content"><h4><i class="fas fa-circle"></i> Globos Multicolores</h4><p>Decoración con globos para animar la pista en el momento de mayor energía.</p></div></div>
@@ -719,19 +693,17 @@
             <!-- ═══ BLOQUE 8: COMPLEMENTARIOS A ELEGIR ═══ -->
             <div class="gallery-block-title">8 · Servicios Complementarios — Eligen 2 sin Costo</div>
             <div class="includes-grid">
-                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>pista_leds_5x5.jpg</span></div><div class="include-content"><h4><i class="fas fa-border-all"></i> Pista de LEDs 5×5</h4><p>Pista iluminada programable que transforma por completo el área de baile.</p></div></div>
+                <div class="include-item"><div class="include-img-container"><img class="include-img" src="pista_leds_5x5.jpeg" alt="Pista de LEDs 5x5"></div><div class="include-content"><h4><i class="fas fa-border-all"></i> Pista de LEDs 5×5</h4><p>Pista iluminada programable que transforma por completo el área de baile.</p></div></div>
                 <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/LJ-3NJdEcdU" title="Cabina 360 en acción" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-video"></i> Cabina 360° <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Plataforma giratoria de video para que los invitados se lleven su clip del evento. Míralo funcionando en el video.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>robot_leds.jpg</span></div><div class="include-content"><h4><i class="fas fa-robot"></i> Robot de LEDs</h4><p>Personaje iluminado que anima la pista y se roba las fotos de la noche.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="maestro_ceremonias_1.jpg" alt="Show men performance"></div><div class="include-content"><h4><i class="fas fa-microphone"></i> Show Men Performance</h4><p>Animación profesional que mantiene la energía de la fiesta de principio a fin.</p></div></div>
+                <div class="include-item"><div class="include-img-container"><img class="include-img" src="show_men.jpg" alt="Show men performance"></div><div class="include-content"><h4><i class="fas fa-microphone"></i> Show Men Performance</h4><p>Animación profesional que mantiene la energía de la fiesta de principio a fin.</p></div></div>
             </div>
 
             <!-- ═══ BLOQUE 9: BENEFICIOS AL FIRMAR ═══ -->
             <div class="gallery-block-title">9 · Beneficios al Firmar Contrato</div>
             <div class="includes-grid">
                 <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/hTiUq1JFoIA" title="Degustación exclusiva del menú" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div>
-                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/Kx3jW6ZQK-I" title="Croquis de distribución detallada" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-map"></i> Croquis de Distribución <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Plano detallado del acomodo de mesas, pista, templete y áreas de servicio.</p></div></div>
-                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/Kx3jW6ZQK-I" title="Diseño de montaje, croquis y minuto a minuto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-palette"></i> Diseño según su Paleta <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Montaje diseñado a la medida de los colores que ustedes elijan, con croquis de distribución y minuto a minuto del evento.</p></div></div>
-                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/Kx3jW6ZQK-I" title="Minuto a minuto y chat exclusivo de coordinación" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-list-ol"></i> Minuto a Minuto <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Cronograma detallado del evento más chat exclusivo con coordinación.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/Kx3jW6ZQK-I" title="Diseño de montaje, croquis y minuto a minuto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-palette"></i> Diseño, Croquis y Minuto a Minuto <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Montaje diseñado según su paleta de colores, croquis de distribución detallada, minuto a minuto del evento y chat exclusivo con coordinación.</p></div></div>
             </div>
 
             <!-- ══ COMPLEMENTOS OFICIALES — enlaces reales del sitio web, no tocar salvo que cambien ══ -->
