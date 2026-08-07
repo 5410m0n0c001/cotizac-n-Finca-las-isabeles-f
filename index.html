@@ -1489,15 +1489,23 @@
         });
     })();
 
-    // ══ Reproducción optimizada para móviles (100% archivos de video locales MP4) ══
+    // ══ Reproducción optimizada e INFINITA para móviles (iOS / Android) ══
     (function(){
         var videoElems = document.querySelectorAll('video');
         videoElems.forEach(function(v){
+            v.loop = true;
             v.muted = true;
             v.defaultMuted = true;
+            v.setAttribute('loop', '');
             v.setAttribute('muted', '');
             v.setAttribute('playsinline', '');
             v.setAttribute('webkit-playsinline', '');
+
+            // Garantizar bucle infinito en navegadores móviles cuando finaliza el video
+            v.addEventListener('ended', function(){
+                v.currentTime = 0;
+                v.play().catch(function(){});
+            });
         });
 
         // Desbloquear autoplay en iOS Safari al primer gesto del usuario
@@ -1519,6 +1527,7 @@
                 entries.forEach(function(e){
                     var vid = e.target;
                     if (e.isIntersecting) {
+                        if (vid.ended) vid.currentTime = 0;
                         vid.play().catch(function(){});
                     } else if (vid.id !== 'preloaderVideo') {
                         vid.pause();
