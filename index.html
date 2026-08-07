@@ -1110,6 +1110,13 @@
     </div>
 
     <script>
+    // ══ La cotizacion siempre abre desde la portada ══
+    // El navegador restaura la posicion de scroll anterior; aqui se desactiva.
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+    window.addEventListener('pageshow', function(e){ if (e.persisted) window.scrollTo(0, 0); });
+
     /* ═══════════════════════════════════════════════════════════════
        ESTA PLANTILLA ES 100% ESTÁTICA — no se conecta a ninguna base
        de datos. Todo el contenido se edita a mano al clonar para un
@@ -1216,7 +1223,10 @@
     const audioToggle = document.getElementById('audioToggle');
     let audioPlaying = false;
 
+    document.body.style.overflow = 'hidden';   // sin scroll detras del preloader
     btnEnter.addEventListener('click', () => {
+        document.body.style.overflow = '';
+        window.scrollTo(0, 0);
         preloader.classList.add('fade-out');
         bgAudio.play().then(() => { audioPlaying = true; updateAudioIcon(); }).catch(() => {});
     });
