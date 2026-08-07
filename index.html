@@ -1298,7 +1298,6 @@
 
         // red de seguridad: nunca dejar contenido invisible
         function activarTodo(){ reveals.forEach(function(r){ r.classList.add('active'); }); }
-        setTimeout(activarTodo, 4000);
         window.addEventListener('beforeprint', activarTodo);
 
         // parallax del hero, igual que en antonio
