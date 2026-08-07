@@ -806,7 +806,7 @@
                 <div class="price-label">por persona · 200 invitados · 10 horas de servicio continuo</div>
                 <div class="price-total-chico">Inversión total del evento: <strong id="totalEventoChico">$399,800.00 MXN</strong></div>
                 <div class="price-breakdown" id="desgloseExtras" style="display:none;">
-                    <div class="price-breakdown-row"><span>Cotización base</span><span id="totalBaseTexto">$[TOTAL_BASE].00</span></div>
+                    <div class="price-breakdown-row"><span>Cotización base</span><span id="totalBaseTexto">$399,800.00</span></div>
                     <ul id="listaExtras" style="list-style:none; margin:6px 0; padding:0;"></ul>
                     <div class="price-breakdown-row" style="border-top:1px solid rgba(255,255,255,.12); margin-top:8px; padding-top:8px; font-weight:700;"><span>Extras seleccionados</span><span id="totalExtrasTexto">$0.00</span></div>
                 </div>
@@ -898,9 +898,9 @@
             <div class="includes-grid">
                 <div class="reveal reveal-right"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="letras_gigantes_iluminadas.webp" alt="Letras iluminadas"></div><div class="include-content"><h4><i class="fas fa-font"></i> Letras Iluminadas</h4><p>Letras decorativas «XV» o «LOVE», según el tipo de celebración.</p></div></div></div>
                 <div class="reveal"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="corazon_rojo_iluminado.webp" alt="Corazon rojo iluminado"></div><div class="include-content"><h4><i class="fas fa-heart"></i> Corazón Rojo Iluminado</h4><p>Pieza decorativa iluminada para el área de fotos o la pista.</p></div></div></div>
-                <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="mesa_pastel.webp" alt="mesa pastel"></div><div class="include-content"><h4><i class="fas fa-cake-candles"></i> Mesa de Pastel</h4><p>Mesa especial montada y decorada para el pastel del evento.</p></div></div></div>
+                <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container is-video"><video id="videoPastel" class="include-video" src="video_pastel.mp4" autoplay muted loop playsinline poster="mesa_pastel.webp" style="width:100%;height:100%;object-fit:cover;"></video></div><div class="include-content"><h4><i class="fas fa-cake-candles"></i> Mesa &amp; Pastel de Evento <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Mesa especial montada y decorada para el pastel del evento, con demostración en video.</p></div></div></div>
                 <div class="reveal reveal-left"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="mesa_regalos.jpeg" alt="mesa regalos"></div><div class="include-content"><h4><i class="fas fa-gift"></i> Mesa de Regalos</h4><p>Mesa especial para recibir y resguardar los obsequios de sus invitados.</p></div></div></div>
-                <div class="reveal reveal-right"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="pirotecnia_fria_chisperos.webp" alt="pirotecnia fria chisperos"></div><div class="include-content"><h4><i class="fas fa-fire"></i> Pirotecnia en Frío</h4><p>Detonación de dos chisperos para el momento estelar de la noche.</p></div></div></div>
+                <div class="reveal reveal-right"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="pirotecnia_fria_chisperos.webp" alt="pirotecnia fria chisperos"></div><div class="include-content"><h4><i class="fas fa-fire"></i> Pirotecnia en Frío</h4><p>Detonación de dos chisperos inalámbricos en frío para el momento estelar del evento.</p></div></div></div>
                 <div class="reveal"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="alfombra_roja.webp" alt="alfombra roja"></div><div class="include-content"><h4><i class="fas fa-shoe-prints"></i> Alfombra Roja</h4><p>Entrada espectacular sobre alfombra roja para los festejados.</p></div></div></div>
             </div>
 
@@ -1149,6 +1149,14 @@
     const TOTAL_BASE = 399800;
 
     const EXTRAS = [
+        { categoria: "Repostería & Pastel", items: [
+            { nombre: "Pastel de Boda / Evento de Autor (2 a 3 pisos personalizado)", precio: 4500 },
+            { nombre: "Mesa de Postres & Repostería Fina (para 100 Px)", precio: 5000 },
+        ]},
+        { categoria: "Efectos Especiales & Pirotecnia", items: [
+            { nombre: "Set de Pirotecnia en Frío (4 chisperos inalámbricos a control remoto)", precio: 3000 },
+            { nombre: "Detonación Estelar de Pirotecnia en Frío (6 chisperos)", precio: 4500 },
+        ]},
         { categoria: "Personal Extra", items: [
             { nombre: "Mesero adicional (8 hrs)", precio: 1000 },
             { nombre: "Capitán de meseros", precio: 3000 },
@@ -1459,17 +1467,33 @@
         }
     })();
 
-    // ══ Video de la firma ══
+    // ══ Video de la firma y Video del pastel ══
     (function(){
         var f = document.getElementById('videoFirma');
-        if (!f) return;
-        f.muted = true; f.loop = true;
-        var reproduce = function(){ f.play().catch(function(){}); };
-        reproduce();
-        if ('IntersectionObserver' in window) {
-            new IntersectionObserver(function(en){
-                en.forEach(function(e){ if (e.isIntersecting) reproduce(); });
-            }, { threshold: 0.2 }).observe(f);
+        if (f) {
+            f.muted = true; f.loop = true;
+            var reproduceFirma = function(){ f.play().catch(function(){}); };
+            reproduceFirma();
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function(en){
+                    en.forEach(function(e){ if (e.isIntersecting) reproduceFirma(); });
+                }, { threshold: 0.2 }).observe(f);
+            }
+        }
+
+        var vp = document.getElementById('videoPastel');
+        if (vp) {
+            vp.muted = true; vp.loop = true;
+            var reproducePastel = function(){ vp.play().catch(function(){}); };
+            reproducePastel();
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function(en){
+                    en.forEach(function(e){
+                        if (e.isIntersecting) reproducePastel();
+                        else vp.pause();
+                    });
+                }, { threshold: 0.2 }).observe(vp);
+            }
         }
     })();
 
