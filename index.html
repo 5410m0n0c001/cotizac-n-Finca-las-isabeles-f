@@ -207,6 +207,21 @@
         .cta-container p { margin-bottom:20px; font-style:italic; font-weight:500; font-size:.95rem; }
         .btn-wa { background:#25D366; color:white; padding:14px 35px; border-radius:50px; text-decoration:none; display:inline-flex; align-items:center; gap:10px; font-weight:600; }
 
+        /* ══ Planners Contact Cards (Richard & Jessy) ══ */
+        .planners-contact-section { margin-top:50px; padding:40px 20px; background:linear-gradient(135deg, rgba(253,242,244,.8), rgba(248,250,252,.9)); border-radius:24px; border:1px solid rgba(226,160,182,.25); text-align:center; }
+        .planners-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:24px; max-width:700px; margin:20px auto 0; }
+        .planner-card { text-decoration:none; color:inherit; display:flex; flex-direction:column; background:var(--white); border-radius:20px; overflow:hidden; border:1px solid var(--beige); box-shadow:0 8px 20px rgba(0,0,0,.04); transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+        .planner-card:hover { transform:translateY(-6px); box-shadow:0 16px 32px rgba(226,160,182,.3); border-color:var(--primary-pink); }
+        .planner-img-wrap { position:relative; width:100%; height:320px; overflow:hidden; background:#f1f5f9; }
+        .planner-img { width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform .4s ease; }
+        .planner-card:hover .planner-img { transform:scale(1.05); }
+        .planner-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,0) 60%); display:flex; align-items:flex-end; justify-content:center; padding:20px; opacity:0.95; transition:opacity .3s ease; }
+        .planner-card:hover .planner-overlay { opacity:1; }
+        .btn-planner-cta { background:var(--primary-pink); color:white; padding:12px 22px; border-radius:50px; font-size:.88rem; font-weight:600; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 12px rgba(0,0,0,.2); }
+        .planner-info { padding:18px 15px; text-align:center; background:var(--white); }
+        .planner-info h4 { font-size:1.15rem; color:var(--charcoal); margin-bottom:4px; font-family:'Playfair Display', serif; }
+        .planner-info p { font-size:.82rem; color:var(--gray-text); margin:0; }
+
         footer { padding:50px 20px; background:var(--white); border-top:1px solid var(--beige); text-align:center; margin-top:60px; }
         .footer-container { max-width:800px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:12px; }
         .footer-logo { width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid var(--gold-accent); }
@@ -1080,13 +1095,40 @@
                 <p class="quote-phrase">«Hacemos de tu celebración un recuerdo eterno. El arte de servir, hecho realidad.»</p>
             </div>
 
-            <div class="cta-container reveal">
-                <p>¿Tienes dudas sobre los desgloses o deseas confirmar tu fecha?</p>
-                <a class="btn-wa" href="https://wa.me/527774587923?text=Hola%2C%20vi%20mi%20propuesta%20de%20%5BTIPO_EVENTO%5D%20y%20quisiera%20platicar%20m%C3%A1s." target="_blank"><i class="fab fa-whatsapp"></i> Chatear con Coordinación Directa</a>
+            <!-- ══ SECCIÓN DE CONTACTO DIRECTO CON PLANNERS (RICHARD Y JESSY) ══ -->
+            <div class="planners-contact-section reveal">
+                <h3 class="section-title"><i class="fas fa-comments"></i> Contacto Directo con tus Wedding &amp; Event Planners</h3>
+                <p class="calc-hint" style="text-align:center;">Toca la imagen de cualquiera de tus planners para abrir su tarjeta de atención personal directa:</p>
+                <div class="planners-grid">
+                    <a href="https://primaveraeventsgroup.com/richard-hernandez/" target="_blank" class="planner-card">
+                        <div class="planner-img-wrap">
+                            <img src="richard.webp" alt="Richard Hernandez — Wedding & Event Planner" class="planner-img">
+                            <div class="planner-overlay">
+                                <span class="btn-planner-cta"><i class="fas fa-paper-plane"></i> Contactar a Richard</span>
+                            </div>
+                        </div>
+                        <div class="planner-info">
+                            <h4>Richard Hernández</h4>
+                            <p>Senior Event &amp; Wedding Planner</p>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/527774587923?text=Hola%20Jessy%2C%20vi%20la%20propuesta%20de%20Finca%20Las%20Isabeles%20y%20quisiera%20asesor%C3%ADa%20para%20mi%20evento" target="_blank" class="planner-card">
+                        <div class="planner-img-wrap">
+                            <img src="jessy.png" alt="Jessy — Wedding & Event Planner" class="planner-img">
+                            <div class="planner-overlay">
+                                <span class="btn-planner-cta"><i class="fas fa-paper-plane"></i> Contactar a Jessy</span>
+                            </div>
+                        </div>
+                        <div class="planner-info">
+                            <h4>Jessy</h4>
+                            <p>Senior Event &amp; Wedding Planner</p>
+                        </div>
+                    </a>
+                </div>
             </div>
 
             <div class="print-footer solo-print">
-                Primavera Events Group &middot; Av. Defensa Nacional #8, Col. Chamilpa, 62210 Cuernavaca, Mor. &middot; +52 777 458 7923 &middot; contacto@primaveraeventsgroup.com
+                Primavera Events Group &middot; Av. Defensa Nacional #8, Col. Chamilpa, 62210 Cuernavaca, Mor.
             </div>
         </div>
     </main>
@@ -1096,7 +1138,6 @@
             <img class="footer-logo" src="logo_primavera_events_group.png" alt="Primavera Events Group">
             <h3>Primavera Events Group</h3>
             <p>El Arte de Servir • Cuernavaca, Morelos, México</p>
-            <p><a href="mailto:contacto@primaveraeventsgroup.com">contacto@primaveraeventsgroup.com</a> | Tel: +52 777 458 7923</p>
             <div class="footer-bottom">&copy; 2026 Primavera Events Group. Todos los derechos reservados.</div>
         </div>
     </footer>
