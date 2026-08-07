@@ -34,7 +34,7 @@
 
         /* HERO — al recibir la foto panorámica real de la finca, guardarla como
            hero_finca_las_isabeles.jpg en la raíz y cambiar solo esta línea. */
-        .hero { position:relative; height:55vh; min-height:380px; overflow:hidden; display:flex; align-items:flex-end; justify-content:center; background:url('portada_finca_las_isabeles.webp') center/cover no-repeat, linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%); }
+        .hero { position:relative; height:55vh; min-height:380px; overflow:hidden; display:flex; align-items:flex-end; justify-content:center; background:url('portada_finca_las_isabeles.webp') center 62%/cover no-repeat, linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%); }
         .hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(31,31,31,.2), rgba(31,31,31,.85)); z-index:1; }
         .hero-content { position:relative; z-index:2; text-align:center; padding:0 20px 60px; color:var(--white); max-width:800px; }
         .hero-eyebrow { font-size:.8rem; letter-spacing:5px; text-transform:uppercase; color:var(--gold-accent); font-weight:600; margin-bottom:12px; }
@@ -215,8 +215,7 @@
         @keyframes slideInRight{from{opacity:0;transform:translateX(50px);}to{opacity:1;transform:translateX(0);}}
         .hero h1{animation:fadeInDown 1s cubic-bezier(0.2,0.8,0.2,1);}
         .hero-sub,.hero-eyebrow{animation:fadeInUp 1s cubic-bezier(0.2,0.8,0.2,1) 0.2s both;}
-        .js-anim .reveal{opacity:.001;transition:all 1.2s cubic-bezier(0.2,0.8,0.2,1);}
-        .js-anim .reveal:not(.reveal-left):not(.reveal-right){transform:translateY(40px);}
+
         .reveal-left{transform:translateX(-50px);}
         .reveal-right{transform:translateX(50px);}
         .reveal.active{opacity:1;transform:translate(0,0)!important;}
@@ -235,7 +234,6 @@
         .include-item:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(31,31,31,.10);}
         .include-img{transition:transform .6s cubic-bezier(.2,.8,.2,1);}
         .include-item:hover .include-img{transform:scale(1.06);}
-        .js-anim .gallery-block-title{opacity:0;transform:translateY(20px);transition:all .9s cubic-bezier(.2,.8,.2,1);}
         .gallery-block-title.active{opacity:1;transform:translateY(0);}
         @media (prefers-reduced-motion: reduce){
             .reveal,.gallery-block-title,
@@ -255,6 +253,13 @@
         .ctb-extras-list li { display:flex; justify-content:space-between; gap:10px; font-size:.78rem; color:rgba(255,255,255,.85); padding:3px 0; }
         .ctb-vacio { font-size:.78rem; color:rgba(255,255,255,.55); font-style:italic; }
         @media (max-width:768px){ .calc-total-box{ padding:14px 16px; } .ctb-total strong{ font-size:1.5rem; } }
+
+        /* ══ Animaciones de entrada. El estado oculto lo pone el JS inline, nunca el CSS,
+              para que si el JS no corre no pueda quedarse nada invisible. ══ */
+        .anim-in { transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+        @media (prefers-reduced-motion: reduce){
+            .anim-in { transition:none !important; opacity:1 !important; transform:none !important; }
+        }
 
         /* CSS print obligatorio — DIRECTIVES.md sección 9 */
         @media print {
@@ -653,7 +658,7 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>9 · SERVICIOS COMPLEMENTARIOS — ELIGEN 2 SIN COSTO</strong></td></tr>
                         <tr>
-                            <td><img class="tbl-thumb" src="cabina_360.webp" alt="Servicios complementarios a elegir" loading="lazy"><strong>2 opciones a elegir</strong></td>
+                            <td><img class="tbl-thumb" src="pista_leds_5x5.jpeg" alt="Pista de LEDs 5x5" loading="lazy"><strong>2 opciones a elegir</strong></td>
                             <td>Por ser un evento de 200 invitados, el paquete incluye <strong>dos</strong> de estos servicios sin costo: pista de LEDs 5×5 · cabina 360 · robot de LEDs · show men performance.</td>
                             <td class="align-center">2 de 4</td>
                             <td class="align-right">Incluido</td>
@@ -669,7 +674,7 @@
                             <td class="align-right">Cortesía</td>
                         </tr>
                         <tr>
-                            <td><img class="tbl-thumb" src="https://img.youtube.com/vi/Kx3jW6ZQK-I/hqdefault.jpg" alt="Croquis y minuto a minuto" loading="lazy"><strong>Diseño y coordinación</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: croquis_distribucion.jpg"><i class="fas fa-camera"></i></div><strong>Diseño y coordinación</strong></td>
                             <td>Diseño de montaje según su paleta de colores, croquis de distribución detallada, minuto a minuto del evento y chat exclusivo de comunicación con coordinación.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Cortesía</td>
@@ -804,7 +809,7 @@
             <div class="gallery-block-title">9 · Beneficios al Firmar Contrato</div>
             <div class="includes-grid">
                 <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/hTiUq1JFoIA?autoplay=1&mute=1&loop=1&playlist=hTiUq1JFoIA&controls=1&playsinline=1" title="Degustación exclusiva del menú" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div>
-                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/Kx3jW6ZQK-I?autoplay=1&mute=1&loop=1&playlist=Kx3jW6ZQK-I&controls=1&playsinline=1" title="Diseño de montaje, croquis y minuto a minuto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-palette"></i> Diseño, Croquis y Minuto a Minuto <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Montaje diseñado según su paleta de colores, croquis de distribución detallada, minuto a minuto del evento y chat exclusivo con coordinación.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>croquis_distribucion.jpg</span></div><div class="include-content"><h4><i class="fas fa-palette"></i> Diseño, Croquis y Minuto a Minuto</h4><p>Montaje diseñado según su paleta de colores, croquis de distribución detallada, minuto a minuto del evento y chat exclusivo con coordinación.</p></div></div>
             </div>
 
             <!-- ══ COMPLEMENTOS OFICIALES — enlaces reales del sitio web, no tocar salvo que cambien ══ -->
@@ -1150,6 +1155,84 @@
         var hero = document.querySelector('.hero');
         if (hero) hero.style.backgroundPosition = 'center ' + (window.pageYOffset * 0.35) + 'px';
     }, { passive:true });
+
+    // ══ Animaciones de entrada al hacer scroll ══
+    // Regla de oro: el mismo JS que oculta es el que revela. Si este bloque no corre,
+    // la pagina se ve completa igual — nunca queda contenido invisible.
+    (function(){
+        if (!('IntersectionObserver' in window)) return;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var grupos = [
+            { sel: '.gallery-block-title', dy: 18, dx: 0,   paso: 0    },
+            { sel: '.include-item',        dy: 34, dx: 0,   paso: 0.06 },
+            { sel: '.complemento-card',    dy: 26, dx: 0,   paso: 0.08 },
+            { sel: '.publicidad-card',     dy: 26, dx: 0,   paso: 0.08 },
+            { sel: '.venue-info-card',     dy: 22, dx: 0,   paso: 0.08 },
+            { sel: '.pricing-section',     dy: 30, dx: 0,   paso: 0    },
+            { sel: '.notes-section',       dy: 26, dx: 0,   paso: 0    },
+            { sel: '.kit-section',         dy: 26, dx: 0,   paso: 0    },
+            { sel: '.expo-card',           dy: 0,  dx: 40,  paso: 0    },
+            { sel: '.cta-container',       dy: 24, dx: 0,   paso: 0    },
+            { sel: '.calc-item',           dy: 14, dx: 0,   paso: 0.02 }
+        ];
+
+        var todos = [];
+        grupos.forEach(function(g){
+            var els = Array.prototype.slice.call(document.querySelectorAll(g.sel));
+            els.forEach(function(el, i){
+                el.classList.add('anim-in');
+                el.style.opacity = '0';
+                el.style.transform = 'translate(' + g.dx + 'px,' + g.dy + 'px)';
+                el.style.transitionDelay = Math.min(i * g.paso, 0.45) + 's';
+                todos.push(el);
+            });
+        });
+
+        function mostrar(el){
+            el.style.opacity = '1';
+            el.style.transform = 'translate(0,0)';
+        }
+        function mostrarTodo(){ todos.forEach(mostrar); }
+
+        var obs = new IntersectionObserver(function(entries, o){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { mostrar(e.target); o.unobserve(e.target); }
+            });
+        }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
+
+        todos.forEach(function(el){
+            var r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight + 100) mostrar(el);   // lo que ya se ve, entra de una
+            else obs.observe(el);
+        });
+
+        // Redes de seguridad: pase lo que pase, a los 3s todo esta visible
+        setTimeout(mostrarTodo, 3000);
+        window.addEventListener('load', function(){ setTimeout(mostrarTodo, 1500); });
+        window.addEventListener('beforeprint', mostrarTodo);
+    })();
+
+    // ══ El total del paquete cuenta hacia arriba la primera vez que se ve ══
+    (function(){
+        var el = document.getElementById('totalBaseDisplay');
+        if (!el || !('IntersectionObserver' in window)) return;
+        var hecho = false;
+        new IntersectionObserver(function(entries, o){
+            entries.forEach(function(e){
+                if (!e.isIntersecting || hecho) return;
+                hecho = true; o.unobserve(e.target);
+                var fin = TOTAL_BASE, ini = performance.now(), dur = 1100;
+                (function paso(t){
+                    var p = Math.min((t - ini) / dur, 1);
+                    var val = Math.floor(fin * (1 - Math.pow(1 - p, 3)));
+                    el.innerHTML = moneyFmt(val) + '<sup>MXN</sup>';
+                    if (p < 1) requestAnimationFrame(paso);
+                    else el.innerHTML = moneyFmt(fin) + '<sup>MXN</sup>';
+                })(performance.now());
+            });
+        }, { threshold: 0.3 }).observe(el);
+    })();
 
     renderCalculador();
     actualizarTotal();
