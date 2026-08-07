@@ -34,7 +34,7 @@
 
         /* HERO — al recibir la foto panorámica real de la finca, guardarla como
            hero_finca_las_isabeles.jpg en la raíz y cambiar solo esta línea. */
-        .hero { position:relative; height:55vh; min-height:380px; overflow:hidden; display:flex; align-items:flex-end; justify-content:center; background:url('pistadebaile.jpg') center/cover no-repeat, linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%); }
+        .hero { position:relative; height:55vh; min-height:380px; overflow:hidden; display:flex; align-items:flex-end; justify-content:center; background:url('portada_finca_las_isabeles.webp') center/cover no-repeat, linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%); }
         .hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(31,31,31,.2), rgba(31,31,31,.85)); z-index:1; }
         .hero-content { position:relative; z-index:2; text-align:center; padding:0 20px 60px; color:var(--white); max-width:800px; }
         .hero-eyebrow { font-size:.8rem; letter-spacing:5px; text-transform:uppercase; color:var(--gold-accent); font-weight:600; margin-bottom:12px; }
@@ -80,16 +80,16 @@
             background:repeating-linear-gradient(45deg,#F5EFEB,#F5EFEB 6px,#EFE7E1 6px,#EFE7E1 12px); }
         .align-center{text-align:center;} .align-right{text-align:right;}
 
-        .includes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px; margin-bottom:45px; }
+        .includes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:26px; margin-bottom:45px; }
         .include-item { background:var(--white); border:1px solid var(--beige); border-radius:20px; overflow:hidden; }
-        .include-img-container { width:100%; height:160px; overflow:hidden; }
+        .include-img-container { width:100%; height:300px; overflow:hidden; }
         .include-img { width:100%; height:100%; object-fit:cover; }
         /* Fotos de personal: son recortes verticales de figura completa. Con object-fit:cover
            se les corta todo menos el torso, asi que van completas sobre fondo blanco. */
         /* El desglose en tabla dice lo mismo que la galeria visual. En pantalla manda
            la galeria; la tabla aparece solo en la version impresa / PDF. */
         .solo-print { display:none !important; }
-        .include-img-container.is-figura { height:240px; background:var(--white); }
+        .include-img-container.is-figura { height:340px; background:var(--white); }
         .include-img.figura { object-fit:contain; padding:8px; }
         .include-content { padding:18px; }
         .include-content h4 { font-size:1rem; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
@@ -103,7 +103,7 @@
             background:repeating-linear-gradient(45deg,#F5EFEB,#F5EFEB 10px,#EFE7E1 10px,#EFE7E1 20px); }
         .img-pendiente i { font-size:1.7rem; color:var(--primary-light); }
         /* Tarjetas que muestran un video real del servicio en lugar de foto */
-        .include-img-container.is-video { height:300px; background:var(--primary-dark); }
+        .include-img-container.is-video { height:340px; background:var(--primary-dark); }
         .include-video { width:100%; height:100%; border:0; display:block; }
         .badge-video { display:inline-flex; align-items:center; gap:5px; background:var(--gold-accent); color:var(--primary-dark); font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:3px 9px; border-radius:30px; margin-left:6px; vertical-align:middle; }
         .img-pendiente span { font-size:.68rem; font-family:monospace; color:var(--gray-text); letter-spacing:.5px; word-break:break-all; }
@@ -208,6 +208,38 @@
 
         .audio-toggle { position:fixed; bottom:20px; left:20px; z-index:1000; width:40px; height:40px; border-radius:50%; background:var(--white); border:1px solid var(--beige); color:var(--primary-pink); display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,.1); }
 
+
+        /* ══ Animaciones — copiadas literal de antonio-cotizacion (se habian perdido) ══ */
+        @keyframes fadeInDown{from{opacity:0;transform:translateY(-40px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes slideInRight{from{opacity:0;transform:translateX(50px);}to{opacity:1;transform:translateX(0);}}
+        .hero h1{animation:fadeInDown 1s cubic-bezier(0.2,0.8,0.2,1);}
+        .hero-sub,.hero-eyebrow{animation:fadeInUp 1s cubic-bezier(0.2,0.8,0.2,1) 0.2s both;}
+        .reveal{opacity:0;transition:all 1.2s cubic-bezier(0.2,0.8,0.2,1);}
+        .reveal:not(.reveal-left):not(.reveal-right){transform:translateY(40px);}
+        .reveal-left{transform:translateX(-50px);}
+        .reveal-right{transform:translateX(50px);}
+        .reveal.active{opacity:1;transform:translate(0,0)!important;}
+        .reveal.active.reveal-left,.reveal.active.reveal-right{transform:translate(0,0);}
+        .includes-grid .include-item{opacity:0;}
+        .includes-grid.active .include-item{animation:slideInRight 0.8s cubic-bezier(0.25,0.46,0.45,0.94) both;}
+        .includes-grid.active .include-item:nth-child(1){animation-delay:0.05s;}
+        .includes-grid.active .include-item:nth-child(2){animation-delay:0.12s;}
+        .includes-grid.active .include-item:nth-child(3){animation-delay:0.19s;}
+        .includes-grid.active .include-item:nth-child(4){animation-delay:0.26s;}
+        .includes-grid.active .include-item:nth-child(5){animation-delay:0.33s;}
+        .includes-grid.active .include-item:nth-child(6){animation-delay:0.40s;}
+        .includes-grid.active .include-item:nth-child(n+7){animation-delay:0.47s;}
+        .include-item{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease;}
+        .include-item:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(31,31,31,.10);}
+        .include-img{transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+        .include-item:hover .include-img{transform:scale(1.06);}
+        .gallery-block-title{opacity:0;transform:translateY(20px);transition:all .9s cubic-bezier(.2,.8,.2,1);}
+        .gallery-block-title.active{opacity:1;transform:translateY(0);}
+        @media (prefers-reduced-motion: reduce){
+            .reveal,.gallery-block-title,.includes-grid .include-item{opacity:1!important;transform:none!important;animation:none!important;}
+        }
+
         /* CSS print obligatorio — DIRECTIVES.md sección 9 */
         @media print {
             #preloader, .floating-actions-container, .pdf-section,
@@ -295,7 +327,7 @@
             </div>
 
             <!-- ══ DATOS DEL RECINTO — Finca Las Isabeles ══ -->
-            <div class="venue-info-grid">
+            <div class="venue-info-grid reveal">
                 <div class="venue-info-card"><i class="fas fa-map-marker-alt"></i><h5>Ubicación</h5><p>Palmeras No. 22, Fracc. Real del Puente, 62790 Xochitepec, Morelos</p></div>
                 <div class="venue-info-card"><i class="fas fa-users"></i><h5>Capacidad</h5><p>Hasta 400 personas en área techada</p></div>
                 <div class="venue-info-card"><i class="fas fa-palette"></i><h5>Estilo</h5><p>Finca campestre modernista con jardines y cascada</p></div>
@@ -370,7 +402,7 @@
 
                         <tr style="background:var(--soft-pink);"><td colspan="5"><strong>2 · COCTEL DE BIENVENIDA</strong></td></tr>
                         <tr>
-                            <td><img class="tbl-thumb" src="periqueras_1.jpg" alt="Montaje de coctel" loading="lazy"><strong>Montaje de coctel</strong></td>
+                            <td><img class="tbl-thumb" src="periqueras_altas.jpg" alt="Montaje de coctel" loading="lazy"><strong>Montaje de coctel</strong></td>
                             <td>Periqueras altas, salas lounge y sombrillas para la recepción de los invitados.</td>
                             <td class="align-center">200 Px</td>
                             <td class="align-right">Incluido</td>
@@ -492,7 +524,7 @@
                             <td class="align-right">Incluido</td>
                         </tr>
                         <tr>
-                            <td><img class="tbl-thumb" src="torres_cabezas_roboticas.jpg" alt="torres_cabezas_roboticas.jpg" loading="lazy"><strong>Iluminación de espectáculo</strong></td>
+                            <td><div class="tbl-thumb-pend" title="Falta foto: torres_cabezas_roboticas.jpg"><i class="fas fa-camera"></i></div><strong>Iluminación de espectáculo</strong></td>
                             <td>Torres iluminadas con cabezas robóticas, lámpara LED wash, tramoya para iluminación y máquina de humo.</td>
                             <td class="align-center">1</td>
                             <td class="align-right">Incluido</td>
@@ -587,7 +619,7 @@
             </div>
 
             <!-- ══ INVERSIÓN TOTAL BASE ══ -->
-            <div class="pricing-section" id="inversionBase">
+            <div class="pricing-section reveal" id="inversionBase">
                 <h3>Inversión Total Estimada</h3>
                 <div class="price-hero" id="totalBaseDisplay">$399,800.00<sup>MXN</sup></div>
                 <div class="price-label">200 invitados · $1,999.00 por persona · 10 horas de servicio</div>
@@ -605,7 +637,7 @@
             <!-- ═══ BLOQUE 1: EL RECINTO ═══ -->
             <div class="gallery-block-title">1 · El Recinto — Finca Las Isabeles</div>
             <div class="includes-grid">
-                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>finca_fachada.jpg</span></div><div class="include-content"><h4><i class="fas fa-archway"></i> Acceso y Fachada</h4><p>Entrada principal de la finca con valet parking y recepción de invitados.</p></div></div>
+                
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="finca_area_techada.webp" alt="finca area techada"></div><div class="include-content"><h4><i class="fas fa-warehouse"></i> Área Techada para 400 Px</h4><p>Salón techado de estilo modernista, con iluminación arquitectónica interior.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="finca_jardin_cascada.webp" alt="finca jardin cascada"></div><div class="include-content"><h4><i class="fas fa-water"></i> Jardín con Cascada</h4><p>Áreas verdes con cascada e iluminación arquitectónica exterior.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="finca_area_consagrada.webp" alt="finca area consagrada"></div><div class="include-content"><h4><i class="fas fa-place-of-worship"></i> Área Consagrada</h4><p>Espacio íntimo dentro del recinto para la ceremonia religiosa o civil.</p></div></div>
@@ -619,7 +651,7 @@
             <!-- ═══ BLOQUE 2: COCTEL DE BIENVENIDA ═══ -->
             <div class="gallery-block-title">2 · Coctel de Bienvenida</div>
             <div class="includes-grid">
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="periqueras_1.jpg" alt="Periqueras altas"></div><div class="include-content"><h4><i class="fas fa-champagne-glasses"></i> Periqueras Altas</h4><p>Mesas altas de coctel para la recepción, con sombrillas para el área de jardín.</p></div></div>
+                <div class="include-item"><div class="include-img-container"><img class="include-img" src="periqueras_altas.jpg" alt="Periqueras altas"></div><div class="include-content"><h4><i class="fas fa-champagne-glasses"></i> Periqueras Altas</h4><p>Mesas altas de coctel para la recepción, con sombrillas para el área de jardín.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="sala_lounge_1.jpg" alt="Salas lounge"></div><div class="include-content"><h4><i class="fas fa-couch"></i> Salas Lounge</h4><p>Mobiliario lounge para que los invitados descansen y convivan durante el coctel.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="margaritas.webp" alt="Bebidas de bienvenida"></div><div class="include-content"><h4><i class="fas fa-martini-glass-citrus"></i> Bebidas sin Alcohol</h4><p>Margaritas de sabores en copa flauta, mojito, piñada y agua fresca de fruta natural.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="crudites.webp" alt="Crudités"></div><div class="include-content"><h4><i class="fas fa-carrot"></i> Crudités</h4><p>Pepino, jícama y zanahoria con miguelito y chamoy, presentados para compartir.</p></div></div>
@@ -630,12 +662,12 @@
             <div class="gallery-block-title">3 · Montaje y Decoración</div>
             <div class="includes-grid">
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="mesa_principal_rey_reyna.webp" alt="Mesa principal con sillones Rey y Reyna"></div><div class="include-content"><h4><i class="fas fa-crown"></i> Mesa Principal Rey &amp; Reyna</h4><p>Mesa de honor con sillones Rey y Reyna para los festejados.</p></div></div>
-                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>templete_back_luces_vintage.jpg</span></div><div class="include-content"><h4><i class="fas fa-star"></i> Templete con Back Decorado</h4><p>Templete de madera con back de luces vintage y telas, para el momento estelar.</p></div></div>
+                <div class="include-item"><div class="include-img-container"><img class="include-img" src="templete_back_luces_vintage.jpg" alt="Templete con back decorado"></div><div class="include-content"><h4><i class="fas fa-star"></i> Templete con Back Decorado</h4><p>Templete de madera con back de luces vintage y telas, para el momento estelar.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>mesa_redonda_tiffany.jpg</span></div><div class="include-content"><h4><i class="fas fa-circle"></i> Mesas Redondas Tiffany</h4><p>Mesas redondas para 8 o 10 personas con silla Tiffany blanca.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>mesa_cuadrada_tiffany.jpg</span></div><div class="include-content"><h4><i class="fas fa-square"></i> Mesas Cuadradas</h4><p>Mesas cuadradas para 10-12 personas con silla Tiffany blanca.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="mesa_campirana_1.jpg" alt="Mesa campirana"></div><div class="include-content"><h4><i class="fas fa-tree"></i> Mesas Campiranas</h4><p>Mesas de madera para 10-12 Px con silla crossback, Tiffany, boss o lotus.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="mesa_marmol_1.jpg" alt="Mesa tipo mármol"></div><div class="include-content"><h4><i class="fas fa-gem"></i> Mesas Tipo Mármol</h4><p>Mesas de acabado mármol para 10-12 Px con combinación de sillas de diseño.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="silla_carlota_luis_xv.jpg" alt="Sillería de diseño"></div><div class="include-content"><h4><i class="fas fa-chair"></i> Sillería de Diseño</h4><p>Catálogo de sillas finas disponibles para combinar con el estilo de su montaje.</p></div></div>
+                
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="centros_mesa_altos.jpg" alt="Centros de mesa altos"></div><div class="include-content"><h4><i class="fas fa-fan"></i> Centros de Mesa Altos</h4><p>Arreglos naturales de gran altura con flores de temporada.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="centros_mesa_bajos.jpg" alt="Centros de mesa bajos"></div><div class="include-content"><h4><i class="fas fa-seedling"></i> Centros de Mesa Bajos</h4><p>Arreglos redondos y bajos, ideales para conversar sin barreras visuales.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="manteleria.webp" alt="Mantelería"></div><div class="include-content"><h4><i class="fas fa-scroll"></i> Mantelería en Color a Elegir</h4><p>Mantel, camino y servilleta de tela en la paleta cromática que ustedes definan.</p></div></div>
@@ -652,7 +684,7 @@
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="banquete_plato_fuerte.webp" alt="banquete plato fuerte"></div><div class="include-content"><h4><i class="fas fa-drumstick-bite"></i> Segundo Tiempo · Plato Fuerte</h4><p>Pollo o cerdo con dos guarniciones a elegir, pan y chiles al centro.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="tornafiesta_esquites_chilaquiles.png" alt="Barra de esquites y chilaquiles"></div><div class="include-content"><h4><i class="fas fa-pepper-hot"></i> Tercer Tiempo · Tornafiesta</h4><p>Barra de esquites o chilaquiles al cierre de la fiesta (120 porciones).</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="menu_infantil.png" alt="Menu infantil"></div><div class="include-content"><h4><i class="fas fa-child"></i> Menú Infantil</h4><p>Milanesa, hamburguesa o nuggets con espagueti o papas, más golosina sorpresa.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="menu.png" alt="Carta de menú"></div><div class="include-content"><h4><i class="fas fa-book-open"></i> Carta Completa</h4><p>Catálogo de platillos disponibles para armar el menú de su evento.</p></div></div>
+                
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="mezcladores.png" alt="Mezcladores"></div><div class="include-content"><h4><i class="fas fa-glass-water"></i> Mezcladores Ilimitados</h4><p>Hielo, agua natural, refrescos línea Coca-Cola, limón y sal durante todo el evento.</p></div></div>
             </div>
 
@@ -671,7 +703,7 @@
             <div class="gallery-block-title">6 · DJ, Audio e Iluminación</div>
             <div class="includes-grid">
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="dj_mampara_cabina.webp" alt="dj mampara cabina"></div><div class="include-content"><h4><i class="fas fa-headphones"></i> DJ Profesional con Mampara</h4><p>DJ de amplia experiencia con mampara, audio de alta calidad y micrófono inalámbrico.</p></div></div>
-                <div class="include-item"><div class="include-img-container"><img class="include-img" src="torres_cabezas_roboticas.jpg" alt="torres cabezas roboticas"></div><div class="include-content"><h4><i class="fas fa-lightbulb"></i> Torres con Cabezas Robóticas</h4><p>Iluminación robótica en torres, más lámpara LED wash y tramoya.</p></div></div>
+                <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>torres_cabezas_roboticas.jpg</span></div><div class="include-content"><h4><i class="fas fa-lightbulb"></i> Torres con Cabezas Robóticas</h4><p>Iluminación robótica en torres, más lámpara LED wash y tramoya.</p></div></div>
                 
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="pantalla_proyector.jpg" alt="Pantalla LED con proyeccion"></div><div class="include-content"><h4><i class="fas fa-display"></i> Pantalla con Proyector</h4><p>Para el video de los festejados o la proyección de recuerdos durante el evento.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>maquina_humo.jpg</span></div><div class="include-content"><h4><i class="fas fa-smog"></i> Máquina de Humo</h4><p>Efecto de humo bajo para realzar la iluminación en los momentos clave.</p></div></div>
@@ -694,7 +726,7 @@
             <div class="gallery-block-title">8 · Servicios Complementarios — Eligen 2 sin Costo</div>
             <div class="includes-grid">
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="pista_leds_5x5.jpeg" alt="Pista de LEDs 5x5"></div><div class="include-content"><h4><i class="fas fa-border-all"></i> Pista de LEDs 5×5</h4><p>Pista iluminada programable que transforma por completo el área de baile.</p></div></div>
-                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/LJ-3NJdEcdU" title="Cabina 360 en acción" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-video"></i> Cabina 360° <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Plataforma giratoria de video para que los invitados se lleven su clip del evento. Míralo funcionando en el video.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/LJ-3NJdEcdU?autoplay=1&mute=1&loop=1&playlist=LJ-3NJdEcdU&controls=1&playsinline=1" title="Cabina 360 en acción" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-video"></i> Cabina 360° <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Plataforma giratoria de video para que los invitados se lleven su clip del evento. Míralo funcionando en el video.</p></div></div>
                 <div class="include-item"><div class="include-img-container img-pendiente"><i class="fas fa-camera"></i><span>robot_leds.jpg</span></div><div class="include-content"><h4><i class="fas fa-robot"></i> Robot de LEDs</h4><p>Personaje iluminado que anima la pista y se roba las fotos de la noche.</p></div></div>
                 <div class="include-item"><div class="include-img-container"><img class="include-img" src="show_men.jpg" alt="Show men performance"></div><div class="include-content"><h4><i class="fas fa-microphone"></i> Show Men Performance</h4><p>Animación profesional que mantiene la energía de la fiesta de principio a fin.</p></div></div>
             </div>
@@ -702,42 +734,58 @@
             <!-- ═══ BLOQUE 9: BENEFICIOS AL FIRMAR ═══ -->
             <div class="gallery-block-title">9 · Beneficios al Firmar Contrato</div>
             <div class="includes-grid">
-                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/hTiUq1JFoIA" title="Degustación exclusiva del menú" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div>
-                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/Kx3jW6ZQK-I" title="Diseño de montaje, croquis y minuto a minuto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-palette"></i> Diseño, Croquis y Minuto a Minuto <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Montaje diseñado según su paleta de colores, croquis de distribución detallada, minuto a minuto del evento y chat exclusivo con coordinación.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/hTiUq1JFoIA?autoplay=1&mute=1&loop=1&playlist=hTiUq1JFoIA&controls=1&playsinline=1" title="Degustación exclusiva del menú" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div>
+                <div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/Kx3jW6ZQK-I?autoplay=1&mute=1&loop=1&playlist=Kx3jW6ZQK-I&controls=1&playsinline=1" title="Diseño de montaje, croquis y minuto a minuto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-palette"></i> Diseño, Croquis y Minuto a Minuto <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Montaje diseñado según su paleta de colores, croquis de distribución detallada, minuto a minuto del evento y chat exclusivo con coordinación.</p></div></div>
             </div>
 
             <!-- ══ COMPLEMENTOS OFICIALES — enlaces reales del sitio web, no tocar salvo que cambien ══ -->
-            <div class="complementos-section">
+            <div class="complementos-section reveal">
                 <h3 class="section-title"><i class="fas fa-plus-circle"></i> Complementos Disponibles</h3>
                 <div class="complementos-grid">
                     <div class="complemento-card">
-                        <img class="complemento-img" src="vajilla.webp" alt="Fotografía y Video">
+                        <img class="complemento-img" src="fotografia_video.jpg" alt="Fotografía y Video">
                         <div class="complemento-body">
-                            <h4><i class="fas fa-camera"></i> Fotografía & Video</h4>
-                            <p>Paquetes desde $9,350 (Memoria Clásica) hasta $13,900 (Cinematic Prestige). Ver detalle en el cotizador de extras abajo.</p>
-                            <a class="btn-complemento" href="https://primaveraeventsgroup.com/paquetes-de-fotografia-y-video/" target="_blank">Ver Sitio Oficial</a>
+                            <h4><i class="fas fa-camera"></i> Fotografía &amp; Video</h4>
+                            <p>Desde <strong>$9,350</strong> (Memoria Clásica) hasta <strong>$13,900</strong> (Cinematic Prestige). Cinco paquetes a elegir, seleccionables en el cotizador de abajo.</p>
+                            <a class="btn-complemento" href="https://primaveraeventsgroup.com/paquetes-de-fotografia-y-video/" target="_blank">Ver paquetes y ejemplos</a>
                         </div>
                     </div>
                     <div class="complemento-card">
-                        <img class="complemento-img" src="letras_gigantes_iluminadas.jpg" alt="Invitación Digital">
+                        <img class="complemento-img" src="invitacion_digital.png" alt="Invitación Digital Premium">
                         <div class="complemento-body">
                             <h4><i class="fas fa-envelope-open-text"></i> Invitación Digital Premium</h4>
-                            <p>Cortesía incluida al reservar tu fecha, con confirmación de asistencia en tiempo real.</p>
-                            <a class="btn-complemento" href="https://5410m0n0c001.github.io/invitacion-demo/" target="_blank">Ver Demo Interactiva</a>
+                            <p>Cortesía al reservar su fecha. Con confirmación de asistencia (RSVP), mapa de ubicación y galería interactiva para que los invitados suban sus fotos.</p>
+                            <a class="btn-complemento" href="https://5410m0n0c001.github.io/invitacion-demo/" target="_blank">Ver demo interactiva</a>
+                        </div>
+                    </div>
+                    <div class="complemento-card">
+                        <img class="complemento-img" src="finca_area_consagrada.webp" alt="Montaje de ceremonia">
+                        <div class="complemento-body">
+                            <h4><i class="fas fa-ring"></i> Montaje de Ceremonia</h4>
+                            <p>Opción adicional del paquete: montaje completo para la ceremonia en el área consagrada de la finca.</p>
+                            <a class="btn-complemento" href="https://primaveraeventsgroup.com/finca-las-isabeles/" target="_blank">Consultar con su planner</a>
+                        </div>
+                    </div>
+                    <div class="complemento-card">
+                        <img class="complemento-img" src="cristaleria.webp" alt="Barra de bebidas premium">
+                        <div class="complemento-body">
+                            <h4><i class="fas fa-martini-glass"></i> Barra de Bebidas Premium</h4>
+                            <p>Opción adicional del paquete: barra con destilados premium, además de los mezcladores que ya vienen incluidos.</p>
+                            <a class="btn-complemento" href="https://primaveraeventsgroup.com/finca-las-isabeles/" target="_blank">Consultar con su planner</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- ══ COTIZADOR DINÁMICO DE EXTRAS — precios reales, verificados en el catálogo interno y perfiles de la Expo 2026 ══ -->
-            <div class="calc-section">
+            <div class="calc-section reveal">
                 <h3 class="section-title"><i class="fas fa-calculator"></i> Cotizador Dinámico de Extras</h3>
                 <p class="calc-hint">Selecciona los servicios o artículos adicionales que quieras agregar a tu cotización — el total se suma en tiempo real al monto base de arriba. <strong>Nota:</strong> el paquete ya incluye dos servicios complementarios sin costo (pista de LEDs, cabina 360, robot de LEDs o show men); lo que elijas aquí es <em>además</em> de esos dos.</p>
                 <div id="calcGrid"></div>
             </div>
 
             <!-- ══ PUBLICIDAD — sección obligatoria #10 de DIRECTIVES.md (4 imágenes promo reales) ══ -->
-            <div class="publicidad-section">
+            <div class="publicidad-section reveal">
                 <h3 class="section-title"><i class="fas fa-bullhorn"></i> Descubre Más de Primavera Events Group</h3>
                 <div class="publicidad-grid">
                     <a href="https://primaveraeventsgroup.com/bodas/" target="_blank" class="publicidad-card"><img src="pub_boda_ensueno.png" alt="Bodas de Ensueño"></a>
@@ -747,25 +795,8 @@
                 </div>
             </div>
 
-            <!-- ══ Expo Boda y Quince Años — publicidad real de PEG, copiada literal de antonio-cotizacion ══ -->
-            <div class="expo-section">
-                <div class="expo-card">
-                    <div class="expo-content">
-                        <span class="expo-badge">Evento Especial</span>
-                        <h3>¡Acompáñanos en la Expo Boda y Quince Años!</h3>
-                        <p>Visítanos en el Centro de Convenciones Presidente y descubre todas las tendencias para el gran día de tu evento. ¡Te esperamos!</p>
-                        <a href="https://primaveraeventsgroup.com/expo-boda-y-quince-anos-centro-de-convenciones-presidente/" class="btn-expo" target="_blank">
-                            Más Información y Registro <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="expo-img-box">
-                        <img src="imobiliario elegante.webp" alt="Expo Boda y Quince Años">
-                    </div>
-                </div>
-            </div>
-
             <!-- ══ KIT PLANNER — sección obligatoria #11 de DIRECTIVES.md (descarga real de Excel + PDF) ══ -->
-            <div class="kit-section">
+            <div class="kit-section reveal">
                 <div class="kit-content">
                     <span class="kit-badge">EXCLUSIVO PARA CLIENTES</span>
                     <h3>Kit Organizador de Eventos</h3>
@@ -789,7 +820,7 @@
                 </video>
             </div>
 
-            <div class="notes-section">
+            <div class="notes-section reveal">
                 <h3><i class="fas fa-file-contract"></i> Condiciones de Contratación y Notas Importantes</h3>
                 <ul>
                     <li><strong>Anticipo:</strong> 50% para bloquear la fecha en agenda. El 50% restante se liquida a más tardar el día previo al evento (o 30 días antes en contratos de banquete grandes — se confirma en contrato).</li>
@@ -805,7 +836,7 @@
                 <p class="quote-phrase">«Hacemos de tu celebración un recuerdo eterno. El arte de servir, hecho realidad.»</p>
             </div>
 
-            <div class="cta-container">
+            <div class="cta-container reveal">
                 <p>¿Tienes dudas sobre los desgloses o deseas confirmar tu fecha?</p>
                 <a class="btn-wa" href="https://wa.me/527774587923?text=Hola%2C%20vi%20mi%20propuesta%20de%20%5BTIPO_EVENTO%5D%20y%20quisiera%20platicar%20m%C3%A1s." target="_blank"><i class="fab fa-whatsapp"></i> Chatear con Coordinación Directa</a>
             </div>
@@ -857,21 +888,21 @@
 
     const EXTRAS = [
         { categoria: "Personal Extra", items: [
-            { nombre: "Mesero adicional (8 hrs)", precio: 500 },
-            { nombre: "Capitán de meseros", precio: 1500 },
-            { nombre: "Coordinador general adicional", precio: 4500 },
-            { nombre: "Barman adicional", precio: 500 },
-            { nombre: "Hostess adicional", precio: 500 },
+            { nombre: "Mesero adicional (8 hrs)", precio: 1000 },
+            { nombre: "Capitán de meseros", precio: 3000 },
+            { nombre: "Coordinador general adicional", precio: 9000 },
+            { nombre: "Bartender adicional", precio: 1000 },
+            { nombre: "Hostess adicional", precio: 1000 },
         ]},
         { categoria: "Entretenimiento", items: [
-            { nombre: "DJ adicional (7 hrs, con pantalla)", precio: 8000 },
-            { nombre: "Robot LED (1 hr)", precio: 2500 },
-            { nombre: "Cabina 360° (1 hr)", precio: 2500 },
-            { nombre: "Cabina Inflable de Fotos (2 hrs)", precio: 3500 },
-            { nombre: "Show Men Animador (2 hrs)", precio: 3500 },
-            { nombre: "Saxofonista (1 hr)", precio: 2500 },
-            { nombre: "Mariachi (1 hr)", precio: 4500 },
-            { nombre: "Banda (1 hr)", precio: 7000 },
+            { nombre: "DJ adicional (7 hrs, con pantalla)", precio: 16000 },
+            { nombre: "Banda (1 hr)", precio: 14000 },
+            { nombre: "Mariachi (1 hr)", precio: 9000 },
+            { nombre: "Cabina inflable de fotos (2 hrs)", precio: 7000 },
+            { nombre: "Show men animador (2 hrs)", precio: 7000 },
+            { nombre: "Robot LED (1 hr)", precio: 5000 },
+            { nombre: "Cabina 360° (1 hr)", precio: 5000 },
+            { nombre: "Saxofonista (1 hr)", precio: 5000 },
         ]},
         { categoria: "Fotografía y Video", items: [
             { nombre: "Paquete Memoria Clásica (Fotografía)", precio: 9350 },
@@ -880,12 +911,8 @@
             { nombre: "Paquete Royal Cinematic (Foto + Video)", precio: 12900 },
             { nombre: "Paquete Cinematic Prestige (Foto + Video)", precio: 13900 },
         ]},
-        { categoria: "Coreografía", items: [
-            { nombre: "Vals básico (6 temas)", precio: 6500 },
-            { nombre: "Vals VIP (9 temas)", precio: 9500 },
-        ]},
         { categoria: "Souvenirs", items: [
-            { nombre: "Tequila personalizado Don Ramón (750ml, corte diamante)", precio: 7515 },
+            { nombre: "Tequila personalizado Don Ramón para invitados (750ml, corte diamante)", precio: 7515 },
         ]},
     ];
 
@@ -985,6 +1012,23 @@
             }
         }
     });
+
+
+    // ══ Reveal al hacer scroll — mismo mecanismo de antonio-cotizacion ══
+    (function(){
+        var obs = new IntersectionObserver(function(entries, o){
+            entries.forEach(function(e){
+                if(e.isIntersecting){ e.target.classList.add('active'); o.unobserve(e.target); }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal, .includes-grid, .gallery-block-title').forEach(function(el){ obs.observe(el); });
+
+        // Parallax suave del hero
+        window.addEventListener('scroll', function(){
+            var hero = document.querySelector('.hero');
+            if(hero){ hero.style.backgroundPosition = 'center ' + (window.pageYOffset * 0.4) + 'px'; }
+        }, { passive:true });
+    })();
 
     renderCalculador();
     actualizarTotal();
