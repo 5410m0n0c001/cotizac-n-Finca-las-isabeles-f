@@ -215,29 +215,30 @@
         @keyframes slideInRight{from{opacity:0;transform:translateX(50px);}to{opacity:1;transform:translateX(0);}}
         .hero h1{animation:fadeInDown 1s cubic-bezier(0.2,0.8,0.2,1);}
         .hero-sub,.hero-eyebrow{animation:fadeInUp 1s cubic-bezier(0.2,0.8,0.2,1) 0.2s both;}
-        .reveal{opacity:0;transition:all 1.2s cubic-bezier(0.2,0.8,0.2,1);}
-        .reveal:not(.reveal-left):not(.reveal-right){transform:translateY(40px);}
+        .js-anim .reveal{opacity:.001;transition:all 1.2s cubic-bezier(0.2,0.8,0.2,1);}
+        .js-anim .reveal:not(.reveal-left):not(.reveal-right){transform:translateY(40px);}
         .reveal-left{transform:translateX(-50px);}
         .reveal-right{transform:translateX(50px);}
         .reveal.active{opacity:1;transform:translate(0,0)!important;}
         .reveal.active.reveal-left,.reveal.active.reveal-right{transform:translate(0,0);}
-        .includes-grid .include-item{opacity:0;}
-        .includes-grid.active .include-item{animation:slideInRight 0.8s cubic-bezier(0.25,0.46,0.45,0.94) both;}
-        .includes-grid.active .include-item:nth-child(1){animation-delay:0.05s;}
-        .includes-grid.active .include-item:nth-child(2){animation-delay:0.12s;}
-        .includes-grid.active .include-item:nth-child(3){animation-delay:0.19s;}
-        .includes-grid.active .include-item:nth-child(4){animation-delay:0.26s;}
-        .includes-grid.active .include-item:nth-child(5){animation-delay:0.33s;}
-        .includes-grid.active .include-item:nth-child(6){animation-delay:0.40s;}
-        .includes-grid.active .include-item:nth-child(n+7){animation-delay:0.47s;}
+        /* Entrada de tarjetas con TRANSICION, no animation: el estado final es una
+           declaracion normal, asi nunca puede quedarse algo invisible. */
+
+
+
+
+
+
+
+
         .include-item{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease;}
         .include-item:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(31,31,31,.10);}
         .include-img{transition:transform .6s cubic-bezier(.2,.8,.2,1);}
         .include-item:hover .include-img{transform:scale(1.06);}
-        .gallery-block-title{opacity:0;transform:translateY(20px);transition:all .9s cubic-bezier(.2,.8,.2,1);}
+        .js-anim .gallery-block-title{opacity:0;transform:translateY(20px);transition:all .9s cubic-bezier(.2,.8,.2,1);}
         .gallery-block-title.active{opacity:1;transform:translateY(0);}
         @media (prefers-reduced-motion: reduce){
-            .reveal,.gallery-block-title,.includes-grid .include-item{opacity:1!important;transform:none!important;animation:none!important;}
+            .reveal,.gallery-block-title,
         }
 
 
@@ -262,22 +263,65 @@
             .expo-section, .publicidad-section, .signature-section, .complementos-section,
             .includes-grid, .gallery-block-title, .calc-total-box, .calc-hint,
             .venue-info-grid, .venue-logo-wrap, footer, header, .calc-section { display:none !important; }
-            .include-item, .complemento-card, .venue-info-card,
-            .notes-section, .pricing-section, .kit-section {
-                page-break-inside: avoid !important; break-inside: avoid !important;
-            }
-            h2, h3, h4, .section-title {
-                page-break-after: avoid !important; break-after: avoid !important;
-            }
-            /* En papel es al reves: la tabla es el documento formal, la galeria no va */
+
             .solo-print { display:block !important; }
             .solo-print .tbl-thumb, .solo-print .tbl-thumb-pend { display:none !important; }
-            body { background:white !important; font-size:9pt; color:#000; }
+
+            * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+
+            @page { margin: 1cm 1.1cm; }
+            body { background:#fff !important; font-size:8.2pt; line-height:1.28; color:#1F1F1F; }
             .container { margin:0 !important; padding:0 !important; max-width:100% !important; }
             .quote-card { box-shadow:none !important; padding:0 !important; border:none !important; }
-            .pricing-section { background:var(--background-light) !important; color:var(--primary-dark) !important; border:1px solid var(--beige) !important; }
-            .price-hero, .pricing-section h3 { color:var(--primary-pink) !important; }
-            @page { margin: 1.5cm 1.2cm; }
+
+            .print-header { display:flex !important; align-items:center; gap:12px; padding-bottom:9px; margin-bottom:12px;
+                border-bottom:2.5px solid var(--primary-pink); }
+            .print-header img { width:44px; height:44px; border-radius:50%; object-fit:cover; border:1.5px solid var(--gold-accent); }
+            .print-header h2 { font-size:14pt; margin:0; color:var(--primary-pink); line-height:1.1; }
+            .print-header p { font-size:7.6pt; color:var(--gray-text); margin:1px 0 0; }
+            .print-header .ph-meta { color:var(--primary-dark); font-size:8pt; margin-top:3px; }
+
+            .header-info { border-bottom:1px solid var(--beige) !important; padding-bottom:8px !important; margin-bottom:10px !important; gap:10px !important; }
+            .header-main h2 { font-size:13pt !important; color:var(--primary-pink); margin-bottom:3px !important; }
+            .header-main p { font-size:8pt !important; }
+            .badge-event { background:var(--soft-pink) !important; color:var(--primary-pink) !important; font-size:6.6pt !important; padding:2px 10px !important; margin-top:5px !important; }
+            .info-box { padding:6px 10px !important; min-width:78px !important; background:var(--background-light) !important; border:1px solid var(--beige) !important; border-radius:8px !important; }
+            .info-box span { font-size:6pt !important; margin-bottom:1px !important; }
+            .info-box strong { font-size:9.5pt !important; color:var(--primary-pink); }
+
+            .section-title { font-size:11pt !important; margin:8px 0 6px !important; padding-bottom:4px !important;
+                color:var(--primary-pink); border-bottom:1px solid var(--gold-accent) !important; }
+            .section-title i { color:var(--gold-accent) !important; font-size:9pt !important; }
+            .pricing-table-container { border:1px solid var(--beige) !important; border-radius:8px !important; margin-bottom:10px !important; }
+            .pricing-table { font-size:7.6pt !important; }
+            .pricing-table th { background:var(--primary-pink) !important; color:#fff !important; padding:5px 8px !important; font-size:6.8pt !important; letter-spacing:.4px !important; }
+            .pricing-table td { padding:3.5px 8px !important; border-bottom:.5px solid var(--beige) !important; }
+            .pricing-table tr:nth-child(even) { background:rgba(246,92,122,.035) !important; }
+            .col-unit, th.col-unit { display:none !important; }
+            .col-concept { width:26% !important; } .col-desc { width:58% !important; }
+
+            .pricing-section { background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%) !important;
+                color:#fff !important; border:none !important; padding:14px 18px !important; border-radius:12px !important; margin-top:8px !important; }
+            .pricing-section h3 { color:var(--gold-accent) !important; font-size:8pt !important; margin-bottom:2px !important; }
+            .price-hero { font-size:22pt !important; margin:4px 0 2px !important; color:#fff !important; }
+            .price-hero sup { color:var(--gold-accent) !important; font-size:9pt !important; }
+            .price-label { font-size:7.6pt !important; color:rgba(255,255,255,.8) !important; margin-bottom:0 !important; }
+            .price-note { font-size:6.2pt !important; margin-top:7px !important; color:rgba(255,255,255,.55) !important; }
+            .price-breakdown { display:none !important; }
+
+            .notes-section { padding:11px 14px !important; margin-top:10px !important; border:1px solid var(--beige) !important;
+                border-left:3px solid var(--gold-accent) !important; border-radius:8px !important; background:var(--background-light) !important; }
+            .notes-section h3 { font-size:9.5pt !important; margin-bottom:6px !important; color:var(--primary-pink); }
+            .notes-section li { font-size:7.2pt !important; margin-bottom:2px !important; }
+            .notes-section ul { margin-bottom:6px !important; }
+            .quote-phrase { font-size:7.6pt !important; margin-top:7px !important; color:var(--primary-pink) !important; }
+
+            .print-footer { display:block !important; margin-top:12px; padding-top:7px; border-top:1px solid var(--beige);
+                font-size:6.4pt; color:var(--gray-text); text-align:center; }
+
+            .notes-section, .pricing-section, .print-header { page-break-inside:avoid !important; break-inside:avoid !important; }
+            h2, h3, h4, .section-title { page-break-after:avoid !important; break-after:avoid !important; }
+            .pricing-table tr { page-break-inside:avoid !important; }
         }
     </style>
 </head>
@@ -321,6 +365,15 @@
     <main class="container">
         <div class="quote-card">
 
+            <!-- Encabezado que solo sale en el PDF -->
+            <div class="print-header solo-print">
+                <img src="primaveralogo.jpg" alt="Primavera Events Group">
+                <div class="ph-txt">
+                    <h2>Primavera Events Group</h2>
+                    <p>Paquete Nature&#39;s Majesty &middot; Finca Las Isabeles &middot; Xochitepec, Morelos</p>
+                    <p class="ph-meta"><strong>[NOMBRE_CLIENTE]</strong> &middot; [TIPO_EVENTO] &middot; [FECHA] &middot; 200 invitados &middot; 10 horas de servicio</p>
+                </div>
+            </div>
             <div class="venue-logo-wrap">
                 <a href="https://primaveraeventsgroup.com/finca-las-isabeles/" target="_blank" title="Visitar sitio oficial del recinto">
                     <img src="primaveralogo.jpg" alt="Finca Las Isabeles Logo">
@@ -880,6 +933,9 @@
                 <a class="btn-wa" href="https://wa.me/527774587923?text=Hola%2C%20vi%20mi%20propuesta%20de%20%5BTIPO_EVENTO%5D%20y%20quisiera%20platicar%20m%C3%A1s." target="_blank"><i class="fab fa-whatsapp"></i> Chatear con Coordinación Directa</a>
             </div>
 
+            <div class="print-footer solo-print">
+                Primavera Events Group &middot; Av. Defensa Nacional #8, Col. Chamilpa, 62210 Cuernavaca, Mor. &middot; +52 777 458 7923 &middot; contacto@primaveraeventsgroup.com
+            </div>
         </div>
     </main>
 
@@ -1064,21 +1120,36 @@
     });
 
 
-    // ══ Reveal al hacer scroll — mismo mecanismo de antonio-cotizacion ══
+    // ══ Reveal al hacer scroll — con red de seguridad: si algo falla, todo queda visible ══
     (function(){
+        var objetivos = document.querySelectorAll('.reveal, .includes-grid, .gallery-block-title');
+        function revelarTodo(){ objetivos.forEach(function(el){ el.classList.add('active'); }); }
+
+        if (!('IntersectionObserver' in window)) { return; }   // sin soporte: nada se oculta nunca
+
+        document.documentElement.classList.add('js-anim');     // recien aqui se permite ocultar
+
         var obs = new IntersectionObserver(function(entries, o){
             entries.forEach(function(e){
-                if(e.isIntersecting){ e.target.classList.add('active'); o.unobserve(e.target); }
+                if (e.isIntersecting) { e.target.classList.add('active'); o.unobserve(e.target); }
             });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal, .includes-grid, .gallery-block-title').forEach(function(el){ obs.observe(el); });
+        }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
 
-        // Parallax suave del hero
-        window.addEventListener('scroll', function(){
-            var hero = document.querySelector('.hero');
-            if(hero){ hero.style.backgroundPosition = 'center ' + (window.pageYOffset * 0.4) + 'px'; }
-        }, { passive:true });
+        objetivos.forEach(function(el){
+            var r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('active'); // ya visible al cargar
+            else obs.observe(el);
+        });
+
+        // Si por lo que sea el observer no responde, a los 2.5s se muestra todo igual
+        setTimeout(revelarTodo, 2500);
+        window.addEventListener('load', function(){ setTimeout(revelarTodo, 1200); });
     })();
+
+    window.addEventListener('scroll', function(){
+        var hero = document.querySelector('.hero');
+        if (hero) hero.style.backgroundPosition = 'center ' + (window.pageYOffset * 0.35) + 'px';
+    }, { passive:true });
 
     renderCalculador();
     actualizarTotal();
