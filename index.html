@@ -186,8 +186,9 @@
         .btn-kit { display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:50px; font-weight:600; font-size:.8rem; text-decoration:none; background:var(--primary-pink); color:white; white-space:nowrap; }
 
         /* ══ Firma (obligatoria #13 DIRECTIVES.md) ══ */
-        .signature-section { text-align:center; margin-top:40px; }
-        .signature-section video { max-width:280px; width:100%; height:auto; mix-blend-mode:multiply; }
+        
+        .signature-section { text-align:center; margin:26px 0 10px; }
+        .signature-section video { max-width:260px; width:100%; aspect-ratio:16/9; height:auto; object-fit:contain; mix-blend-mode:multiply; display:inline-block; }
 
         .pdf-section { margin-top:40px; text-align:center; padding:30px; background:var(--white); border:1px solid var(--beige); border-radius:20px; }
         .pdf-section p { color:var(--gray-text); margin-bottom:15px; font-size:.85rem; }
@@ -1439,6 +1440,20 @@
                     else v.pause();
                 });
             }, { threshold: 0.25 }).observe(v);
+        }
+    })();
+
+    // ══ Video de la firma ══
+    (function(){
+        var f = document.getElementById('videoFirma');
+        if (!f) return;
+        f.muted = true; f.loop = true;
+        var reproduce = function(){ f.play().catch(function(){}); };
+        reproduce();
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function(en){
+                en.forEach(function(e){ if (e.isIntersecting) reproduce(); });
+            }, { threshold: 0.2 }).observe(f);
         }
     })();
 
