@@ -319,11 +319,40 @@
             }
         }
 
+        /* ══ Video del croquis a todo el ancho ══ */
+        .video-section { margin-top:50px; }
+        .video-frame { position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--beige);
+            background:var(--primary-dark); box-shadow:0 18px 40px rgba(31,31,31,.14); }
+        .video-frame video { width:100%; height:auto; display:block; max-height:78vh; background:var(--primary-dark); }
+        .video-full { position:absolute; right:14px; bottom:60px; z-index:4; display:inline-flex; align-items:center; gap:7px;
+            background:rgba(31,31,31,.82); color:var(--white); border:1px solid var(--gold-accent); border-radius:30px;
+            padding:8px 16px; font-size:.78rem; font-weight:600; cursor:pointer; font-family:var(--font-sans); }
+        .video-full:hover { background:var(--primary-pink); }
+
+        /* ══ Slides mas grandes + lupa para leerlos completos ══ */
+        .slide { width:min(460px, 82vw) !important; cursor:zoom-in; position:relative; }
+        .slide::after { content:'\f00e'; font-family:'Font Awesome 6 Free'; font-weight:900; position:absolute;
+            right:10px; bottom:10px; background:rgba(31,31,31,.72); color:#fff; width:32px; height:32px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center; font-size:.85rem; opacity:0; transition:opacity .3s; }
+        .slide:hover::after { opacity:1; }
+
+        /* Visor a pantalla completa de cada hoja */
+        .visor { position:fixed; inset:0; z-index:10000; background:rgba(20,14,17,.94); display:none;
+            align-items:center; justify-content:center; padding:20px; }
+        .visor.abierto { display:flex; }
+        .visor img { max-width:96vw; max-height:92vh; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.6); }
+        .visor-cerrar { position:absolute; top:16px; right:20px; background:none; border:none; color:#fff; font-size:2rem; cursor:pointer; line-height:1; }
+        .visor-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
+            color:#fff; width:48px; height:48px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+        .visor-nav:hover { background:var(--primary-pink); }
+        .visor-nav.izq { left:16px; } .visor-nav.der { right:16px; }
+        .visor-contador { position:absolute; bottom:18px; left:0; right:0; text-align:center; color:rgba(255,255,255,.75); font-size:.82rem; letter-spacing:1px; }
+
         /* CSS print obligatorio — DIRECTIVES.md sección 9 */
         @media print {
             #preloader, .floating-actions-container, .pdf-section,
             .kit-section, .cta-container, audio, .audio-toggle,
-            .slides-section, .lectura-barra, .expo-section, .publicidad-section, .signature-section, .complementos-section,
+            .slides-section, .video-section, .visor, .lectura-barra, .expo-section, .publicidad-section, .signature-section, .complementos-section,
             .includes-grid, .gallery-block-title, .calc-total-box, .calc-hint,
             .venue-info-grid, .venue-logo-wrap, footer, header, .calc-section { display:none !important; }
 
@@ -868,7 +897,7 @@
             <div class="gallery-block-title reveal reveal-left">9 · Beneficios al Firmar Contrato</div>
             <div class="includes-grid">
                 <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/hTiUq1JFoIA?mute=1&loop=1&playlist=hTiUq1JFoIA&controls=1&playsinline=1" title="Degustación exclusiva del menú" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div></div>
-                <div class="reveal reveal-left"><div class="include-item"><div class="include-img-container is-video"><video class="include-video" src="croquis_interactivo.webm" controls muted loop playsinline preload="none" poster="mesa_principal_rey_reyna.webp"></video></div><div class="include-content"><h4><i class="fas fa-palette"></i> Diseño, Croquis y Minuto a Minuto <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Montaje diseñado según su paleta de colores, croquis de distribución detallada, minuto a minuto del evento y chat exclusivo con coordinación.</p></div></div></div>
+                
             </div>
 
             <!-- ══ COMPLEMENTOS OFICIALES — enlaces reales del sitio web, no tocar salvo que cambien ══ -->
@@ -952,6 +981,17 @@
             </div>
 
             
+
+            <!-- ══ Croquis interactivo: video a todo el ancho, no recortado ══ -->
+            <div class="video-section reveal">
+                <h3 class="section-title"><i class="fas fa-map"></i> Croquis Interactivo 2D y 3D</h3>
+                <p class="calc-hint">Al firmar contrato diseñamos el montaje según su paleta de colores y le entregamos el croquis de distribución, el minuto a minuto y un chat directo con coordinación. Así se ve su evento antes del evento.</p>
+                <div class="video-frame">
+                    <video id="videoCroquis" src="croquis_interactivo.webm" controls muted loop playsinline preload="metadata" poster="mesa_principal_rey_reyna.webp"></video>
+                    <button class="video-full" id="btnFullCroquis" title="Ver en pantalla completa"><i class="fas fa-expand"></i> Pantalla completa</button>
+                </div>
+            </div>
+
             <!-- ══ Minuto a minuto: la ficha tecnica que se le entrega al cliente ══ -->
             <div class="slides-section reveal">
                 <h3 class="section-title"><i class="fas fa-list-ol"></i> Así es el Minuto a Minuto que le entregamos</h3>
@@ -1039,6 +1079,14 @@
             <div class="footer-bottom">&copy; 2026 Primavera Events Group. Todos los derechos reservados.</div>
         </div>
     </footer>
+
+    <div class="visor" id="visor">
+        <button class="visor-cerrar" id="visorCerrar" aria-label="Cerrar">&times;</button>
+        <button class="visor-nav izq" id="visorIzq" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+        <img id="visorImg" src="" alt="Hoja del minuto a minuto">
+        <button class="visor-nav der" id="visorDer" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        <div class="visor-contador" id="visorContador"></div>
+    </div>
 
     <!-- ══ Floating Actions — copiado literal de antonio-cotizacion (mismo mecanismo, URLs reales de PEG) ══ -->
     <div class="floating-actions-container">
@@ -1308,6 +1356,41 @@
                 entries.forEach(function(e){ e.isIntersecting ? arranca() : detiene(); });
             }, { threshold: 0.25 }).observe(track);
         } else { arranca(); }
+    })();
+
+    // ══ Pantalla completa del video del croquis ══
+    (function(){
+        var b = document.getElementById('btnFullCroquis'), v = document.getElementById('videoCroquis');
+        if (!b || !v) return;
+        b.addEventListener('click', function(){
+            if (v.requestFullscreen) v.requestFullscreen();
+            else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+            else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen();
+            v.play().catch(function(){});
+        });
+    })();
+
+    // ══ Visor de las hojas del minuto a minuto ══
+    (function(){
+        var visor = document.getElementById('visor');
+        if (!visor) return;
+        var img = document.getElementById('visorImg'), cont = document.getElementById('visorContador');
+        var fuentes = Array.prototype.map.call(document.querySelectorAll('.slide img'), function(i){ return i.getAttribute('src'); });
+        var pos = 0;
+        function pinta(){ img.src = fuentes[pos]; cont.textContent = 'Hoja ' + (pos+1) + ' de ' + fuentes.length; }
+        function abre(i){ pos = i; pinta(); visor.classList.add('abierto'); document.body.style.overflow = 'hidden'; }
+        function cierra(){ visor.classList.remove('abierto'); document.body.style.overflow = ''; }
+        document.querySelectorAll('.slide').forEach(function(s, i){ s.addEventListener('click', function(){ abre(i); }); });
+        document.getElementById('visorCerrar').addEventListener('click', cierra);
+        visor.addEventListener('click', function(e){ if (e.target === visor) cierra(); });
+        document.getElementById('visorIzq').addEventListener('click', function(e){ e.stopPropagation(); pos = (pos-1+fuentes.length)%fuentes.length; pinta(); });
+        document.getElementById('visorDer').addEventListener('click', function(e){ e.stopPropagation(); pos = (pos+1)%fuentes.length; pinta(); });
+        document.addEventListener('keydown', function(e){
+            if (!visor.classList.contains('abierto')) return;
+            if (e.key === 'Escape') cierra();
+            if (e.key === 'ArrowLeft')  { pos = (pos-1+fuentes.length)%fuentes.length; pinta(); }
+            if (e.key === 'ArrowRight') { pos = (pos+1)%fuentes.length; pinta(); }
+        });
     })();
 
     renderCalculador();

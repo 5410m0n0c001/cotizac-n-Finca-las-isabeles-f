@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prueba de animaciones</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#F8F6F4;color:#1F1F1F;margin:0;padding:0 20px 60vh}
+h1{text-align:center;padding:40px 0}
+.caja{max-width:640px;margin:26vh auto;background:#fff;border:1px solid #EFE7E1;border-radius:20px;padding:40px;
+      box-shadow:0 20px 40px rgba(0,0,0,.06);font-size:1.3rem;text-align:center}
+.aviso{position:fixed;top:0;left:0;right:0;background:#F65C7A;color:#fff;padding:10px;text-align:center;font-weight:600;z-index:99}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+@keyframes zoomIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(90px)}to{opacity:1;transform:translateX(0)}}
+.reveal{opacity:0;transition:all 1s cubic-bezier(.2,.8,.2,1);transform:translateY(50px)}
+.reveal.active{opacity:1;transform:none}
+.reveal.active.a1{animation:fadeInUp .9s both}
+.reveal.active.a2{animation:zoomIn .9s both}
+.reveal.active.a3{animation:slideInRight .9s both}
+</style></head><body>
+<div class="aviso" id="aviso">Baja despacio. Cada caja debe APARECER moviéndose.</div>
+<h1>Prueba de animaciones</h1>
+<div class="caja reveal a1">1 · Debo aparecer subiendo desde abajo (fade + slide up)</div>
+<div class="caja reveal a2">2 · Debo aparecer creciendo desde pequeño (zoom in)</div>
+<div class="caja reveal a3">3 · Debo entrar desde la derecha (slide in right)</div>
+<div class="caja reveal a1">4 · Otra vez fade + slide up</div>
+<div class="caja reveal a2">5 · Otra vez zoom in</div>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('.reveal');
+  var av=document.getElementById('aviso');
+  if(!('IntersectionObserver' in window)){av.textContent='Tu navegador no soporta IntersectionObserver';els.forEach(function(e){e.classList.add('active')});return;}
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){av.textContent='TU NAVEGADOR TIENE REDUCIR MOVIMIENTO ACTIVADO — por eso no ves animaciones';}
+  var o=new IntersectionObserver(function(en,ob){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('active');ob.unobserve(e.target);}})},{threshold:.15});
+  els.forEach(function(e){o.observe(e)});
+});
+</script></body></html>
