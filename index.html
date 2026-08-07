@@ -188,7 +188,7 @@
         /* ══ Firma (obligatoria #13 DIRECTIVES.md) ══ */
         
         .signature-section { text-align:center; margin:26px 0 10px; }
-        .signature-section video { max-width:260px; width:100%; aspect-ratio:16/9; height:auto; object-fit:contain; mix-blend-mode:multiply; display:inline-block; }
+        .signature-section video { max-width:260px; width:100%; aspect-ratio:16/9; height:auto; object-fit:contain; display:inline-block; border-radius:12px; }
 
         .pdf-section { margin-top:40px; text-align:center; padding:30px; background:var(--white); border:1px solid var(--beige); border-radius:20px; }
         .pdf-section p { color:var(--gray-text); margin-bottom:15px; font-size:.85rem; }
@@ -467,7 +467,7 @@
          ══════════════════════════════════════════════════════════════ -->
 
     <div id="preloader">
-        <video id="preloaderVideo" autoplay muted loop playsinline preload="auto">
+        <video id="preloaderVideo" autoplay muted loop playsinline webkit-playsinline preload="auto">
             <source src="precarga.mp4" type="video/mp4">
         </video>
         <div class="preloader-overlay">
@@ -913,7 +913,7 @@
             <div class="includes-grid">
                 <div class="reveal reveal-right"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="letras_gigantes_iluminadas.webp" alt="Letras iluminadas"></div><div class="include-content"><h4><i class="fas fa-font"></i> Letras Iluminadas</h4><p>Letras decorativas «XV» o «LOVE», según el tipo de celebración.</p></div></div></div>
                 <div class="reveal"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="corazon_rojo_iluminado.webp" alt="Corazon rojo iluminado"></div><div class="include-content"><h4><i class="fas fa-heart"></i> Corazón Rojo Iluminado</h4><p>Pieza decorativa iluminada para el área de fotos o la pista.</p></div></div></div>
-                <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container is-video"><video id="videoPastel" class="include-video" src="video_pastel.mp4" autoplay muted loop playsinline poster="mesa_pastel.webp" style="width:100%;height:100%;object-fit:cover;"></video></div><div class="include-content"><h4><i class="fas fa-cake-candles"></i> Mesa &amp; Pastel de Evento <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Mesa especial montada y decorada para el pastel del evento, con demostración en video.</p></div></div></div>
+                <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container is-video"><video id="videoPastel" class="include-video" autoplay muted loop playsinline webkit-playsinline poster="mesa_pastel.webp" style="width:100%;height:100%;object-fit:cover;"><source src="video_pastel.mp4" type="video/mp4"></video></div><div class="include-content"><h4><i class="fas fa-cake-candles"></i> Mesa &amp; Pastel de Evento <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Mesa especial montada y decorada para el pastel del evento, con demostración en video.</p></div></div></div>
                 <div class="reveal reveal-left"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="mesa_regalos.jpeg" alt="mesa regalos"></div><div class="include-content"><h4><i class="fas fa-gift"></i> Mesa de Regalos</h4><p>Mesa especial para recibir y resguardar los obsequios de sus invitados.</p></div></div></div>
                 <div class="reveal reveal-right"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="pirotecnia_fria_chisperos.webp" alt="pirotecnia fria chisperos"></div><div class="include-content"><h4><i class="fas fa-fire"></i> Pirotecnia en Frío</h4><p>Detonación de dos chisperos inalámbricos en frío para el momento estelar del evento.</p></div></div></div>
                 <div class="reveal"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="alfombra_roja.webp" alt="alfombra roja"></div><div class="include-content"><h4><i class="fas fa-shoe-prints"></i> Alfombra Roja</h4><p>Entrada espectacular sobre alfombra roja para los festejados.</p></div></div></div>
@@ -1023,7 +1023,10 @@
                 <h3 class="section-title"><i class="fas fa-map"></i> Croquis Interactivo 2D y 3D</h3>
                 <p class="calc-hint">Al firmar contrato diseñamos el montaje según su paleta de colores y le entregamos el croquis de distribución, el minuto a minuto y un chat directo con coordinación. Así se ve su evento antes del evento.</p>
                 <div class="video-frame">
-                    <video id="videoCroquis" src="croquis_interactivo.webm" controls autoplay muted loop playsinline preload="metadata" poster="mesa_principal_rey_reyna.webp"></video>
+                    <video id="videoCroquis" controls autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="mesa_principal_rey_reyna.webp">
+                        <source src="croquis_interactivo.mp4" type="video/mp4">
+                        <source src="croquis_interactivo.webm" type="video/webm">
+                    </video>
                     <button class="video-full" id="btnFullCroquis" title="Ver en pantalla completa"><i class="fas fa-expand"></i> Pantalla completa</button>
                 </div>
             </div>
@@ -1074,7 +1077,7 @@
 
             <!-- ══ FIRMA — sección obligatoria #13 de DIRECTIVES.md ══ -->
             <div class="signature-section">
-                <video id="videoFirma" autoplay muted loop playsinline preload="auto">
+                <video id="videoFirma" autoplay muted loop playsinline webkit-playsinline preload="auto">
                     <source src="firma.mp4" type="video/mp4">
                 </video>
             </div>
@@ -1478,64 +1481,62 @@
         });
     })();
 
-    // ══ Videos que arrancan solos al entrar en pantalla ══
-    // Los de YouTube se cargan solo cuando el bloque se ve (asi no se descargan
-    // los tres reproductores de golpe al abrir), y el del croquis se reproduce
-    // o pausa segun este o no a la vista.
+    // ══ Reproducción optimizada para móviles (iOS / Android) ══
     (function(){
+        // Carga diferida de iFrames de YouTube
         if (!('IntersectionObserver' in window)) {
             document.querySelectorAll('iframe.include-video[data-src]').forEach(function(f){ f.src = f.dataset.src; });
-            return;
-        }
-        var oYT = new IntersectionObserver(function(entries, o){
-            entries.forEach(function(e){
-                if (e.isIntersecting && e.target.dataset.src) {
-                    e.target.src = e.target.dataset.src;
-                    o.unobserve(e.target);
-                }
-            });
-        }, { rootMargin: '250px' });
-        document.querySelectorAll('iframe.include-video[data-src]').forEach(function(f){ oYT.observe(f); });
-
-        var v = document.getElementById('videoCroquis');
-        if (v) {
-            v.muted = true;
-            new IntersectionObserver(function(entries){
+        } else {
+            var oYT = new IntersectionObserver(function(entries, o){
                 entries.forEach(function(e){
-                    if (e.isIntersecting) v.play().catch(function(){});
-                    else v.pause();
+                    if (e.isIntersecting && e.target.dataset.src) {
+                        e.target.src = e.target.dataset.src;
+                        o.unobserve(e.target);
+                    }
                 });
-            }, { threshold: 0.25 }).observe(v);
-        }
-    })();
-
-    // ══ Video de la firma y Video del pastel ══
-    (function(){
-        var f = document.getElementById('videoFirma');
-        if (f) {
-            f.muted = true; f.loop = true;
-            var reproduceFirma = function(){ f.play().catch(function(){}); };
-            reproduceFirma();
-            if ('IntersectionObserver' in window) {
-                new IntersectionObserver(function(en){
-                    en.forEach(function(e){ if (e.isIntersecting) reproduceFirma(); });
-                }, { threshold: 0.2 }).observe(f);
-            }
+            }, { rootMargin: '300px' });
+            document.querySelectorAll('iframe.include-video[data-src]').forEach(function(f){ oYT.observe(f); });
         }
 
-        var vp = document.getElementById('videoPastel');
-        if (vp) {
-            vp.muted = true; vp.loop = true;
-            var reproducePastel = function(){ vp.play().catch(function(){}); };
-            reproducePastel();
-            if ('IntersectionObserver' in window) {
-                new IntersectionObserver(function(en){
-                    en.forEach(function(e){
-                        if (e.isIntersecting) reproducePastel();
-                        else vp.pause();
-                    });
-                }, { threshold: 0.2 }).observe(vp);
-            }
+        // Configuración y desbloqueo de reproductores nativos HTML5
+        var videoElems = document.querySelectorAll('video');
+        videoElems.forEach(function(v){
+            v.muted = true;
+            v.defaultMuted = true;
+            v.setAttribute('muted', '');
+            v.setAttribute('playsinline', '');
+            v.setAttribute('webkit-playsinline', '');
+        });
+
+        // Intentar reproducir todos los videos en el primer toque o scroll del usuario (desbloquea autoplay en iOS Safari)
+        var unlockAll = function() {
+            videoElems.forEach(function(v){
+                if (v.paused) { v.play().catch(function(){}); }
+            });
+            window.removeEventListener('touchstart', unlockAll);
+            window.removeEventListener('click', unlockAll);
+            window.removeEventListener('scroll', unlockAll);
+        };
+        window.addEventListener('touchstart', unlockAll, { passive: true, once: true });
+        window.addEventListener('click', unlockAll, { passive: true, once: true });
+        window.addEventListener('scroll', unlockAll, { passive: true, once: true });
+
+        // Controller de visibilidad por IntersectionObserver
+        if ('IntersectionObserver' in window) {
+            var vObs = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    var vid = e.target;
+                    if (e.isIntersecting) {
+                        vid.play().catch(function(){});
+                    } else if (vid.id !== 'preloaderVideo') {
+                        vid.pause();
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            videoElems.forEach(function(v){
+                if (v.id !== 'preloaderVideo') vObs.observe(v);
+            });
         }
     })();
 
