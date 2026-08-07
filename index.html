@@ -170,6 +170,12 @@
         .publicidad-card:hover { transform:translateY(-4px); }
         .publicidad-card img { width:100%; height:200px; object-fit:cover; display:block; }
 
+        .publicidad-card { position:relative; }
+        .publicidad-label { position:absolute; left:0; right:0; bottom:0; display:block; text-align:center;
+            background:linear-gradient(to top, rgba(31,31,31,.92) 0%, rgba(31,31,31,.72) 60%, rgba(31,31,31,0) 100%);
+            color:var(--white); font-size:.82rem; font-weight:600; letter-spacing:.5px; padding:22px 10px 12px; }
+        .publicidad-card:hover .publicidad-label { background:linear-gradient(to top, var(--primary-pink) 0%, rgba(246,92,122,.75) 60%, rgba(246,92,122,0) 100%); }
+
         /* ══ Kit Planner (obligatoria #11 DIRECTIVES.md) ══ */
         .kit-section { margin-top:50px; background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%); border-radius:20px; padding:40px; color:white; display:flex; flex-wrap:wrap; align-items:center; gap:30px; }
         .kit-content { flex:1; min-width:250px; }
@@ -260,11 +266,64 @@
             .reveal .include-item{animation:none!important;}
         }
 
+        /* ══ Carrusel de slides (minuto a minuto) ══ */
+        .slides-section { margin-top:50px; }
+        .slides-wrap { position:relative; }
+        .slides-track { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+            padding:4px 2px 14px; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
+        .slides-track::-webkit-scrollbar { height:6px; }
+        .slides-track::-webkit-scrollbar-thumb { background:var(--beige); border-radius:10px; }
+        .slide { flex:0 0 auto; width:min(320px, 74vw); scroll-snap-align:center; border-radius:16px; overflow:hidden;
+            border:1px solid var(--beige); background:var(--white); box-shadow:0 10px 26px rgba(31,31,31,.07);
+            transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease; }
+        .slide:hover { transform:translateY(-6px); box-shadow:0 18px 38px rgba(31,31,31,.13); }
+        .slide img { width:100%; height:auto; display:block; }
+        .slide-nav { position:absolute; top:45%; transform:translateY(-50%); z-index:5; width:42px; height:42px; border-radius:50%;
+            border:1px solid var(--beige); background:var(--white); color:var(--primary-pink); cursor:pointer; font-size:1rem;
+            box-shadow:0 6px 18px rgba(31,31,31,.14); display:flex; align-items:center; justify-content:center; }
+        .slide-nav:hover { background:var(--primary-pink); color:var(--white); }
+        .slide-nav.prev { left:-6px; } .slide-nav.next { right:-6px; }
+        .slides-dots { display:flex; justify-content:center; gap:7px; margin-top:10px; }
+        .slides-dots span { width:7px; height:7px; border-radius:50%; background:var(--beige); transition:all .3s; }
+        .slides-dots span.on { background:var(--primary-pink); width:20px; border-radius:10px; }
+        @media (max-width:768px){ .slide-nav { display:none; } }
+
+        /* ══ Scroll-driven animations (CSS nativo, sin librerias) ══
+              Dentro de @supports: en navegadores sin soporte no se aplica nada
+              y el contenido se ve normal. 70% contenido, 20% movimiento, 10% wow. */
+        @supports (animation-timeline: view()) {
+            @media (prefers-reduced-motion: no-preference) {
+                @keyframes sdEntra { from { opacity:0; transform:translateY(42px) scale(.96); filter:blur(6px); }
+                                     to   { opacity:1; transform:translateY(0)    scale(1);   filter:blur(0); } }
+                @keyframes sdZoomFoto { from { transform:scale(1); } to { transform:scale(1.12); } }
+                @keyframes sdBarra { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+
+                /* Entrada de bloques conforme entran en pantalla */
+                .include-item, .complemento-card, .publicidad-card, .venue-info-card,
+                .slide, .notes-section, .kit-section, .expo-card, .calc-total-box {
+                    animation: sdEntra linear both;
+                    animation-timeline: view();
+                    animation-range: entry 0% entry 55%;
+                }
+                /* Las fotos crecen suavemente mientras recorres la pagina */
+                .include-img-container:not(.is-figura):not(.is-video) .include-img {
+                    animation: sdZoomFoto linear both;
+                    animation-timeline: view();
+                    animation-range: entry 20% exit 100%;
+                }
+                /* Barra de progreso de lectura */
+                .lectura-barra { position:fixed; top:0; left:0; height:3px; width:100%; z-index:9998;
+                    background:linear-gradient(90deg, var(--primary-pink), var(--gold-accent));
+                    transform-origin:0 50%; animation: sdBarra linear both;
+                    animation-timeline: scroll(root); }
+            }
+        }
+
         /* CSS print obligatorio — DIRECTIVES.md sección 9 */
         @media print {
             #preloader, .floating-actions-container, .pdf-section,
             .kit-section, .cta-container, audio, .audio-toggle,
-            .expo-section, .publicidad-section, .signature-section, .complementos-section,
+            .slides-section, .lectura-barra, .expo-section, .publicidad-section, .signature-section, .complementos-section,
             .includes-grid, .gallery-block-title, .calc-total-box, .calc-hint,
             .venue-info-grid, .venue-logo-wrap, footer, header, .calc-section { display:none !important; }
 
@@ -330,6 +389,7 @@
     </style>
 </head>
 <body>
+    <div class="lectura-barra"></div>
 
     <!-- ══════════════════════════════════════════════════════════════
          COTIZACIÓN — Finca Las Isabeles · Paquete Nature's Majesty
@@ -867,10 +927,10 @@
             <div class="publicidad-section reveal">
                 <h3 class="section-title reveal reveal-left"><i class="fas fa-bullhorn"></i> Descubre Más de Primavera Events Group</h3>
                 <div class="publicidad-grid">
-                    <a href="https://primaveraeventsgroup.com/bodas/" target="_blank" class="publicidad-card"><img src="pub_boda_ensueno.png" alt="Bodas de Ensueño"></a>
-                    <a href="https://primaveraeventsgroup.com/quinceaneras-primavera/" target="_blank" class="publicidad-card"><img src="pub_xv_anos.png" alt="XV Años"></a>
-                    <a href="https://primaveraeventsgroup.com/graduaciones-primavera/" target="_blank" class="publicidad-card"><img src="pub_graduados.png" alt="Graduaciones"></a>
-                    <a href="https://primaveraeventsgroup.com/richard-hernandez/" target="_blank" class="publicidad-card"><img src="pub_jessy_richard.png" alt="Wedding Planning con Jessy y Richard"></a>
+                    <a href="https://primaveraeventsgroup.com/bodas/" target="_blank" class="publicidad-card"><img src="pub_boda_ensueno.png" alt="Bodas de Ensueño"><span class="publicidad-label">Bodas</span></a>
+                    <a href="https://primaveraeventsgroup.com/quinceaneras-primavera/" target="_blank" class="publicidad-card"><img src="pub_xv_anos.png" alt="XV Años"><span class="publicidad-label">XV Años</span></a>
+                    <a href="https://primaveraeventsgroup.com/graduaciones-primavera/" target="_blank" class="publicidad-card"><img src="pub_graduados.png" alt="Graduaciones"><span class="publicidad-label">Graduaciones</span></a>
+                    <a href="https://primaveraeventsgroup.com/richard-hernandez/" target="_blank" class="publicidad-card"><img src="pub_jessy_richard.png" alt="Wedding Planning con Jessy y Richard"><span class="publicidad-label">Wedding &amp; Event Planning</span></a>
                 </div>
             </div>
 
@@ -889,6 +949,34 @@
                         <img src="imobiliario elegante.webp" alt="Expo Boda y 15 Años, edición pasada">
                     </div>
                 </div>
+            </div>
+
+            
+            <!-- ══ Minuto a minuto: la ficha tecnica que se le entrega al cliente ══ -->
+            <div class="slides-section reveal">
+                <h3 class="section-title"><i class="fas fa-list-ol"></i> Así es el Minuto a Minuto que le entregamos</h3>
+                <p class="calc-hint">Al firmar contrato recibe este cronograma detallado del evento. Deslice para verlo completo.</p>
+                <div class="slides-wrap">
+                    <button class="slide-nav prev" id="slidePrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slides-track" id="slidesTrack">
+                        <div class="slide"><img src="slide_minuto_01.png" alt="Minuto a minuto, hoja 1" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_02.png" alt="Minuto a minuto, hoja 2" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_03.png" alt="Minuto a minuto, hoja 3" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_04.png" alt="Minuto a minuto, hoja 4" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_05.png" alt="Minuto a minuto, hoja 5" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_06.png" alt="Minuto a minuto, hoja 6" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_07.png" alt="Minuto a minuto, hoja 7" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_08.png" alt="Minuto a minuto, hoja 8" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_09.png" alt="Minuto a minuto, hoja 9" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_10.png" alt="Minuto a minuto, hoja 10" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_11.png" alt="Minuto a minuto, hoja 11" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_12.png" alt="Minuto a minuto, hoja 12" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_13.png" alt="Minuto a minuto, hoja 13" loading="lazy"></div>
+                        <div class="slide"><img src="slide_minuto_14.png" alt="Minuto a minuto, hoja 14" loading="lazy"></div>
+                    </div>
+                    <button class="slide-nav next" id="slideNext" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="slides-dots" id="slidesDots"></div>
             </div>
 
             <!-- ══ KIT PLANNER — sección obligatoria #11 de DIRECTIVES.md (descarga real de Excel + PDF) ══ -->
@@ -991,10 +1079,9 @@
             { nombre: "Capitán de meseros", precio: 3000 },
             { nombre: "Coordinador general adicional", precio: 9000 },
             { nombre: "Bartender adicional", precio: 1000 },
-            { nombre: "Hostess adicional", precio: 1000 },
+            { nombre: "Hostess adicional", precio: 2000 },
         ]},
         { categoria: "Entretenimiento", items: [
-            { nombre: "DJ adicional (7 hrs, con pantalla)", precio: 16000 },
             { nombre: "Banda (1 hr)", precio: 14000 },
             { nombre: "Mariachi (1 hr)", precio: 9000 },
             { nombre: "Cabina inflable de fotos (2 hrs)", precio: 7000 },
@@ -1010,8 +1097,13 @@
             { nombre: "Paquete Royal Cinematic (Foto + Video)", precio: 12900 },
             { nombre: "Paquete Cinematic Prestige (Foto + Video)", precio: 13900 },
         ]},
+        { categoria: "Invitación Digital", items: [
+            { nombre: "Invitación Esencial (diseño de catálogo, música, mapa, cuenta regresiva, RSVP por WhatsApp)", precio: 1000 },
+            { nombre: "Invitación Personalizada (todo lo anterior + galería, itinerario, música y video propios)", precio: 1500 },
+            { nombre: "Invitación Premium (todo lo anterior + diseño a medida, RSVP con formulario, ubica tu mesa 3D, álbum en vivo)", precio: 2000 },
+        ]},
         { categoria: "Souvenirs", items: [
-            { nombre: "Tequila personalizado Don Ramón para invitados (750ml, corte diamante)", precio: 7515 },
+            { nombre: "Tequila personalizado Don Ramón (750 ml, corte diamante)", precio: 11515 },
         ]},
     ];
 
@@ -1167,6 +1259,31 @@
                 })(performance.now());
             });
         }, { threshold: 0.3 }).observe(el);
+    })();
+
+    // ══ Carrusel del minuto a minuto ══
+    (function(){
+        var track = document.getElementById('slidesTrack');
+        if (!track) return;
+        var slides = track.querySelectorAll('.slide');
+        var dots = document.getElementById('slidesDots');
+        slides.forEach(function(_, i){
+            var d = document.createElement('span');
+            if (i === 0) d.className = 'on';
+            d.addEventListener('click', function(){ slides[i].scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'}); });
+            dots.appendChild(d);
+        });
+        function paso(dir){
+            var w = slides[0].getBoundingClientRect().width + 16;
+            track.scrollBy({ left: dir * w, behavior:'smooth' });
+        }
+        document.getElementById('slidePrev').addEventListener('click', function(){ paso(-1); });
+        document.getElementById('slideNext').addEventListener('click', function(){ paso(1); });
+        track.addEventListener('scroll', function(){
+            var w = slides[0].getBoundingClientRect().width + 16;
+            var i = Math.round(track.scrollLeft / w);
+            dots.querySelectorAll('span').forEach(function(d, k){ d.classList.toggle('on', k === i); });
+        }, { passive:true });
     })();
 
     renderCalculador();
