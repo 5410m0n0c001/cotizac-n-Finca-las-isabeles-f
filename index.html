@@ -896,7 +896,7 @@
             <div class="gallery-block-title reveal reveal-left">8 · Servicios Complementarios — Eligen 2 sin Costo</div>
             <div class="includes-grid">
                 <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" style="object-position:50% 82%;" src="pista_leds_5x5.webp" alt="Pista de LEDs 5x5"></div><div class="include-content"><h4><i class="fas fa-border-all"></i> Pista de LEDs 5×5</h4><p>Pista iluminada programable que transforma por completo el área de baile.</p></div></div></div>
-                <div class="reveal reveal-left"><div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/LJ-3NJdEcdU?mute=1&loop=1&playlist=LJ-3NJdEcdU&controls=1&playsinline=1" title="Cabina 360 en acción" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-video"></i> Cabina 360° <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Plataforma giratoria de video para que los invitados se lleven su clip del evento. Míralo funcionando en el video.</p></div></div></div>
+                <div class="reveal reveal-left"><div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" data-src="https://www.youtube.com/embed/LJ-3NJdEcdU?mute=1&loop=1&playlist=LJ-3NJdEcdU&controls=1&playsinline=1&autoplay=1&mute=1" title="Cabina 360 en acción" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-video"></i> Cabina 360° <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Plataforma giratoria de video para que los invitados se lleven su clip del evento. Míralo funcionando en el video.</p></div></div></div>
                 <div class="reveal reveal-right"><div class="include-item"><div class="include-img-container is-figura"><img class="include-img figura" src="robot_leds.webp" alt="Robot de LEDs"></div><div class="include-content"><h4><i class="fas fa-robot"></i> Robot de LEDs</h4><p>Personaje iluminado que anima la pista y se roba las fotos de la noche.</p></div></div></div>
                 <div class="reveal"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="show_men.webp" alt="Show men performance"></div><div class="include-content"><h4><i class="fas fa-microphone"></i> Show Men Performance</h4><p>Animación profesional que mantiene la energía de la fiesta de principio a fin.</p></div></div></div>
             </div>
@@ -904,7 +904,7 @@
             <!-- ═══ BLOQUE 9: BENEFICIOS AL FIRMAR ═══ -->
             <div class="gallery-block-title reveal reveal-left">9 · Beneficios al Firmar Contrato</div>
             <div class="includes-grid">
-                <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" src="https://www.youtube.com/embed/hTiUq1JFoIA?mute=1&loop=1&playlist=hTiUq1JFoIA&controls=1&playsinline=1" title="Degustación exclusiva del menú" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div></div>
+                <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container is-video"><iframe class="include-video" data-src="https://www.youtube.com/embed/hTiUq1JFoIA?mute=1&loop=1&playlist=hTiUq1JFoIA&controls=1&playsinline=1&autoplay=1&mute=1" title="Degustación exclusiva del menú" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="include-content"><h4><i class="fas fa-wine-glass-empty"></i> Degustación para 4 Personas <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Prueban el menú completo antes del evento y eligen con toda tranquilidad.</p></div></div></div>
                 
             </div>
 
@@ -995,7 +995,7 @@
                 <h3 class="section-title"><i class="fas fa-map"></i> Croquis Interactivo 2D y 3D</h3>
                 <p class="calc-hint">Al firmar contrato diseñamos el montaje según su paleta de colores y le entregamos el croquis de distribución, el minuto a minuto y un chat directo con coordinación. Así se ve su evento antes del evento.</p>
                 <div class="video-frame">
-                    <video id="videoCroquis" src="croquis_interactivo.webm" controls muted loop playsinline preload="metadata" poster="mesa_principal_rey_reyna.webp"></video>
+                    <video id="videoCroquis" src="croquis_interactivo.webm" controls autoplay muted loop playsinline preload="metadata" poster="mesa_principal_rey_reyna.webp"></video>
                     <button class="video-full" id="btnFullCroquis" title="Ver en pantalla completa"><i class="fas fa-expand"></i> Pantalla completa</button>
                 </div>
             </div>
@@ -1409,6 +1409,37 @@
             if (e.key === 'ArrowLeft')  { pos = (pos-1+fuentes.length)%fuentes.length; pinta(); }
             if (e.key === 'ArrowRight') { pos = (pos+1)%fuentes.length; pinta(); }
         });
+    })();
+
+    // ══ Videos que arrancan solos al entrar en pantalla ══
+    // Los de YouTube se cargan solo cuando el bloque se ve (asi no se descargan
+    // los tres reproductores de golpe al abrir), y el del croquis se reproduce
+    // o pausa segun este o no a la vista.
+    (function(){
+        if (!('IntersectionObserver' in window)) {
+            document.querySelectorAll('iframe.include-video[data-src]').forEach(function(f){ f.src = f.dataset.src; });
+            return;
+        }
+        var oYT = new IntersectionObserver(function(entries, o){
+            entries.forEach(function(e){
+                if (e.isIntersecting && e.target.dataset.src) {
+                    e.target.src = e.target.dataset.src;
+                    o.unobserve(e.target);
+                }
+            });
+        }, { rootMargin: '250px' });
+        document.querySelectorAll('iframe.include-video[data-src]').forEach(function(f){ oYT.observe(f); });
+
+        var v = document.getElementById('videoCroquis');
+        if (v) {
+            v.muted = true;
+            new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if (e.isIntersecting) v.play().catch(function(){});
+                    else v.pause();
+                });
+            }, { threshold: 0.25 }).observe(v);
+        }
     })();
 
     renderCalculador();
