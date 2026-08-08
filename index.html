@@ -254,16 +254,19 @@
         .audio-toggle { position:fixed; bottom:20px; left:20px; z-index:1000; width:40px; height:40px; border-radius:50%; background:var(--white); border:1px solid var(--beige); color:var(--primary-pink); display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,.1); }
 
 
-        /* ══ Container y Cotizador: asegurar que ningún padre tenga transform u overflow-clip que afecte sticky en móvil ══ */
-        .container { position:relative; overflow:visible !important; }
-        .quote-card { position:relative; overflow:visible !important; }
-        .calc-section { position:relative; overflow:visible !important; transform:none !important; }
+        /* ══ Container y Cotizador ══ */
+        .container { position:relative; }
+        .quote-card { position:relative; }
+        .calc-section { position:relative; }
 
-        /* ══ Caja de total del cotizador: fijación incondicional flotante (arriba y abajo) ══ */
+        /* ══ Caja de total del cotizador dinámico — Pinning de alto rendimiento ══ */
         .calc-total-box { background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%);
             color:var(--white); border-radius:18px; padding:18px 22px; margin-bottom:22px; box-shadow:0 14px 30px rgba(31,31,31,.35);
-            border:1.5px solid var(--gold-accent); width:100%; transition:box-shadow .2s ease;
-            position:-webkit-sticky !important; position:sticky !important; top:10px !important; z-index:99999 !important; transform:none !important; }
+            border:1.5px solid var(--gold-accent); width:100%; box-sizing:border-box; transition:box-shadow .2s ease; }
+        .calc-total-box.is-pinned {
+            position:fixed !important; top:10px !important; left:50% !important; transform:translateX(-50%) !important;
+            z-index:99999 !important; box-shadow:0 16px 40px rgba(0,0,0,0.65) !important;
+        }
         .ctb-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:.85rem; color:rgba(255,255,255,.75); padding:2px 0; }
         .ctb-total { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-top:10px; padding-top:12px; border-top:1px solid rgba(255,255,255,.18); }
         .ctb-total span:first-child { font-size:.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gold-accent); font-weight:700; }
@@ -272,60 +275,27 @@
         .ctb-extras-list li { display:flex; justify-content:space-between; gap:10px; font-size:.78rem; color:rgba(255,255,255,.85); padding:3px 0; }
         .ctb-vacio { font-size:.78rem; color:rgba(255,255,255,.55); font-style:italic; }
         @media (max-width:768px){
-            .calc-total-box {
-                position:-webkit-sticky !important; position:sticky !important;
-                top:8px !important; left:0 !important; transform:none !important;
-                width:100% !important; padding:12px 14px !important; border-radius:16px !important;
+            .calc-total-box.is-pinned {
+                top:8px !important; left:50% !important; transform:translateX(-50%) !important;
+                padding:12px 14px !important; border-radius:16px !important;
                 box-shadow:0 12px 30px rgba(0,0,0,0.65) !important; box-sizing:border-box !important;
-                margin-left:0 !important; margin-right:0 !important;
             }
             .ctb-total strong { font-size:1.4rem; }
             .ctb-extras-list { max-height:90px; }
         }
 
-        /* ══ Animaciones — copiadas literal de antonio-cotizacion ══ */
-        @keyframes fadeInDown{from{opacity:0;transform:translateY(-40px);}to{opacity:1;transform:translateY(0);}}
-        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
-        @keyframes slideInRight{from{opacity:0;transform:translateX(50px);}to{opacity:1;transform:translateX(0);}}
-        @keyframes zoomIn{from{opacity:0;transform:scale(.8);}to{opacity:1;transform:scale(1);}}
-        @keyframes flipInX{from{opacity:0;transform:perspective(700px) rotateX(40deg);}to{opacity:1;transform:perspective(700px) rotateX(0);}}
+        /* ══ Animaciones Fluidas de Entrada 60 FPS (Sin duplicidad) ══ */
+        @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 
-        .hero h1{animation:fadeInDown 1s cubic-bezier(0.2,0.8,0.2,1);}
-        .hero-sub,.hero-eyebrow{animation:fadeInUp 1s cubic-bezier(0.2,0.8,0.2,1) 0.2s both;}
+        .hero h1{animation:fadeInDown 0.8s cubic-bezier(0.2,0.8,0.2,1);}
+        .hero-sub,.hero-eyebrow{animation:fadeInUp 0.8s cubic-bezier(0.2,0.8,0.2,1) 0.15s both;}
 
-        .reveal{transition:transform 1.4s cubic-bezier(0.16,1,0.3,1);}
-        .reveal:not(.reveal-left):not(.reveal-right):not(.reveal-zoom){transform:translateY(40px);}
-        .reveal-left{transform:translateX(-30px);}
-        .reveal-right{transform:translateX(30px);}
-        .reveal-zoom{transform:scale(.88);}
-        .reveal.active{transform:translate(0,0) scale(1)!important;}
-                .reveal.active .include-item{animation:entraCard 1.15s cubic-bezier(.16,1,.3,1) both;}
-        @keyframes entraCard{from{transform:translateY(70px) scale(.9);}to{transform:translateY(0) scale(1);}}
-        .includes-grid>.reveal:nth-child(1) .include-item{animation-delay:.08s;}
-        .includes-grid>.reveal:nth-child(2) .include-item{animation-delay:.20s;}
-        .includes-grid>.reveal:nth-child(3) .include-item{animation-delay:.32s;}
-        .includes-grid>.reveal:nth-child(4) .include-item{animation-delay:.44s;}
-        .includes-grid>.reveal:nth-child(5) .include-item{animation-delay:.56s;}
-        .includes-grid>.reveal:nth-child(n+6) .include-item{animation-delay:.68s;}
-        .delay-1{transition-delay:0.1s;} .delay-2{transition-delay:0.2s;}
-        .delay-3{transition-delay:0.3s;} .delay-4{transition-delay:0.4s;}
-        .delay-5{transition-delay:0.5s;}
-
-        /* la tarjeta de adentro entra con su propia animacion, como en antonio */
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.55s cubic-bezier(0.25,1,0.5,1), transform 0.55s cubic-bezier(0.25,1,0.5,1); will-change:opacity, transform; }
+        .reveal.active { opacity:1 !important; transform:translateY(0) !important; }
 
         @media (prefers-reduced-motion: reduce){
             .reveal{opacity:1!important;transform:none!important;transition:none!important;}
-            .reveal .include-item{animation:none!important;}
         }
 
         /* ══ Carrusel de slides (minuto a minuto) ══ */
@@ -337,8 +307,8 @@
         .slides-track::-webkit-scrollbar-thumb { background:var(--beige); border-radius:10px; }
         .slide { flex:0 0 auto; width:min(320px, 74vw); scroll-snap-align:center; border-radius:16px; overflow:hidden;
             border:1px solid var(--beige); background:var(--white); box-shadow:0 10px 26px rgba(31,31,31,.07);
-            transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease; }
-        .slide:hover { transform:translateY(-6px); box-shadow:0 18px 38px rgba(31,31,31,.13); }
+            transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease; }
+        .slide:hover { transform:translateY(-4px); box-shadow:0 14px 32px rgba(31,31,31,.12); }
         .slide img { width:100%; height:auto; display:block; }
         .slide-nav { position:absolute; top:45%; transform:translateY(-50%); z-index:5; width:42px; height:42px; border-radius:50%;
             border:1px solid var(--beige); background:var(--white); color:var(--primary-pink); cursor:pointer; font-size:1rem;
@@ -349,24 +319,6 @@
         .slides-dots span { width:7px; height:7px; border-radius:50%; background:var(--beige); transition:all .3s; }
         .slides-dots span.on { background:var(--primary-pink); width:20px; border-radius:10px; }
         @media (max-width:768px){ .slide-nav { display:none; } }
-
-        /* ══ Scroll-driven animations (CSS nativo, sin librerias) ══
-              Dentro de @supports: en navegadores sin soporte no se aplica nada
-              y el contenido se ve normal. 70% contenido, 20% movimiento, 10% wow. */
-        @supports (animation-timeline: view()) {
-            @media (prefers-reduced-motion: no-preference) {
-                @keyframes sdEntra { from { transform:translateY(42px) scale(.96); }
-                                     to   { transform:translateY(0) scale(1); } }
-                @keyframes sdZoomFoto { from { transform:scale(1); } to { transform:scale(1.12); } }
-                @keyframes sdBarra { from { transform:scaleX(0); } to { transform:scaleX(1); } }
-
-                /* Entrada de bloques conforme entran en pantalla */
-                .include-item, .complemento-card, .publicidad-card, .venue-info-card,
-                .slide, .notes-section, .kit-section, .expo-card, .calc-total-box {
-                    animation: sdEntra linear both;
-                    animation-timeline: view();
-                    animation-range: entry 0% entry 55%;
-                }
                 /* Las fotos crecen suavemente mientras recorres la pagina */
                 .include-img-container:not(.is-figura):not(.is-video) .include-img {
                     animation: sdZoomFoto linear both;
@@ -1587,7 +1539,7 @@
         }
     })();
 
-    // ══ Controller de Fijación Estricta (Scroll Arriba / Abajo) del Cotizador ══
+    // ══ Controller de Pinning Ultrarrobusto (Desktop + Móvil + Simuladores) ══
     (function(){
         var calcSection = document.querySelector('.calc-section');
         var calcBox = document.getElementById('calcTotalBox');
@@ -1598,29 +1550,35 @@
         placeholder.style.display = 'none';
         calcBox.parentNode.insertBefore(placeholder, calcBox);
 
-        function updateStickyBox() {
+        function updatePinning() {
             var secRect = calcSection.getBoundingClientRect();
             var boxHeight = calcBox.offsetHeight;
+            var isMobile = window.innerWidth <= 768;
+            var topOffset = isMobile ? 8 : 10;
 
-            // Mantener fijo cuando se esté dentro de la sección de extras (tanto al subir como al bajar)
-            if (secRect.top <= 10 && secRect.bottom >= boxHeight + 50) {
-                if (!calcBox.classList.contains('is-fixed-sticky')) {
+            // Mantener fija cuando la parte superior de la sección llegue al tope de la ventana
+            if (secRect.top <= topOffset && secRect.bottom >= boxHeight + 40) {
+                if (!calcBox.classList.contains('is-pinned')) {
                     placeholder.style.height = boxHeight + 'px';
                     placeholder.style.marginBottom = window.getComputedStyle(calcBox).marginBottom;
                     placeholder.style.display = 'block';
-                    calcBox.classList.add('is-fixed-sticky');
+                    calcBox.classList.add('is-pinned');
                 }
+                // Ajustar ancho exacto del contenedor padre
+                var parentWidth = calcSection.clientWidth;
+                calcBox.style.width = parentWidth + 'px';
             } else {
-                if (calcBox.classList.contains('is-fixed-sticky')) {
-                    calcBox.classList.remove('is-fixed-sticky');
+                if (calcBox.classList.contains('is-pinned')) {
+                    calcBox.classList.remove('is-pinned');
+                    calcBox.style.width = '';
                     placeholder.style.display = 'none';
                 }
             }
         }
 
-        window.addEventListener('scroll', updateStickyBox, { passive: true });
-        window.addEventListener('resize', updateStickyBox, { passive: true });
-        updateStickyBox();
+        window.addEventListener('scroll', updatePinning, { passive: true });
+        window.addEventListener('resize', updatePinning, { passive: true });
+        updatePinning();
     })();
 
     renderCalculador();
