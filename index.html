@@ -244,10 +244,14 @@
         .quote-card { position:relative; overflow:visible !important; }
         .calc-section { position:relative; overflow:visible !important; transform:none !important; }
 
-        /* ══ Caja de total del cotizador: se queda pegada mientras se eligen extras ══ */
-        .calc-total-box { position:-webkit-sticky !important; position:sticky !important; top:10px !important; z-index:9999 !important; background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%);
+        /* ══ Caja de total del cotizador: fijación incondicional flotante (arriba y abajo) ══ */
+        .calc-total-box { background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%);
             color:var(--white); border-radius:18px; padding:18px 22px; margin-bottom:22px; box-shadow:0 14px 30px rgba(31,31,31,.35);
-            border:1.5px solid var(--gold-accent); transform:none !important; }
+            border:1.5px solid var(--gold-accent); width:100%; transition:box-shadow .2s ease; }
+        .calc-total-box.is-fixed-sticky {
+            position:fixed !important; top:10px !important; left:50% !important; transform:translateX(-50%) !important;
+            width:min(1060px, calc(100% - 30px)) !important; z-index:99999 !important; box-shadow:0 16px 40px rgba(0,0,0,0.65) !important;
+        }
         .ctb-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:.85rem; color:rgba(255,255,255,.75); padding:2px 0; }
         .ctb-total { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-top:10px; padding-top:12px; border-top:1px solid rgba(255,255,255,.18); }
         .ctb-total span:first-child { font-size:.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gold-accent); font-weight:700; }
@@ -256,7 +260,11 @@
         .ctb-extras-list li { display:flex; justify-content:space-between; gap:10px; font-size:.78rem; color:rgba(255,255,255,.85); padding:3px 0; }
         .ctb-vacio { font-size:.78rem; color:rgba(255,255,255,.55); font-style:italic; }
         @media (max-width:768px){
-            .calc-total-box { position:-webkit-sticky !important; position:sticky !important; top:8px !important; z-index:9999 !important; padding:12px 14px !important; margin-bottom:16px !important; border-radius:16px !important; box-shadow:0 12px 28px rgba(0,0,0,.5) !important; transform:none !important; }
+            .calc-total-box.is-fixed-sticky {
+                top:8px !important; left:50% !important; transform:translateX(-50%) !important;
+                width:calc(100% - 20px) !important; padding:12px 14px !important; border-radius:16px !important;
+                box-shadow:0 12px 30px rgba(0,0,0,0.65) !important;
+            }
             .ctb-total strong { font-size:1.4rem; }
             .ctb-extras-list { max-height:90px; }
         }
@@ -1563,6 +1571,42 @@
                 if (v.id !== 'preloaderVideo') vObs.observe(v);
             });
         }
+    })();
+
+    // ══ Controller de Fijación Estricta (Scroll Arriba / Abajo) del Cotizador ══
+    (function(){
+        var calcSection = document.querySelector('.calc-section');
+        var calcBox = document.getElementById('calcTotalBox');
+        if (!calcSection || !calcBox) return;
+
+        var placeholder = document.createElement('div');
+        placeholder.className = 'calc-box-placeholder';
+        placeholder.style.display = 'none';
+        calcBox.parentNode.insertBefore(placeholder, calcBox);
+
+        function updateStickyBox() {
+            var secRect = calcSection.getBoundingClientRect();
+            var boxHeight = calcBox.offsetHeight;
+
+            // Mantener fijo cuando se esté dentro de la sección de extras (tanto al subir como al bajar)
+            if (secRect.top <= 10 && secRect.bottom >= boxHeight + 50) {
+                if (!calcBox.classList.contains('is-fixed-sticky')) {
+                    placeholder.style.height = boxHeight + 'px';
+                    placeholder.style.marginBottom = window.getComputedStyle(calcBox).marginBottom;
+                    placeholder.style.display = 'block';
+                    calcBox.classList.add('is-fixed-sticky');
+                }
+            } else {
+                if (calcBox.classList.contains('is-fixed-sticky')) {
+                    calcBox.classList.remove('is-fixed-sticky');
+                    placeholder.style.display = 'none';
+                }
+            }
+        }
+
+        window.addEventListener('scroll', updateStickyBox, { passive: true });
+        window.addEventListener('resize', updateStickyBox, { passive: true });
+        updateStickyBox();
     })();
 
     renderCalculador();
