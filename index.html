@@ -239,12 +239,15 @@
         .audio-toggle { position:fixed; bottom:20px; left:20px; z-index:1000; width:40px; height:40px; border-radius:50%; background:var(--white); border:1px solid var(--beige); color:var(--primary-pink); display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,.1); }
 
 
+        /* ══ Container y Cotizador: asegurar que ningún padre tenga transform u overflow-clip que afecte sticky en móvil ══ */
+        .container { position:relative; overflow:visible !important; }
+        .quote-card { position:relative; overflow:visible !important; }
+        .calc-section { position:relative; overflow:visible !important; transform:none !important; }
+
         /* ══ Caja de total del cotizador: se queda pegada mientras se eligen extras ══ */
-        .calc-total-box { position:-webkit-sticky; position:sticky; top:10px; z-index:999; background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%);
-            color:var(--white); border-radius:18px; padding:18px 22px; margin-bottom:22px; box-shadow:0 14px 30px rgba(31,31,31,.25);
-            border:1.5px solid var(--gold-accent); }
-        /* IMPORTANTE: anular transform en .calc-total-box para que position:sticky funcione en movil */
-        .calc-total-box.reveal, .calc-total-box.reveal.active { transform:none !important; transition:opacity .6s ease !important; }
+        .calc-total-box { position:-webkit-sticky !important; position:sticky !important; top:10px !important; z-index:9999 !important; background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%);
+            color:var(--white); border-radius:18px; padding:18px 22px; margin-bottom:22px; box-shadow:0 14px 30px rgba(31,31,31,.35);
+            border:1.5px solid var(--gold-accent); transform:none !important; }
         .ctb-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:.85rem; color:rgba(255,255,255,.75); padding:2px 0; }
         .ctb-total { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-top:10px; padding-top:12px; border-top:1px solid rgba(255,255,255,.18); }
         .ctb-total span:first-child { font-size:.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--gold-accent); font-weight:700; }
@@ -253,7 +256,7 @@
         .ctb-extras-list li { display:flex; justify-content:space-between; gap:10px; font-size:.78rem; color:rgba(255,255,255,.85); padding:3px 0; }
         .ctb-vacio { font-size:.78rem; color:rgba(255,255,255,.55); font-style:italic; }
         @media (max-width:768px){
-            .calc-total-box { position:-webkit-sticky; position:sticky; top:8px; z-index:999; padding:12px 14px; margin-bottom:16px; border-radius:16px; box-shadow:0 12px 28px rgba(0,0,0,.4); }
+            .calc-total-box { position:-webkit-sticky !important; position:sticky !important; top:8px !important; z-index:9999 !important; padding:12px 14px !important; margin-bottom:16px !important; border-radius:16px !important; box-shadow:0 12px 28px rgba(0,0,0,.5) !important; transform:none !important; }
             .ctb-total strong { font-size:1.4rem; }
             .ctb-extras-list { max-height:90px; }
         }
@@ -1025,11 +1028,11 @@
                 </div>
             </div>
 
-            <!-- ══ COTIZADOR DINÁMICO DE EXTRAS — precios reales, verificados en el catálogo interno y perfiles de la Expo 2026 ══ -->
-            <div class="calc-section reveal">
+            <!-- ══ COTIZADOR DINÁMICO DE EXTRAS — precios reales ══ -->
+            <div class="calc-section">
                 <h3 class="section-title reveal reveal-left"><i class="fas fa-calculator"></i> Cotizador Dinámico de Extras</h3>
                 <p class="calc-hint">Selecciona los servicios o artículos adicionales que quieras agregar a tu cotización — el total se suma en tiempo real al monto base de arriba. <strong>Nota:</strong> el paquete ya incluye dos servicios complementarios sin costo (pista de LEDs, cabina 360, robot de LEDs o show men); lo que elijas aquí es <em>además</em> de esos dos.</p>
-                <div class="calc-total-box reveal" id="calcTotalBox">
+                <div class="calc-total-box" id="calcTotalBox">
                     <div class="ctb-row"><span>Paquete base · 200 invitados</span><span id="ctbBase">$399,800.00</span></div>
                     <ul class="ctb-extras-list" id="ctbExtras"></ul>
                     <p class="ctb-vacio" id="ctbVacio">Aún no has agregado extras.</p>
