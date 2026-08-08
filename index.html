@@ -284,15 +284,48 @@
             .ctb-extras-list { max-height:90px; }
         }
 
-        /* ══ Animaciones Fluidas de Entrada 60 FPS (Sin duplicidad) ══ */
+        /* ══ Sistema de Animaciones Elegantes e Interactivas (Basado en antonio-cotizacion) ══ */
         @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
         @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 
-        .hero h1{animation:fadeInDown 0.8s cubic-bezier(0.2,0.8,0.2,1);}
-        .hero-sub,.hero-eyebrow{animation:fadeInUp 0.8s cubic-bezier(0.2,0.8,0.2,1) 0.15s both;}
+        .hero h1{animation:fadeInDown 0.9s cubic-bezier(0.16,1,0.3,1);}
+        .hero-sub,.hero-eyebrow{animation:fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s both;}
 
-        .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.55s cubic-bezier(0.25,1,0.5,1), transform 0.55s cubic-bezier(0.25,1,0.5,1); will-change:opacity, transform; }
-        .reveal.active { opacity:1 !important; transform:translateY(0) !important; }
+        .reveal {
+            opacity:0;
+            will-change:opacity, transform;
+            transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal:not(.reveal-left):not(.reveal-right):not(.reveal-zoom) { transform:translateY(45px); }
+        .reveal-left { transform:translateX(-40px); }
+        .reveal-right { transform:translateX(40px); }
+        .reveal-zoom { transform:scale(0.86); }
+        .reveal.active { opacity:1 !important; transform:translate(0,0) scale(1) !important; }
+
+        /* Retardos escalonados para la entrada progresiva de elementos */
+        .delay-1 { transition-delay:0.08s; } .delay-2 { transition-delay:0.16s; }
+        .delay-3 { transition-delay:0.24s; } .delay-4 { transition-delay:0.32s; }
+        .delay-5 { transition-delay:0.40s; }
+
+        .includes-grid > .reveal:nth-child(1) { transition-delay:0.04s; }
+        .includes-grid > .reveal:nth-child(2) { transition-delay:0.10s; }
+        .includes-grid > .reveal:nth-child(3) { transition-delay:0.16s; }
+        .includes-grid > .reveal:nth-child(4) { transition-delay:0.22s; }
+        .includes-grid > .reveal:nth-child(5) { transition-delay:0.28s; }
+        .includes-grid > .reveal:nth-child(n+6) { transition-delay:0.34s; }
+
+        /* Hover suave e interactivo en las tarjetas de servicio */
+        .include-item, .complemento-card, .publicidad-card, .venue-info-card {
+            transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.35s ease;
+        }
+        .include-item:hover, .complemento-card:hover, .publicidad-card:hover {
+            transform:translateY(-5px);
+            box-shadow:0 16px 36px rgba(31,31,31,0.12);
+        }
+
+        @media (max-width:768px){
+            .reveal-left, .reveal-right { transform:translateY(30px); }
+        }
 
         @media (prefers-reduced-motion: reduce){
             .reveal{opacity:1!important;transform:none!important;transition:none!important;}
@@ -1369,7 +1402,7 @@
             entries.forEach(function(e){
                 if (e.isIntersecting) { e.target.classList.add('active'); obs.unobserve(e.target); }
             });
-        }, { threshold: 0.05, rootMargin: '0px 0px -22% 0px' });
+        }, { threshold: 0.01, rootMargin: '0px 0px 100px 0px' });
         reveals.forEach(function(r){ observer.observe(r); });
 
         // red de seguridad: nunca dejar contenido invisible
