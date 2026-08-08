@@ -450,6 +450,16 @@
             .pricing-table td { padding:3.5px 8px !important; border-bottom:.5px solid var(--beige) !important; }
             .pricing-table tr:nth-child(even) { background:rgba(246,92,122,.035) !important; }
             .col-unit, th.col-unit { display:none !important; }
+
+            /* Planners en PDF: sin imágenes, con teléfono y correo en texto limpio */
+            .planners-contact-section { display:block !important; page-break-inside:avoid; margin-top:14px !important; }
+            .planner-img-wrap, .planner-img, .planner-overlay { display:none !important; }
+            .planners-grid { display:grid !important; grid-template-columns:1fr 1fr !important; gap:12px !important; margin-top:8px !important; }
+            .planner-card { border:1px solid var(--beige) !important; padding:10px 14px !important; border-radius:10px !important; box-shadow:none !important; text-decoration:none !important; background:var(--white) !important; }
+            .planner-info h4 { font-size:10pt !important; color:var(--primary-pink) !important; margin-bottom:2px !important; }
+            .planner-info p { font-size:7.5pt !important; color:var(--gray-text) !important; margin-bottom:4px !important; }
+            .planner-print-contacts { display:block !important; margin-top:6px !important; padding-top:6px !important; border-top:1px dashed var(--beige) !important; font-size:7.8pt !important; color:var(--primary-dark) !important; }
+            .planner-print-contacts p { margin:2px 0 !important; color:var(--primary-dark) !important; font-size:7.8pt !important; }
             .col-concept { width:26% !important; } .col-desc { width:58% !important; }
 
             .pricing-section { background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%) !important;
@@ -1156,6 +1166,11 @@
                         <div class="planner-info">
                             <h4>Richard Hernández</h4>
                             <p>Senior Event &amp; Wedding Planner</p>
+                            <div class="planner-print-contacts solo-print">
+                                <p><strong>Tel / WhatsApp:</strong> +52 777 458 7923</p>
+                                <p><strong>Correo:</strong> richard@primaveraeventsgroup.com</p>
+                                <p><strong>Sitio Web:</strong> primaveraeventsgroup.com</p>
+                            </div>
                         </div>
                     </a>
                     <a href="https://wa.me/527774587923?text=Hola%20Jessy%2C%20vi%20la%20propuesta%20de%20Finca%20Las%20Isabeles%20y%20quisiera%20asesor%C3%ADa%20para%20mi%20evento" target="_blank" class="planner-card">
@@ -1168,6 +1183,11 @@
                         <div class="planner-info">
                             <h4>Jessy</h4>
                             <p>Senior Event &amp; Wedding Planner</p>
+                            <div class="planner-print-contacts solo-print">
+                                <p><strong>Tel / WhatsApp:</strong> +52 777 458 7923</p>
+                                <p><strong>Correo:</strong> jessy@primaveraeventsgroup.com</p>
+                                <p><strong>Sitio Web:</strong> primaveraeventsgroup.com</p>
+                            </div>
                         </div>
                     </a>
                 </div>
