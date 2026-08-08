@@ -929,7 +929,7 @@
             <div class="includes-grid">
                 <div class="reveal reveal-right"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="letras_gigantes_iluminadas.webp" alt="Letras iluminadas"></div><div class="include-content"><h4><i class="fas fa-font"></i> Letras Iluminadas</h4><p>Letras decorativas «XV» o «LOVE», según el tipo de celebración.</p></div></div></div>
                 <div class="reveal"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="corazon_rojo_iluminado.webp" alt="Corazon rojo iluminado"></div><div class="include-content"><h4><i class="fas fa-heart"></i> Corazón Rojo Iluminado</h4><p>Pieza decorativa iluminada para el área de fotos o la pista.</p></div></div></div>
-                <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container is-video"><video id="videoPastel" class="include-video" autoplay muted loop playsinline webkit-playsinline poster="mesa_pastel.webp"><source src="video_pastel.mp4" type="video/mp4"></video></div><div class="include-content"><h4><i class="fas fa-cake-candles"></i> Montaje de Mesa para Pastel <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4><p>Mesa especial montada y decorada para la presentación del pastel. <em>(Nota: El pastel de autor se cotiza por separado en la sección de extras).</em></p></div></div></div>
+                <div class="reveal reveal-zoom"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="mesa_pastel.webp" alt="Mesa de pastel"></div><div class="include-content"><h4><i class="fas fa-cake-candles"></i> Mesa de Pastel</h4><p>Mesa especial montada y decorada para la presentación del pastel del evento.</p></div></div></div>
                 <div class="reveal reveal-left"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="mesa_regalos.jpeg" alt="mesa regalos"></div><div class="include-content"><h4><i class="fas fa-gift"></i> Mesa de Regalos</h4><p>Mesa especial para recibir y resguardar los obsequios de sus invitados.</p></div></div></div>
                 <div class="reveal reveal-right"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="pirotecnia_fria_chisperos.webp" alt="pirotecnia fria chisperos"></div><div class="include-content"><h4><i class="fas fa-fire"></i> Pirotecnia en Frío</h4><p>Detonación de dos chisperos inalámbricos en frío para el momento estelar del evento.</p></div></div></div>
                 <div class="reveal"><div class="include-item"><div class="include-img-container"><img class="include-img" loading="lazy" decoding="async" src="alfombra_roja.webp" alt="alfombra roja"></div><div class="include-content"><h4><i class="fas fa-shoe-prints"></i> Alfombra Roja</h4><p>Entrada espectacular sobre alfombra roja para los festejados.</p></div></div></div>
@@ -1261,7 +1261,22 @@
         let html = '';
         let idCounter = 0;
         EXTRAS.forEach(cat => {
-            html += `<div class="calc-category-title">${cat.categoria}</div><div class="calc-grid">`;
+            html += `<div class="calc-category-title">${cat.categoria}</div>`;
+            if (cat.categoria === "Repostería & Pastel") {
+                html += `
+                <div class="calc-video-demo" style="margin-bottom:14px; border-radius:16px; overflow:hidden; border:1px solid var(--beige); background:var(--white); padding:12px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <div style="flex:1; min-width:220px; max-width:320px; aspect-ratio:16/9; background:#000; border-radius:12px; overflow:hidden;">
+                        <video id="videoPastel" autoplay muted loop playsinline webkit-playsinline poster="mesa_pastel.webp" style="width:100%; height:100%; object-fit:contain; background:#000;">
+                            <source src="video_pastel.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div style="flex:2; min-width:200px;">
+                        <h4 style="font-size:0.95rem; margin-bottom:6px; color:var(--primary-dark); font-weight:700;"><i class="fas fa-cake-candles" style="color:var(--primary-pink); margin-right:6px;"></i> Pastel de Boda / Evento de Autor <span class="badge-video"><i class="fas fa-play"></i> Video</span></h4>
+                        <p style="font-size:0.82rem; color:var(--gray-text); margin:0;">MIRA EL VIDEO: Demostración real del pastel de autor. Selecciona la casilla de abajo si deseas incluirlo en tus extras (desde $9,000 MXN — a confirmar según kilos y pisos).</p>
+                    </div>
+                </div>`;
+            }
+            html += `<div class="calc-grid">`;
             cat.items.forEach(item => {
                 const id = `extra-${idCounter++}`;
                 html += `
