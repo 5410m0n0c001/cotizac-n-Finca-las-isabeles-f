@@ -126,8 +126,10 @@
             background:repeating-linear-gradient(45deg,#F5EFEB,#F5EFEB 10px,#EFE7E1 10px,#EFE7E1 20px); }
         .img-pendiente i { font-size:1.7rem; color:var(--primary-light); }
         /* Tarjetas que muestran un video real del servicio en lugar de foto: imagen COMPLETA sin recortes */
-        .include-img-container.is-video { height:auto; aspect-ratio:16/9; min-height:220px; background:#000; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-        .include-video { width:100%; height:100%; object-fit:contain; background:#000; border:0; display:block; }
+        .include-img-container.is-video { width:100% !important; height:auto !important; aspect-ratio:16/9 !important; min-height:0 !important; background:#000 !important; overflow:hidden !important; display:flex !important; align-items:center !important; justify-content:center !important; border-radius:14px !important; }
+        .include-video, video { width:100% !important; height:100% !important; max-width:100% !important; object-fit:contain !important; background:#000 !important; border:0 !important; display:block !important; }
+        .video-frame { width:100% !important; aspect-ratio:16/9 !important; border-radius:20px !important; overflow:hidden !important; background:#000 !important; position:relative; }
+        .video-frame video { width:100% !important; height:100% !important; object-fit:contain !important; display:block !important; }
         .badge-video { display:inline-flex; align-items:center; gap:5px; background:var(--gold-accent); color:var(--primary-dark); font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:3px 9px; border-radius:30px; margin-left:6px; vertical-align:middle; }
         .img-pendiente span { font-size:.68rem; font-family:monospace; color:var(--gray-text); letter-spacing:.5px; word-break:break-all; }
 
@@ -1391,9 +1393,10 @@
     });
 
 
-    // ══ Reveal — mecanismo copiado literal de antonio-cotizacion ══
-    document.addEventListener('DOMContentLoaded', function(){
+    // ══ Reveal — mecanismo incondicional (gira siempre sin race condition) ══
+    function initReveals() {
         var reveals = document.querySelectorAll('.reveal');
+        if (!reveals.length) return;
         if (!('IntersectionObserver' in window)) {
             reveals.forEach(function(r){ r.classList.add('active'); });
             return;
@@ -1402,8 +1405,15 @@
             entries.forEach(function(e){
                 if (e.isIntersecting) { e.target.classList.add('active'); obs.unobserve(e.target); }
             });
-        }, { threshold: 0.01, rootMargin: '0px 0px 100px 0px' });
-        reveals.forEach(function(r){ observer.observe(r); });
+        }, { threshold: 0.01, rootMargin: '50px 0px 150px 0px' });
+        reveals.forEach(function(r){
+            var rect = r.getBoundingClientRect();
+            if (rect.top < window.innerHeight + 120) {
+                r.classList.add('active');
+            } else {
+                observer.observe(r);
+            }
+        });
 
         // red de seguridad: nunca dejar contenido invisible
         function activarTodo(){ reveals.forEach(function(r){ r.classList.add('active'); }); }
@@ -1414,7 +1424,13 @@
             var hero = document.querySelector('.hero');
             if (hero) hero.style.backgroundPosition = 'center calc(62% + ' + (window.pageYOffset * 0.25) + 'px)';
         }, { passive:true });
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initReveals);
+    } else {
+        initReveals();
+    }
 
     // ══ El total cuenta hacia arriba al aparecer ══
     (function(){
