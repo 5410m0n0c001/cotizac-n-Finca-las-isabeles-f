@@ -426,12 +426,15 @@
             .container { margin:0 !important; padding:0 !important; max-width:100% !important; }
             .quote-card { box-shadow:none !important; padding:0 !important; border:none !important; }
 
-            .print-header { display:flex !important; align-items:center; gap:12px; padding-bottom:9px; margin-bottom:12px;
+            .print-header { display:flex !important; align-items:center; justify-content:space-between; gap:12px; padding-bottom:9px; margin-bottom:12px;
                 border-bottom:2.5px solid var(--primary-pink); }
-            .print-header img { width:44px; height:44px; border-radius:50%; object-fit:cover; border:1.5px solid var(--gold-accent); }
+            .print-header-left { display:flex; align-items:center; gap:12px; flex:1; }
+            .print-header img.ph-logo { width:44px; height:44px; border-radius:50%; object-fit:cover; border:1.5px solid var(--gold-accent); }
             .print-header h2 { font-size:14pt; margin:0; color:var(--primary-pink); line-height:1.1; }
             .print-header p { font-size:7.6pt; color:var(--gray-text); margin:1px 0 0; }
             .print-header .ph-meta { color:var(--primary-dark); font-size:8pt; margin-top:3px; }
+            .qr-print-box { text-align:center; min-width:85px; font-size:6pt; color:var(--primary-dark); line-height:1.1; }
+            .qr-print-box img.qr-img { width:52px; height:52px; border:1.5px solid var(--gold-accent); border-radius:6px; padding:2px; background:#fff; margin-bottom:2px; }
 
             .header-info { border-bottom:1px solid var(--beige) !important; padding-bottom:8px !important; margin-bottom:10px !important; gap:10px !important; }
             .header-main h2 { font-size:13pt !important; color:var(--primary-pink); margin-bottom:3px !important; }
@@ -530,11 +533,17 @@
 
             <!-- Encabezado que solo sale en el PDF -->
             <div class="print-header solo-print">
-                <img src="logo_primavera_events_group.png" alt="Primavera Events Group">
-                <div class="ph-txt">
-                    <h2>Primavera Events Group</h2>
-                    <p>Paquete Personalizado para Mari y David &middot; Finca Las Isabeles &middot; Xochitepec, Morelos</p>
-                    <p class="ph-meta"><strong>Mari y David</strong> &middot; Boda &middot; [FECHA] &middot; 200 invitados &middot; 10 horas de servicio</p>
+                <div class="print-header-left">
+                    <img src="logo_primavera_events_group.png" alt="Primavera Events Group" class="ph-logo">
+                    <div class="ph-txt">
+                        <h2>Primavera Events Group</h2>
+                        <p>Paquete Personalizado para Mari y David &middot; Finca Las Isabeles &middot; Xochitepec, Morelos</p>
+                        <p class="ph-meta"><strong>Mari y David</strong> &middot; Boda &middot; [FECHA] &middot; 200 invitados &middot; 10 horas de servicio</p>
+                    </div>
+                </div>
+                <div class="qr-print-box">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://5410m0n0c001.github.io/cotizac-n-Finca-las-isabeles-f/" alt="Código QR Versión Web" class="qr-img">
+                    <div><strong>Escanea para ver la propuesta web interactiva</strong></div>
                 </div>
             </div>
             <div class="venue-logo-wrap">
@@ -1218,8 +1227,15 @@
                 </div>
             </div>
 
-            <div class="print-footer solo-print">
-                Primavera Events Group &middot; Av. Defensa Nacional #8, Col. Chamilpa, 62210 Cuernavaca, Mor.
+            <div class="print-footer solo-print" style="display:flex; align-items:center; justify-content:space-between;">
+                <div>
+                    <strong>Primavera Events Group</strong> &middot; Av. Defensa Nacional #8, Col. Chamilpa, 62210 Cuernavaca, Mor.<br>
+                    Tel / WhatsApp: +52 777 458 7923 &middot; primaveraeventsgroup.com
+                </div>
+                <div class="qr-print-box" style="margin-left:auto;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://5410m0n0c001.github.io/cotizac-n-Finca-las-isabeles-f/" alt="Código QR Versión Web" class="qr-img" style="width:42px; height:42px;">
+                    <div>Ver en línea</div>
+                </div>
             </div>
         </div>
     </main>
