@@ -865,11 +865,11 @@
                         </tr>
 
                         <tr style="background:var(--primary-dark); color:#fff;">
-                            <td><strong>TOTAL DEL PAQUETE</strong></td>
+                            <td><strong>TOTAL DEL PAQUETE BASE</strong></td>
                             <td>Paquete Personalizado para Mari y David completo — 10 horas continuas, todo lo listado arriba incluido.</td>
                             <td class="align-center"><strong>200 Px</strong></td>
-                            <td class="align-right"><strong>$2,099.00</strong></td>
-                            <td class="align-right"><strong>$419,800.00</strong></td>
+                            <td class="align-right"><strong id="pdfTotalPersona">$2,099.00</strong></td>
+                            <td class="align-right"><strong id="pdfTotalEvento">$419,800.00</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -897,6 +897,124 @@
                             <td><strong>Pastel de Boda sobre Diseño</strong></td>
                             <td>Elaborado a medida por chef pastelero de autor (diseño personalizado, pisos y kilos a elección según invitados).</td>
                             <td class="align-right"><em>Se cotiza por separado sobre diseño</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ══ CATÁLOGO Y COTIZADOR DINÁMICO DE EXTRAS (VERSIÓN PDF) ══ -->
+            <h3 class="section-title solo-print" style="margin-top:20px;"><i class="fas fa-calculator"></i> Catálogo de Servicios Adicionales &amp; Extras Opcionales</h3>
+            <p class="calc-hint solo-print" style="margin-bottom:10px;">A continuación se detallan las opciones de servicios adicionales que pueden sumarse al paquete base contratado:</p>
+            <div class="pricing-table-container solo-print" style="margin-bottom:20px;">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Categoría y Servicio Adicional</th>
+                            <th>Especificación / Detalle</th>
+                            <th class="align-right">Inversión Adicional</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaExtrasPrint">
+                        <tr style="background:var(--soft-pink);"><td colspan="3"><strong>TORNAFIESTA &amp; OPCIONES ADICIONALES</strong></td></tr>
+                        <tr>
+                            <td><strong>Tacos al Pastor</strong></td>
+                            <td>Servicio de tacos al pastor para 200 personas ($60 MXN por persona).</td>
+                            <td class="align-right">$12,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pozole Tradicional</strong></td>
+                            <td>Servicio de pozole tradicional para 200 personas ($60 MXN por persona).</td>
+                            <td class="align-right">$12,000.00 MXN</td>
+                        </tr>
+
+                        <tr style="background:var(--soft-pink);"><td colspan="3"><strong>EFECTOS ESPECIALES &amp; PIROTECNIA</strong></td></tr>
+                        <tr>
+                            <td><strong>Fuegos Artificiales Tradicionales</strong></td>
+                            <td>Espectáculo de pirotecnia aérea exterior en el cielo (según bombas y duración).</td>
+                            <td class="align-right">Desde $9,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Set de Chisperos en Frío</strong></td>
+                            <td>Set de 4 chisperos inalámbricos de pirotecnia en frío para pista o escenario.</td>
+                            <td class="align-right">$3,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Detonación Estelar de Chisperos</strong></td>
+                            <td>Set de 6 chisperos inalámbricos de pirotecnia en frío.</td>
+                            <td class="align-right">$4,500.00 MXN</td>
+                        </tr>
+
+                        <tr style="background:var(--soft-pink);"><td colspan="3"><strong>PERSONAL EXTRA</strong></td></tr>
+                        <tr>
+                            <td><strong>Mesero adicional (8 hrs)</strong></td>
+                            <td>Personal capacitado para atención de mesas.</td>
+                            <td class="align-right">$1,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capitán de meseros adicional</strong></td>
+                            <td>Supervisión ejecutiva de servicio.</td>
+                            <td class="align-right">$3,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coordinador general adicional</strong></td>
+                            <td>Coordinación logística durante el evento.</td>
+                            <td class="align-right">$9,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bartender adicional</strong></td>
+                            <td>Atención profesional de barra.</td>
+                            <td class="align-right">$1,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hostess adicional</strong></td>
+                            <td>Recepción y asignación de invitados.</td>
+                            <td class="align-right">$2,000.00 MXN</td>
+                        </tr>
+
+                        <tr style="background:var(--soft-pink);"><td colspan="3"><strong>ENTRETENIMIENTO ADICIONAL</strong></td></tr>
+                        <tr>
+                            <td><strong>Mariachi Tradicional (1 hr)</strong></td>
+                            <td>Mariachi profesional en vivo para amenizar.</td>
+                            <td class="align-right">$9,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Show Men Animador adicional (2 hrs)</strong></td>
+                            <td>Animación profesional de pista.</td>
+                            <td class="align-right">$7,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Robot LED adicional (1 hr)</strong></td>
+                            <td>Personaje con iluminación robótica en pista.</td>
+                            <td class="align-right">$5,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cabina 360° adicional (1 hr)</strong></td>
+                            <td>Plataforma giratoria de video.</td>
+                            <td class="align-right">$5,000.00 MXN</td>
+                        </tr>
+
+                        <tr style="background:var(--soft-pink);"><td colspan="3"><strong>INVITACIÓN DIGITAL</strong></td></tr>
+                        <tr>
+                            <td><strong>Invitación Esencial</strong></td>
+                            <td>Diseño de catálogo, música, mapa, cuenta regresiva y RSVP por WhatsApp.</td>
+                            <td class="align-right">$1,000.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Invitación Personalizada</strong></td>
+                            <td>Todo lo anterior + galería, itinerario, música y video propios.</td>
+                            <td class="align-right">$1,500.00 MXN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Invitación Premium</strong></td>
+                            <td>Todo lo anterior + diseño a medida, RSVP con formulario, ubica tu mesa 3D y álbum en vivo.</td>
+                            <td class="align-right">$2,000.00 MXN</td>
+                        </tr>
+
+                        <tr style="background:var(--soft-pink);"><td colspan="3"><strong>SOUVENIRS</strong></td></tr>
+                        <tr>
+                            <td><strong>Tequila Personalizado Don Ramón</strong></td>
+                            <td>Botella de 750 ml corte diamante grabada con el evento.</td>
+                            <td class="align-right">$11,515.00 MXN</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1383,6 +1501,12 @@
             .map(e => `<li class="price-breakdown-row"><span>+ ${e.nombre}</span><span>${moneyFmt(e.precio)}</span></li>`)
             .join('');
         document.getElementById('desgloseExtras').style.display = seleccion.length ? 'block' : 'none';
+
+        // Actualizacion sincronizada con la version PDF
+        var pdfTotalPersona = document.getElementById('pdfTotalPersona');
+        var pdfTotalEvento = document.getElementById('pdfTotalEvento');
+        if (pdfTotalPersona) pdfTotalPersona.textContent = moneyFmt(totalFinal / 200);
+        if (pdfTotalEvento) pdfTotalEvento.textContent = moneyFmt(totalFinal);
 
         // Caja de total del propio cotizador (la que el cliente sí tiene a la vista)
         var ctbTotal = document.getElementById('ctbTotal');
