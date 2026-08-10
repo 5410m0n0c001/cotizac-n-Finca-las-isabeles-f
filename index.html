@@ -408,7 +408,7 @@
             border-top:1px solid rgba(255,255,255,.14); font-size:.78rem; color:rgba(255,255,255,.7); }
         .ctb-total-chico strong { color:var(--gold-accent); font-weight:600; }
 
-        /* CSS print obligatorio — DIRECTIVES.md sección 9 */
+        /* CSS print optimizado — formato limpio, desaturado y sin cortes de texto */
         @media print {
             #preloader, .floating-actions-container, .pdf-section,
             .kit-section, .cta-container, audio, .audio-toggle,
@@ -419,72 +419,74 @@
             .solo-print { display:block !important; }
             .solo-print .tbl-thumb, .solo-print .tbl-thumb-pend { display:none !important; }
 
-            * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+            * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; box-sizing:border-box !important; }
 
-            @page { margin: 1cm 1.1cm; }
-            body { background:#fff !important; font-size:8.2pt; line-height:1.28; color:#1F1F1F; }
-            .container { margin:0 !important; padding:0 !important; max-width:100% !important; }
-            .quote-card { box-shadow:none !important; padding:0 !important; border:none !important; }
+            @page {
+                size: letter portrait;
+                margin: 1.2cm 1.4cm;
+            }
 
-            .print-header { display:flex !important; align-items:center; justify-content:space-between; gap:12px; padding-bottom:9px; margin-bottom:12px;
-                border-bottom:2.5px solid var(--primary-pink); }
-            .print-header-left { display:flex; align-items:center; gap:12px; flex:1; }
-            .print-header img.ph-logo { width:44px; height:44px; border-radius:50%; object-fit:cover; border:1.5px solid var(--gold-accent); }
-            .print-header h2 { font-size:14pt; margin:0; color:var(--primary-pink); line-height:1.1; }
-            .print-header p { font-size:7.6pt; color:var(--gray-text); margin:1px 0 0; }
-            .print-header .ph-meta { color:var(--primary-dark); font-size:8pt; margin-top:3px; }
-            .qr-print-box { text-align:center; min-width:85px; font-size:6pt; color:var(--primary-dark); line-height:1.1; }
-            .qr-print-box img.qr-img { width:52px; height:52px; border:1.5px solid var(--gold-accent); border-radius:6px; padding:2px; background:#fff; margin-bottom:2px; }
+            body { background:#fff !important; font-size:8.5pt !important; line-height:1.35 !important; color:#1F1F1F !important; }
+            .container { margin:0 !important; padding:0 !important; max-width:100% !important; width:100% !important; }
+            .quote-card { box-shadow:none !important; padding:0 !important; border:none !important; background:transparent !important; overflow:visible !important; }
 
-            .header-info { border-bottom:1px solid var(--beige) !important; padding-bottom:8px !important; margin-bottom:10px !important; gap:10px !important; }
-            .header-main h2 { font-size:13pt !important; color:var(--primary-pink); margin-bottom:3px !important; }
-            .header-main p { font-size:8pt !important; }
-            .badge-event { background:var(--soft-pink) !important; color:var(--primary-pink) !important; font-size:6.6pt !important; padding:2px 10px !important; margin-top:5px !important; }
-            .info-box { padding:6px 10px !important; min-width:78px !important; background:var(--background-light) !important; border:1px solid var(--beige) !important; border-radius:8px !important; }
-            .info-box span { font-size:6pt !important; margin-bottom:1px !important; }
-            .info-box strong { font-size:9.5pt !important; color:var(--primary-pink); }
+            /* Encabezado limpio con logotipo y QR */
+            .print-header { display:flex !important; align-items:center; justify-content:space-between; gap:16px; padding-bottom:12px; margin-bottom:16px;
+                border-bottom:2px solid var(--gold-accent); page-break-inside:avoid !important; break-inside:avoid !important; }
+            .print-header-left { display:flex; align-items:center; gap:14px; flex:1; }
+            .print-header img.ph-logo { width:50px; height:50px; border-radius:50%; object-fit:cover; border:1.5px solid var(--gold-accent); }
+            .print-header h2 { font-size:15pt; margin:0; color:var(--primary-pink); line-height:1.15; font-family:'Playfair Display', serif; }
+            .print-header p { font-size:8pt; color:var(--gray-text); margin:2px 0 0; }
+            .print-header .ph-meta { color:var(--primary-dark); font-size:8.5pt; margin-top:4px; font-weight:500; }
+            .qr-print-box { text-align:center; min-width:90px; font-size:6.5pt; color:var(--primary-dark); line-height:1.15; }
+            .qr-print-box img.qr-img { width:56px; height:56px; border:1.5px solid var(--gold-accent); border-radius:6px; padding:2px; background:#fff; margin-bottom:2px; }
 
-            .section-title { font-size:11pt !important; margin:8px 0 6px !important; padding-bottom:4px !important;
-                color:var(--primary-pink); border-bottom:1px solid var(--gold-accent) !important; }
-            .section-title i { color:var(--gold-accent) !important; font-size:9pt !important; }
-            .pricing-table-container { border:1px solid var(--beige) !important; border-radius:8px !important; margin-bottom:10px !important; }
-            .pricing-table { font-size:7.6pt !important; }
-            .pricing-table th { background:var(--primary-pink) !important; color:#fff !important; padding:5px 8px !important; font-size:6.8pt !important; letter-spacing:.4px !important; }
-            .pricing-table td { padding:3.5px 8px !important; border-bottom:.5px solid var(--beige) !important; }
-            .pricing-table tr:nth-child(even) { background:rgba(246,92,122,.035) !important; }
+            .header-info { border-bottom:1px solid var(--beige) !important; padding-bottom:12px !important; margin-bottom:14px !important; gap:12px !important; page-break-inside:avoid !important; break-inside:avoid !important; }
+            .header-main h2 { font-size:14pt !important; color:var(--primary-pink); margin-bottom:4px !important; font-family:'Playfair Display', serif; }
+            .header-main p { font-size:8.2pt !important; line-height:1.35 !important; }
+            .badge-event { background:var(--soft-pink) !important; color:var(--primary-pink) !important; font-size:7pt !important; padding:3px 12px !important; margin-top:6px !important; border-radius:12px !important; font-weight:600; display:inline-block !important; }
+            .info-box { padding:6px 12px !important; min-width:85px !important; background:var(--background-light) !important; border:1px solid var(--beige) !important; border-radius:8px !important; text-align:center; }
+            .info-box span { font-size:6.5pt !important; margin-bottom:2px !important; text-transform:uppercase; letter-spacing:0.5px; }
+            .info-box strong { font-size:10pt !important; color:var(--primary-pink); }
+
+            /* Títulos y Secciones */
+            .section-title { font-size:11.5pt !important; margin:16px 0 8px !important; padding-bottom:4px !important;
+                color:var(--primary-pink); border-bottom:1px solid var(--gold-accent) !important; font-family:'Playfair Display', serif; page-break-after:avoid !important; break-after:avoid !important; }
+            .section-title i { color:var(--gold-accent) !important; font-size:9.5pt !important; margin-right:4px; }
+            
+            /* Tablas desaturadas y espaciosas */
+            .pricing-table-container { border:1px solid #E2D9D0 !important; border-radius:8px !important; margin-bottom:16px !important; overflow:visible !important; page-break-inside:auto !important; break-inside:auto !important; }
+            .pricing-table { font-size:8pt !important; line-height:1.35 !important; width:100% !important; border-collapse:collapse !important; }
+            .pricing-table th { background:var(--primary-dark) !important; color:#fff !important; padding:7px 10px !important; font-size:7.2pt !important; letter-spacing:.5px !important; text-transform:uppercase; }
+            .pricing-table td { padding:5px 10px !important; border-bottom:1px solid #ECE6E0 !important; vertical-align:middle !important; }
+            .pricing-table tr { page-break-inside:avoid !important; break-inside:avoid !important; }
+            .pricing-table tr:nth-child(even) { background:rgba(246,92,122,.02) !important; }
+            .pricing-table tr[style*="soft-pink"] td { background:#FAF2ED !important; color:var(--primary-dark) !important; font-weight:700 !important; padding:6px 10px !important; font-size:8pt !important; letter-spacing:0.4px; }
             .col-unit, th.col-unit { display:none !important; }
 
-            /* Planners en PDF: sin imágenes, con teléfono y correo en texto limpio */
-            .planners-contact-section { display:block !important; page-break-inside:avoid; margin-top:14px !important; }
-            .planner-img-wrap, .planner-img, .planner-overlay { display:none !important; }
-            .planners-grid { display:grid !important; grid-template-columns:1fr 1fr !important; gap:12px !important; margin-top:8px !important; }
-            .planner-card { border:1px solid var(--beige) !important; padding:10px 14px !important; border-radius:10px !important; box-shadow:none !important; text-decoration:none !important; background:var(--white) !important; }
-            .planner-info h4 { font-size:10pt !important; color:var(--primary-pink) !important; margin-bottom:2px !important; }
-            .planner-info p { font-size:7.5pt !important; color:var(--gray-text) !important; margin-bottom:4px !important; }
-            .planner-print-contacts { display:block !important; margin-top:6px !important; padding-top:6px !important; border-top:1px dashed var(--beige) !important; font-size:7.8pt !important; color:var(--primary-dark) !important; }
-            .planner-print-contacts p { margin:2px 0 !important; color:var(--primary-dark) !important; font-size:7.8pt !important; }
-            .col-concept { width:26% !important; } .col-desc { width:58% !important; }
+            .col-concept { width:28% !important; }
+            .col-desc { width:56% !important; }
 
+            /* Contacto de Planners en texto limpio */
+            .planners-contact-section { display:block !important; page-break-inside:avoid !important; break-inside:avoid !important; margin-top:16px !important; }
+            .planner-img-wrap, .planner-img, .planner-overlay { display:none !important; }
+            .planners-grid { display:grid !important; grid-template-columns:1fr 1fr !important; gap:14px !important; margin-top:10px !important; }
+            .planner-card { border:1px solid #E2D9D0 !important; padding:12px 16px !important; border-radius:10px !important; box-shadow:none !important; text-decoration:none !important; background:#fff !important; page-break-inside:avoid !important; break-inside:avoid !important; }
+            .planner-info h4 { font-size:10.5pt !important; color:var(--primary-pink) !important; margin-bottom:2px !important; font-family:'Playfair Display', serif; }
+            .planner-info p { font-size:7.8pt !important; color:var(--gray-text) !important; margin-bottom:4px !important; }
+            .planner-print-contacts { display:block !important; margin-top:8px !important; padding-top:8px !important; border-top:1px dashed #E2D9D0 !important; font-size:8pt !important; color:var(--primary-dark) !important; line-height:1.35 !important; }
+            .planner-print-contacts p { margin:2px 0 !important; color:var(--primary-dark) !important; font-size:8pt !important; }
+
+            /* Tarjeta de Inversión Total */
             .pricing-section { background:linear-gradient(135deg,var(--primary-dark) 0%,var(--dark-grad-end) 100%) !important;
-                color:#fff !important; border:none !important; padding:14px 18px !important; border-radius:12px !important; margin-top:8px !important; }
-            .pricing-section h3 { color:var(--gold-accent) !important; font-size:8pt !important; margin-bottom:2px !important; }
-            .price-hero { font-size:22pt !important; margin:4px 0 2px !important; color:#fff !important; }
-            .price-hero sup { color:var(--gold-accent) !important; font-size:9pt !important; }
-            .price-label { font-size:7.6pt !important; color:rgba(255,255,255,.8) !important; margin-bottom:0 !important; }
-            .price-note { font-size:6.2pt !important; margin-top:7px !important; color:rgba(255,255,255,.55) !important; }
+                color:#fff !important; border:none !important; padding:16px 20px !important; border-radius:12px !important; margin-top:14px !important; page-break-inside:avoid !important; break-inside:avoid !important; }
+            .pricing-section h3 { color:var(--gold-accent) !important; font-size:8.5pt !important; margin-bottom:4px !important; text-transform:uppercase; letter-spacing:0.5px; }
+            .price-hero { font-size:24pt !important; margin:4px 0 2px !important; color:#fff !important; font-family:'Playfair Display', serif; }
+            .price-hero sup { color:var(--gold-accent) !important; font-size:10pt !important; }
+            .price-label { font-size:8pt !important; color:rgba(255,255,255,.85) !important; margin-bottom:0 !important; }
+            .price-note { font-size:6.8pt !important; margin-top:8px !important; color:rgba(255,255,255,.6) !important; }
             .price-breakdown { display:none !important; }
 
-            .notes-section { padding:11px 14px !important; margin-top:10px !important; border:1px solid var(--beige) !important;
-                border-left:3px solid var(--gold-accent) !important; border-radius:8px !important; background:var(--background-light) !important; }
-            .notes-section h3 { font-size:9.5pt !important; margin-bottom:6px !important; color:var(--primary-pink); }
-            .notes-section li { font-size:7.2pt !important; margin-bottom:2px !important; }
-            .notes-section ul { margin-bottom:6px !important; }
-            .quote-phrase { font-size:7.6pt !important; margin-top:7px !important; color:var(--primary-pink) !important; }
-
-            .print-footer { display:block !important; margin-top:12px; padding-top:7px; border-top:1px solid var(--beige);
-                font-size:6.4pt; color:var(--gray-text); text-align:center; }
-
-            .notes-section, .pricing-section, .print-header { page-break-inside:avoid !important; break-inside:avoid !important; }
             h2, h3, h4, .section-title { page-break-after:avoid !important; break-after:avoid !important; }
             .pricing-table tr { page-break-inside:avoid !important; }
         }
